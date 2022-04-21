@@ -1,26 +1,29 @@
-;;
-;; Don't show the startup screen
-(setq inhibit-startup-message t)
+;;; SlothMacs --- Soul's emacs config
+;;; Commentary: Soul slowly creates his own emacs config and blogs about it
+;;; Code: ?
 
 ;;
 ;; Disable Basic crap
-
+(setq inhibit-startup-message t) ; no startup message
 (scroll-bar-mode -1) ; Disable scroll bar
 (tool-bar-mode -1) ; Disable tool bar
 (tooltip-mode -1) ; Disable tool tips
 (menu-bar-mode -1) ; Disable the menu bar
 
+;;
+;; fringes
+
 (set-fringe-mode 10) ; Left and right fringes
+
+;;
+;; escape escapes mini buffer
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;;
 ;; Fonts
 
 (set-face-attribute 'default nil :font "Source code pro" :family "sans" :height 100 :width 'normal)
-;;(set-face-attribute 'default nil :font "linux biolinum" :family "sans" :height 125 :width 'normal)
-;;(set-face-attribute 'default nil :font "linux libertine" :family "serif" :height 115)
-;;(set-face-attribute 'default nil :font "linux biolinum" :family "sans-serif" :height 115)
-;; TODO: keep searching for a good mono font
-;;(set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115)
+(set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115)
 
 ;;
 ;; Initialize package sources
@@ -43,7 +46,6 @@
 
 ;; Ensure our packages are installed before we run
 (setq use-package-always-ensure t)
-
 
 ;;
 ;; Theme
@@ -73,6 +75,48 @@
 (when (require 'evil-collection nil t)
   (evil-collection-init))
 
+;;
+;; swiper
+(unless (package-installed-p 'swiper)
+  (package-install 'swiper))
+
+(require 'swiper)
+
+;;
+;; Counsel
+(unless (package-installed-p 'counsel)
+  (package-install 'counsel))
+
+(require 'counsel)
+
+;;
+;; ivy
+
+;; Get Ivy
+(use-package ivy
+  :diminish
+  :bind (("C-s" . swiper)
+	 :map ivy-minibuffer-map
+	 ("TAB" . ivy-alt-done)
+	 ("C-l" . ivy-alt-done)
+	 ("C-k" . ivy-next-line)
+	 :map ivy-switch-buffer-map
+	 ("C-k" . ivy-previous-line)
+	 ("C-l" . ivy-done)
+	 ("C-d" . ivy-switch-buffer-kill)
+	 :map ivy-reverse-i-search-map
+	 ("C-k" . ivy-previous-line)
+	 ("C-d" . ivy-reverse-i-search-kill))
+  :config
+  (ivy-mode 1))
+
+;;
+;; Mode line
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :custom ((doom-modeline-height 10)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -80,7 +124,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(evil-collection evil monokai-theme zenburn-theme anti-zenburn-theme atom-dark-theme berrys-theme melancholy-theme use-package)))
+   '(doom-modeline counsel swiper ivy evil-collection evil monokai-theme zenburn-theme anti-zenburn-theme atom-dark-theme berrys-theme melancholy-theme use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
