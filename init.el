@@ -49,10 +49,13 @@
 
 ;;
 ;; Theme
-(use-package monokai-theme 
-  :ensure t)
 
+;; For trying some stuff out
+;;(use-package doom-themes)
+
+(use-package monokai-theme)
 (load-theme 'monokai t)
+
 
 ;;
 ;; Text Compeltion
@@ -90,9 +93,10 @@
 (require 'counsel)
 
 ;;
-;; ivy
+;; navigation
 
 ;; Get Ivy
+;; Some useful minor mode things
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper)
@@ -110,6 +114,59 @@
   :config
   (ivy-mode 1))
 
+;; which-key
+;; For incomplete commands, displays a menu
+;; emacs minor mode
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config (setq which-key-idle-delay 0.3))
+
+;; ivy-rich
+(use-package ivy-rich
+  :init
+  (ivy-rich-mode 1))
+
+;; counsel configuration
+(use-package counsel
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x b" . counsel-ibuffer)
+	 ("C-x C-f" . counsel-find-file)
+	 :map minibuffer-local-map
+	 ("C-r" . 'counsel-minibuffer-history)))
+
+;; helpful
+(use-package helpful
+    :ensure t
+    :custom
+    (counsel-describe-function-function #'helpful-callable)
+    (counsel-describe-variable-function #'helpful-variable)
+    :bind
+    ([remap describe-function] . helpful-callable)
+    ([remap describe-command] . helpful-command)
+    ([remap describe-variable] . helpful-variable)
+    ([remap describe-key] . helpful-key))
+
+;;
+;; Programming stuff 
+
+;; Line numbers
+(column-number-mode)
+(global-display-line-numbers-mode t)
+
+
+;; Don't show line numbers in org mode term or eshell
+(dolist (mode '(org-mode-hook
+		term-mode-hook
+		shell-mode-hook
+		eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+;; Rainbow delimeters
+(use-package  rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+
 ;;
 ;; Mode line
 
@@ -124,7 +181,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(doom-modeline counsel swiper ivy evil-collection evil monokai-theme zenburn-theme anti-zenburn-theme atom-dark-theme berrys-theme melancholy-theme use-package)))
+   '(doom-badger-theme doom-themes helpful ivy-rich which-key rainbow-delimiters doom-modeline counsel swiper ivy evil-collection evil monokai-theme zenburn-theme anti-zenburn-theme atom-dark-theme berrys-theme melancholy-theme use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
