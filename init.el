@@ -22,6 +22,7 @@
 ;;
 ;; Fonts
 
+
 (set-face-attribute 'default nil :font "Source code pro" :family "sans" :height 100 :width 'normal)
 (set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115)
 
@@ -56,27 +57,34 @@
 (use-package monokai-theme)
 (load-theme 'monokai t)
 
+;;
+;; General.el
+(use-package general
+  :config
+  (general-evil-setup t)
+  :config
+  (general-create-definer sloth/leader-keys
+    :keymaps '(normal insert visual emacs)
+    ;; EVIL spacemacs goodness
+    :prefix "SPC"
+    :global-prefix "C-SPC"))
+
+;; Our global leader keys
+(sloth/leader-keys
+ "t" '(:ignore t :which-key "toggles")
+ "tt" '(counsel-load-theme :which-key "choose theme"))
+
+;;
+;; NOTE: expected that you've switched capslock to lctrl
+;; (general-define-key
+;;  "C-M-j" 'counsel-switch-buffer
+;;  "C-s" 'counsel-grep-or-swiper)
 
 ;;
 ;; Text Compeltion
 ;;TODO: Add helm
 
-;;
-;; evil mode
 
-;; evil package proper
-(unless (package-installed-p 'evil)
-  (package-install 'evil))
-
-(setq evil-want-integration t)
-(setq evil-want-keybinding nil)
-
-(require 'evil)
-(evil-mode 1)
-
-;; evil-collection
-(when (require 'evil-collection nil t)
-  (evil-collection-init))
 
 ;;
 ;; swiper
@@ -114,6 +122,9 @@
   :config
   (ivy-mode 1))
 
+
+
+
 ;; which-key
 ;; For incomplete commands, displays a menu
 ;; emacs minor mode
@@ -148,7 +159,7 @@
     ([remap describe-key] . helpful-key))
 
 ;;
-;; Programming stuff 
+;; Programming stuff
 
 ;; Line numbers
 (column-number-mode)
@@ -170,10 +181,67 @@
 ;;
 ;; Mode line
 
+;; NOTE: Make sure you M-x all-the-icons-install-fonts
+(use-package all-the-icons)
+
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 10)))
+
+;;
+;; evil mode
+;; Vim layer for emacs
+
+(use-package evil
+  :ensure t
+  :init
+  ;; evil-collections required sets
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  ;; Give us back up from emacs
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
+  :config
+  (evil-mode 1)
+  ;; Exit to evil normal state with C-g instead of having to hit esc
+  :config
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)) 
+
+;; Use visual line motions even outside of visual-line-mode buffers
+(evil-global-set-key 'motion "j" 'evil-next-visual-line) 
+(evil-global-set-key 'motion "k" 'evil-previous-visual-line) 
+;;
+(evil-set-initial-state 'messages-buffer-mode 'normal) 
+(evil-set-initial-state 'dashboard-mode 'normal)
+
+;; evil-collection
+;; Which covers several areas of emacs that evil doesn't
+(use-package evil-collection
+  ;; Only load after evil
+  :after evil
+  ;; init
+  :config
+  (evil-collection-init)) 
+
+;; Hydra
+;; Hydra helps us make keybindings to do things
+(use-package hydra)
+
+(defhydra hydra-text-scale (:timeout 4)
+  "scale text"
+  ("j" text-scale-increase "in")
+  ("k" text-scale-decrease "out")
+  ("f" nil "finished" :exit t))
+
+(sloth/leader-keys
+  "ts" '(hydra-text-scale/body :which-key "scale text"))
+  
+
+;; NOTE: C-h-v helpful variables
+;; define key in {language mode)-map
+;;(define-key emacs-lisp-mode-map (kbd "C-x M-t") 'counsel-load-theme)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -181,7 +249,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(doom-badger-theme doom-themes helpful ivy-rich which-key rainbow-delimiters doom-modeline counsel swiper ivy evil-collection evil monokai-theme zenburn-theme anti-zenburn-theme atom-dark-theme berrys-theme melancholy-theme use-package)))
+   '(hydra evil-collections general doom-badger-theme doom-themes helpful ivy-rich which-key rainbow-delimiters doom-modeline counsel swiper ivy evil-collection evil monokai-theme zenburn-theme anti-zenburn-theme atom-dark-theme berrys-theme melancholy-theme use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
