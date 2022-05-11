@@ -12,7 +12,6 @@
 
 ;;
 ;; fringes
-
 (set-fringe-mode 10) ; Left and right fringes
 
 ;;
@@ -236,12 +235,36 @@
 
 (sloth/leader-keys
   "ts" '(hydra-text-scale/body :which-key "scale text"))
-  
 
-;; NOTE: C-h-v helpful variables
-;; define key in {language mode)-map
-;;(define-key emacs-lisp-mode-map (kbd "C-x M-t") 'counsel-load-theme)
+(use-package projectile
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :custom ((projectile-completion-system 'ivy))
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  ;; This lets us rapidly switch between different projects in our
+  ;; work directory
+  (when (file-directory-p "~/projects")
+    (setq projectile-project-search-path '("~/projects")))
+  (setq projectile-swith-project-action #'projectile-dired))
 
+(use-package counsel-projectile
+  :config (counsel-projectile-mode))
+
+;; WOOO BABAY MAGIT TIME
+(use-package magit
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+;; (use-package evil-magit
+;;   :after magit)
+
+;; TODO:
+;; ;; watch the video about magit and projectile!
+;; ;; Get comfortable with evil-window! C-w(Not in insert mode, that's kill backwards word)
+;; ;; Get comfrotable with kill backwards word( C-w in insert mode), Scroll-up(C-u), and scroll-down(C-d)
+;; Ivy completions are opened with M-o
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -249,7 +272,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(hydra evil-collections general doom-badger-theme doom-themes helpful ivy-rich which-key rainbow-delimiters doom-modeline counsel swiper ivy evil-collection evil monokai-theme zenburn-theme anti-zenburn-theme atom-dark-theme berrys-theme melancholy-theme use-package)))
+   '(evil-magit magit counsel-projectile consel-projectile projectile hydra evil-collections general doom-badger-theme doom-themes helpful ivy-rich which-key rainbow-delimiters doom-modeline counsel swiper ivy evil-collection evil monokai-theme zenburn-theme anti-zenburn-theme atom-dark-theme berrys-theme melancholy-theme use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
