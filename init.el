@@ -2,6 +2,8 @@
 ;;; Commentary: Soul slowly creates his own emacs config and blogs about it
 ;;; Code: ?
 
+(defvar sloth/default-font-size 140)
+
 ;;
 ;; Disable Basic crap
 (setq inhibit-startup-message t) ; no startup message
@@ -24,6 +26,7 @@
 
 (set-face-attribute 'default nil :font "Source code pro" :family "sans" :height 100 :width 'normal)
 (set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115)
+
 
 ;;
 ;; Initialize package sources
@@ -205,13 +208,13 @@
   (evil-mode 1)
   ;; Exit to evil normal state with C-g instead of having to hit esc
   :config
-  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)) 
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state))
 
 ;; Use visual line motions even outside of visual-line-mode buffers
-(evil-global-set-key 'motion "j" 'evil-next-visual-line) 
-(evil-global-set-key 'motion "k" 'evil-previous-visual-line) 
+(evil-global-set-key 'motion "j" 'evil-next-visual-line)
+(evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 ;;
-(evil-set-initial-state 'messages-buffer-mode 'normal) 
+(evil-set-initial-state 'messages-buffer-mode 'normal)
 (evil-set-initial-state 'dashboard-mode 'normal)
 
 ;; evil-collection
@@ -221,7 +224,7 @@
   :after evil
   ;; init
   :config
-  (evil-collection-init)) 
+  (evil-collection-init))
 
 ;; Hydra
 ;; Hydra helps us make keybindings to do things
@@ -257,8 +260,50 @@
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
-;; (use-package evil-magit
-;;   :after magit)
+;; TODO: configure this with our github. Seems very useful.
+;; https://magit.vc/manual/forge.html
+(use-package forge)
+
+;; Org mode
+;; manual: https://orgmode.org/manual/
+
+(defun efs/org-mode-setup ()
+  ;; Indent according to outline structure
+  (org-indent-mode)
+  (variable-pitch-mode 1)
+  ;; Word Wrap
+  (visual-line-mode 1)
+  (linum-mode 0)
+  ) 
+
+
+;; Give us some nicer looking BULLETS
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+
+(defun efs/org-font-setup ()
+  ;; Replace list hyphen with dot
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
+
+(use-package org
+	     :hook (org-mode . efs/org-mode-setup)
+	     :config (setq org-ellipsis " 🎈"
+			   ;; hides formatting markers
+			   org-hide-emphasis-markers t)
+	     (efs/org-font-setup)) 
+
+(defun efs/org-mode-visual-fill ()
+  (setq visual-fill-column-width 125
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+(use-package visual-fill-column
+  :hook (org-mode . efs/org-mode-visual-fill))
 
 ;; TODO:
 ;; ;; watch the video about magit and projectile!
@@ -272,7 +317,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(evil-magit magit counsel-projectile consel-projectile projectile hydra evil-collections general doom-badger-theme doom-themes helpful ivy-rich which-key rainbow-delimiters doom-modeline counsel swiper ivy evil-collection evil monokai-theme zenburn-theme anti-zenburn-theme atom-dark-theme berrys-theme melancholy-theme use-package)))
+   '(org-bullets forge evil-magit magit counsel-projectile consel-projectile projectile hydra evil-collections general doom-badger-theme doom-themes helpful ivy-rich which-key rainbow-delimiters doom-modeline counsel swiper ivy evil-collection evil monokai-theme zenburn-theme anti-zenburn-theme atom-dark-theme berrys-theme melancholy-theme use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

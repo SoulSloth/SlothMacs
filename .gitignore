@@ -43,3 +43,9 @@ url/
 
 # Flycheck
 flycheck_*
+/transient/
+/projects
+/projectile-bookmarks.eld
+/forge-database.sqlite
+/eshell/
+/.dir-locals.el

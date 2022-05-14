@@ -1,0 +1,47 @@
+* Sloth Macs
+
+Notes about *Sloth Macs*
+
+[[https://soulreviews.net][My Webcomic]]
+
+* Fonts
+
+** TODO :
+- [ ] What does `variable-pitch-font` even mean
+  
+* Org mode
+
+** Shortcuts
+
+*** Headlines
++ TAB / S-TAB – (un)fold
++ M-up/down – move a headline up or down
++ M-left/right – promote or demote a headline
++ M-RET – insert a new headline
++ C-x C-s – save file
++ C-h t – Emacs tutorial
+
+*** Links
++ C-c C-l Insert a link
++ C-c C-l *With point on existing link* Edit the link
++ C-c C-o Open link at point
++ C-c & Jump back to recorded position
+  
+*** Tables
+
+*** List
+- TAB (org-cycle)
+- M-RET (org-insert-heading)
+- M-S-Ret Insert new heading with checkbox
+*** Source block
+
+#+begin_src emacs-lisp
+  (defn my-elisp-func ()
+    (message "Hello!"))
+#+end_src
+
+*** TODO Todo list
+- Shift-left and shift-right for switching the heading status from nothing, TODO, and DONE
+  
+*** Install External Packages to make ORG BEAST MODE
+
