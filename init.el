@@ -436,7 +436,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(org-bullets forge evil-magit magit counsel-projectile consel-projectile projectile hydra evil-collections general doom-badger-theme doom-themes helpful ivy-rich which-key rainbow-delimiters doom-modeline counsel swiper ivy evil-collection evil monokai-theme zenburn-theme anti-zenburn-theme atom-dark-theme berrys-theme melancholy-theme use-package)))
+   '(cider clojure-mode org-bullets forge evil-magit magit counsel-projectile consel-projectile projectile hydra evil-collections general doom-badger-theme doom-themes helpful ivy-rich which-key rainbow-delimiters doom-modeline counsel swiper ivy evil-collection evil monokai-theme zenburn-theme anti-zenburn-theme atom-dark-theme berrys-theme melancholy-theme use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
