@@ -22,9 +22,11 @@ This configuraiton is my ongoing effort to improve my tooling.
           (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
       ; Left and right fringes
-        (set-fringe-mode 10) 
-#+end_src
+        (set-fringe-mode 10)
 
+  ;; Fixes a vertical spacing gap I was having in dwm
+  (setq frame-resize-pixelwise t)
+#+end_src
 
 ** Font Configuration
 #+begin_src emacs-lisp

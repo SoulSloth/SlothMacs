@@ -18,6 +18,9 @@
     ; Left and right fringes
       (set-fringe-mode 10)
 
+;; Fixes a vertical spacing gap I was having in dwm
+(setq frame-resize-pixelwise t)
+
 (defvar sloth/default-font-size 140)
 
 (set-face-attribute 'default nil :font "Source code pro" :family "sans" :height 100 :width 'normal)
