@@ -1,22 +1,22 @@
 (setq inhibit-startup-message t) ; no startup message
-    (scroll-bar-mode -1) ; Disable scroll bar
-    (tool-bar-mode -1) ; Disable tool bar
-    (tooltip-mode -1) ; Disable tool tips
-    (menu-bar-mode -1) ; Disable the menu bar
+      (scroll-bar-mode -1) ; Disable scroll bar
+      (tool-bar-mode -1) ; Disable tool bar
+      (tooltip-mode -1) ; Disable tool tips
+      (menu-bar-mode -1) ; Disable the menu bar
 
-;; line Numbers
-(column-number-mode)
-(global-display-line-numbers-mode t)
+  ;; line Numbers
+  (column-number-mode)
+  (global-display-line-numbers-mode t)
 
-    ;; Don't show line numbers in org mode term or eshell
-    (dolist (mode '(org-mode-hook
-                    term-mode-hook
-                    shell-mode-hook
-                    eshell-mode-hook))
-      (add-hook mode (lambda () (display-line-numbers-mode 0))))
+      ;; Don't show line numbers in org mode term or eshell
+      (dolist (mode '(org-mode-hook
+                      term-mode-hook
+                      shell-mode-hook
+                      eshell-mode-hook))
+        (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-  ; Left and right fringes
-    (set-fringe-mode 10)
+    ; Left and right fringes
+      (set-fringe-mode 10)
 
 (defvar sloth/default-font-size 140)
 
@@ -336,8 +336,6 @@
 
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
 
-(setq org-babel-clojure-backend 'cider)
-
 (org-babel-do-load-languages
   'org-babel-load-languages
   '((emacs-lisp . t)
@@ -346,6 +344,17 @@
 
   (setq org-confirm-babel-evaluate nil)
 
+(setq org-babel-clojure-backend 'cider)
+
+;; This is needed as of Org 9.2
+(require 'org-tempo)
+
+(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+(add-to-list 'org-structure-template-alist '("py" . "src python"))
+(add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
+(add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
+
 (defun efs/org-mode-visual-fill ()
   (setq visual-fill-column-width 125
         visual-fill-column-center-text t)
@@ -353,6 +362,10 @@
 
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill))
+
+;; Rainbow delimiters
+(use-package  rainbow-delimiters
+:hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package clojure-mode
   :ensure t
