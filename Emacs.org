@@ -463,9 +463,10 @@ Just Cider for now
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill))
 #+end_src
+
 * General Programming Utils
 ** Rainbow delimiters
-#+begin_src emacs-list
+#+begin_src emacs-lisp
   ;; Rainbow delimiters
   (use-package  rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
