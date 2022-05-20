@@ -3,32 +3,47 @@
 * Summery
 This configuraiton is my ongoing effort to improve my tooling.
 * Basic UI Configuration
+Basic UI Setup for most of our environment
+** Disable The Defaults
+These optoins steal my precious screen space
 #+begin_src emacs-lisp
   (setq inhibit-startup-message t) ; no startup message
         (scroll-bar-mode -1) ; Disable scroll bar
         (tool-bar-mode -1) ; Disable tool bar
         (tooltip-mode -1) ; Disable tool tips
         (menu-bar-mode -1) ; Disable the menu bar
+#+end_src
 
-    ;; line Numbers
-    (column-number-mode)
-    (global-display-line-numbers-mode t)
+** Line Numbers
+#+begin_src emacs-lisp
+  (column-number-mode)
+  (global-display-line-numbers-mode t)
+#+end_src
 
-        ;; Don't show line numbers in org mode term or eshell
-        (dolist (mode '(org-mode-hook
-                        term-mode-hook
-                        shell-mode-hook
-                        eshell-mode-hook))
-          (add-hook mode (lambda () (display-line-numbers-mode 0))))
+*** Disable line numbers in certain modes
+#+begin_src emacs-lisp
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                shell-mode-hook
+                eshell-mode-hook))
+ (add-hook mode (lambda () (display-line-numbers-mode 0))))
+#+end_src
 
-      ; Left and right fringes
-        (set-fringe-mode 10)
+** Fringes
+#+begin_src emacs-lisp
+(set-fringe-mode 10)
+#+end_src
 
-  ;; Fixes a vertical spacing gap I was having in dwm
+** Fix The Bottom Gap In DWM
+Resizes the window based on pixel size instead of font size
+
+Otherwise we get a nasty gap at the bottom of our window
+#+begin_src emacs-lisp
   (setq frame-resize-pixelwise t)
 #+end_src
 
 ** Font Configuration
+Current font configuration.
 #+begin_src emacs-lisp
   (defvar sloth/default-font-size 140)
   
@@ -36,22 +51,46 @@ This configuraiton is my ongoing effort to improve my tooling.
   (set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115)
 #+end_src
 
+*** TODO Complete Font Setup
+Look into fonts
+
+**** TODO Research how font families work
+
+**** TODO Gather a collection of good fonts
+
+**** TODO Create a font config and tangle it to our local dotfile
+
 * Package
 Package.el and use-pacakge installation + configuration
+
+** Require =Package=
 #+begin_src emacs-lisp
-  ;; Initialize package sources
   (require 'package)
+#+end_src
 
-  ;; Package Sources
-  (setq package-archives '(("org" .  "http://orgmode.org/elpa/")
-                           ("elpa" . "http://elpa.gnu.org/packages/")
-                           ("melpa" . "https://melpa.org/packages/")))
+** Package Sources
+#+begin_src emacs-lisp
+;; Elisp package repositories
+  (setq package-archives '(("org" .  "http://orgmode.org/elpa/") ;; Org mode latest
+                             ("elpa" . "http://elpa.gnu.org/packages/") ;; Standard elisp packages
+                             ("melpa" . "https://melpa.org/packages/"))) ;;Milkypostman's Emacs Lisp Pacakge Archive
+#+end_src
 
-  (package-initialize)
+** Initialize Packages
+#+begin_src emacs-lisp
+    ;; Load and activate emacs lisp packages
+      (package-initialize)
 
+#+end_src
+
+** Refresh Package contents
+#+begin_src emacs-lisp
+  ;; Refresh package contents
   (unless package-archive-contents
     (package-refresh-contents))
-
+#+end_src
+** Require =Use-Package=
+#+begin_src emacs-lisp
   ;; Bootstrap use-pacakge if it's not installed
   (unless (package-installed-p 'use-package)
     (package-install 'use-package))
@@ -445,13 +484,14 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 ** Org-Babel Config
 *** Load Languages
  #+begin_src emacs-lisp
-       (org-babel-do-load-languages
-         'org-babel-load-languages
-         '((emacs-lisp . t)
-           (python . t)
-           (clojure . t)))
+   (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (python . t)
+       (clojure . t)
+       ))
 
-         (setq org-confirm-babel-evaluate nil)
+     (setq org-confirm-babel-evaluate nil)
  #+end_src
 
 *** Backends
@@ -459,7 +499,6 @@ Just Cider for now
 #+begin_src emacs-lisp
 (setq org-babel-clojure-backend 'cider)
 #+end_src
-
 
 *** Structure Templates
 #+begin_src  emacs-lisp
@@ -471,7 +510,11 @@ Just Cider for now
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
   (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
   (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
+  (add-to-list 'org-structure-template-alist '("conf" . "src conf"))
 #+end_src
+
+#+RESULTS:
+: ((conf . src conf) (yl . src yaml) (clj . src clojure) (py . src python) (el . src emacs-lisp) (sh . src shell) (a . export ascii) (c . center) (C . comment) (e . example) (E . export) (h . export html) (l . export latex) (q . quote) (s . src) (v . verse))
 
 ** Visual Fill
 #+begin_src emacs-lisp

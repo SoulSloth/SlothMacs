@@ -4,21 +4,17 @@
       (tooltip-mode -1) ; Disable tool tips
       (menu-bar-mode -1) ; Disable the menu bar
 
-  ;; line Numbers
-  (column-number-mode)
-  (global-display-line-numbers-mode t)
+(column-number-mode)
+(global-display-line-numbers-mode t)
 
-      ;; Don't show line numbers in org mode term or eshell
-      (dolist (mode '(org-mode-hook
-                      term-mode-hook
-                      shell-mode-hook
-                      eshell-mode-hook))
-        (add-hook mode (lambda () (display-line-numbers-mode 0))))
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                shell-mode-hook
+                eshell-mode-hook))
+ (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-    ; Left and right fringes
-      (set-fringe-mode 10)
+(set-fringe-mode 10)
 
-;; Fixes a vertical spacing gap I was having in dwm
 (setq frame-resize-pixelwise t)
 
 (defvar sloth/default-font-size 140)
@@ -26,16 +22,17 @@
 (set-face-attribute 'default nil :font "Source code pro" :family "sans" :height 100 :width 'normal)
 (set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115)
 
-;; Initialize package sources
 (require 'package)
 
-;; Package Sources
-(setq package-archives '(("org" .  "http://orgmode.org/elpa/")
-                         ("elpa" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
+;; Elisp package repositories
+  (setq package-archives '(("org" .  "http://orgmode.org/elpa/") ;; Org mode latest
+                             ("elpa" . "http://elpa.gnu.org/packages/") ;; Standard elisp packages
+                             ("melpa" . "https://melpa.org/packages/"))) ;;Milkypostman's Emacs Lisp Pacakge Archive
 
-(package-initialize)
+;; Load and activate emacs lisp packages
+  (package-initialize)
 
+;; Refresh package contents
 (unless package-archive-contents
   (package-refresh-contents))
 
@@ -343,7 +340,8 @@
   'org-babel-load-languages
   '((emacs-lisp . t)
     (python . t)
-    (clojure . t)))
+    (clojure . t)
+    ))
 
   (setq org-confirm-babel-evaluate nil)
 
@@ -357,6 +355,7 @@
 (add-to-list 'org-structure-template-alist '("py" . "src python"))
 (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
 (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
+(add-to-list 'org-structure-template-alist '("conf" . "src conf"))
 
 (defun efs/org-mode-visual-fill ()
   (setq visual-fill-column-width 125
