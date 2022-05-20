@@ -533,8 +533,19 @@ error in process filter: run-hooks: Symbol’s function definition is void: clj-
 error in process filter: Symbol’s function definition is void: clj-refactor-mode
 
 * Applications
-** TODO Some App
+**  Example Configuration
+CLOSED: [2022-05-19 Thu 20:41]
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2022-05-19 Thu 20:41]
+:END:
 [[https://github.com/daviwil/emacs-from-scratch/blob/9388cf6ecd9b44c430867a5c3dad5f050fdc0ee1/Emacs.org#applications][Do a small app.conf file]] IDK for now when this will come in handy(maybe adding rss links to newsboat?)
 
+Add =:noweb yes=
 
-
+#+NAME: the-value
+#+begin_src emacs-lisp :tangle no
+155
+#+end_src
+#+begin_src conf :tangle .config/some-app/config :noweb yes 
+Ourvalue = <<the-value>>
+#+end_src
