@@ -15,14 +15,17 @@
                 eshell-mode-hook))
  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-(set-fringe-mode 10)
+;; Sets the size of left and right fringes
+  (set-fringe-mode 10)
 
+;; Fix gap in tiling window environments
 (setq frame-resize-pixelwise t)
 
-(defvar sloth/default-font-size 140)
+;; Fonts
+  (defvar sloth/default-font-size 140)
 
-(set-face-attribute 'default nil :font "Source code pro" :family "sans" :height 100 :width 'normal)
-(set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115)
+    (set-face-attribute 'default nil :font "Source code pro" :family "sans" :height 100 :width 'normal)
+    (set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115)
 
 ;; Requires package.el so we can get our packages 
   (require 'package)
@@ -50,8 +53,10 @@
 (setq use-package-always-ensure t)
 
 (use-package general
+;; Creates qeuivalent vim mapping functions
   :config
   (general-evil-setup t)
+  ;; Add our leader keys
   :config
   (general-create-definer sloth/leader-keys
     :keymaps '(normal insert visual emacs)
@@ -61,61 +66,69 @@
 
 (sloth/leader-keys
  "t" '(:ignore t :which-key "toggles")
- "tt" '(counsel-load-theme :which-key "choose theme"))
+ "tt" '(counsel-load-theme :which-key "choose theme")
+ "f" '(counsel-projectile-grep :which-key "projectile-grep"))
 
 (unless (package-installed-p 'swiper)
   (package-install 'swiper))
 
 (require 'swiper)
 
-(unless (package-installed-p 'counsel)
-  (package-install 'counsel))
+;; Ivy for better minibuffer completions
+  (use-package ivy
+      :diminish
+      :bind (("C-s" . swiper)
+             :map ivy-minibuffer-map
+             ("TAB" . ivy-alt-done)
+             ("C-l" . ivy-alt-done)
+             ("C-k" . ivy-next-line)
+             :map ivy-switch-buffer-map
+             ("C-k" . ivy-previous-line)
+             ("C-l" . ivy-done)
+             ("C-d" . ivy-switch-buffer-kill)
+             :map ivy-reverse-i-search-map
+             ("C-k" . ivy-previous-line)
+             ("C-d" . ivy-reverse-i-search-kill))
+      :config
+      (ivy-mode 1))
 
-(require 'counsel)
+;; Give us some more info in completions
+  (use-package ivy-rich
+      :init
+      (ivy-rich-mode 1))
 
+;; (unless (package-installed-p 'counsel)
+;;     (package-install 'counsel))
+
+;; (require 'counsel)
+
+  ;; use counsel and bind some useful keys for switching buffers and finding files
 (use-package counsel
-:bind (("M-x" . counsel-M-x)
-       ("C-x b" . counsel-ibuffer)
-       ("C-x C-f" . counsel-find-file)
-       :map minibuffer-local-map
-       ("C-r" . 'counsel-minibuffer-history)))
+  :bind (("M-x" . counsel-M-x)
+         ("C-x b" . counsel-ibuffer)
+         ("C-x C-f" . counsel-find-file)
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history)))
 
-(use-package ivy
-  :diminish
-  :bind (("C-s" . swiper)
-	 :map ivy-minibuffer-map
-	 ("TAB" . ivy-alt-done)
-	 ("C-l" . ivy-alt-done)
-	 ("C-k" . ivy-next-line)
-	 :map ivy-switch-buffer-map
-	 ("C-k" . ivy-previous-line)
-	 ("C-l" . ivy-done)
-	 ("C-d" . ivy-switch-buffer-kill)
-	 :map ivy-reverse-i-search-map
-	 ("C-k" . ivy-previous-line)
-	 ("C-d" . ivy-reverse-i-search-kill))
-  :config
-  (ivy-mode 1))
+;; which-key for when we forget command completions
+  (use-package which-key
+    :init (which-key-mode)
+    :diminish which-key-mode
+    :config (setq which-key-idle-delay 0.3))
 
-(use-package ivy-rich
-  :init
-  (ivy-rich-mode 1))
+;; Get Hydra
+  (use-package hydra)
 
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config (setq which-key-idle-delay 0.3))
+  ;; Defining a hydra meny
+    (defhydra hydra-text-scale (:timeout 4)
+      "scale text"
+      ("j" text-scale-increase "in")
+      ("k" text-scale-decrease "out")
+      ("f" nil "finished" :exit t))
 
-(use-package hydra)
-
-(defhydra hydra-text-scale (:timeout 4)
-  "scale text"
-  ("j" text-scale-increase "in")
-  ("k" text-scale-decrease "out")
-  ("f" nil "finished" :exit t))
-
-(sloth/leader-keys
-  "ts" '(hydra-text-scale/body :which-key "scale text"))
+  ;; Add it to our leader-keys
+    (sloth/leader-keys
+      "ts" '(hydra-text-scale/body :which-key "scale text"))
 
 (use-package projectile
     :diminish projectile-mode

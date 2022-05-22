@@ -1,6 +1,6 @@
 #+title: SlothMacs Config
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
-* Summery
+
 This configuraiton is my ongoing effort to improve my tooling.
 * Basic UI Configuration
 Basic UI Setup for most of our environment
@@ -15,7 +15,7 @@ These optoins steal my precious screen space
 #+end_src
 
 ** Column and Line Numbers
-
+Display Column number in the mode line and line numbers by default
 #+begin_src emacs-lisp
   ;; Display column number in Mode line
   (column-number-mode)
@@ -25,7 +25,7 @@ These optoins steal my precious screen space
 
 *** Disable line numbers in certain modes
 
-I don't like to see line numbers in these modes 
+Disable line numbers when we're in these modes were it isn't as relevent
 #+begin_src emacs-lisp
 (dolist (mode '(org-mode-hook
                 term-mode-hook
@@ -35,9 +35,10 @@ I don't like to see line numbers in these modes
 #+end_src
 
 ** Fringes
-
+Left and right display fringes
 #+begin_src emacs-lisp
-(set-fringe-mode 10)
+;; Sets the size of left and right fringes
+  (set-fringe-mode 10)
 #+end_src
 
 ** Fix The Bottom Gap In DWM
@@ -45,16 +46,18 @@ Resizes the window based on pixel size instead of font size
 
 Otherwise we get a nasty gap at the bottom of our window
 #+begin_src emacs-lisp
+  ;; Fix gap in tiling window environments
   (setq frame-resize-pixelwise t)
 #+end_src
 
 ** Font Configuration
 Current font configuration.
 #+begin_src emacs-lisp
+;; Fonts
   (defvar sloth/default-font-size 140)
-  
-  (set-face-attribute 'default nil :font "Source code pro" :family "sans" :height 100 :width 'normal)
-  (set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115)
+
+    (set-face-attribute 'default nil :font "Source code pro" :family "sans" :height 100 :width 'normal)
+    (set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115)
 #+end_src
 
 *** TODO Complete Font Setup
@@ -118,31 +121,40 @@ Useful for avoiding cases were
   (setq use-package-always-ensure t)
 #+end_src
 
-** TODO Document various key maps that can be use with =use-package=. Link to examples in this config 
+*** TODO Document various key maps that can be use with =use-package=. Link to examples in this config 
 * General
-Install general.el for keybindings
+=general.el= provides analgous macros to =use-package= in the key mapping space
+** use-package general
+Our installation of general.el proper
 #+begin_src emacs-lisp
-(use-package general
-  :config
-  (general-evil-setup t)
-  :config
-  (general-create-definer sloth/leader-keys
-    :keymaps '(normal insert visual emacs)
-    ;; EVIL spacemacs goodness
-    :prefix "SPC"
-    :global-prefix "C-SPC"))
+  (use-package general
+  ;; Creates qeuivalent vim mapping functions
+    :config
+    (general-evil-setup t)
+    ;; Add our leader keys
+    :config
+    (general-create-definer sloth/leader-keys
+      :keymaps '(normal insert visual emacs)
+      ;; EVIL spacemacs goodness
+      :prefix "SPC"
+      :global-prefix "C-SPC"))
 #+end_src
 
 ** Leader-keys
+We define our leader-keys that will be passed to =general-create-definer=
+
+Unsure as to why, but we get an error on start-up that leader-keys are not defined if we put this definition BEFORE the =use-package= def of =general=. 
 #+begin_src emacs-lisp
-(sloth/leader-keys
- "t" '(:ignore t :which-key "toggles")
- "tt" '(counsel-load-theme :which-key "choose theme"))
+  (sloth/leader-keys
+   "t" '(:ignore t :which-key "toggles")
+   "tt" '(counsel-load-theme :which-key "choose theme")
+   "f" '(counsel-projectile-grep :which-key "projectile-grep"))
 #+end_src
 
-* Completion
-Completion packages
+#+RESULTS:
+
 * Swiper
+Swiper allows us to quickly search files for regex candidates
 #+begin_src emacs-lisp
 (unless (package-installed-p 'swiper)
   (package-install 'swiper))
@@ -150,70 +162,86 @@ Completion packages
 (require 'swiper)
 #+end_src
 
-** Counsel
-#+begin_src emacs-lisp
-  (unless (package-installed-p 'counsel)
-    (package-install 'counsel))
-
-  (require 'counsel)
-
-  (use-package counsel
-  :bind (("M-x" . counsel-M-x)
-	 ("C-x b" . counsel-ibuffer)
-	 ("C-x C-f" . counsel-find-file)
-	 :map minibuffer-local-map
-	 ("C-r" . 'counsel-minibuffer-history)))
-#+end_src
-
-*** TODO Do we still need `require` if we're using-package?
+* Completion
 ** Ivy
+Ivy provides better mini buffer completions for packages like =swiper= and =counsel=
 *** Main Ivy
+The main Ivy package
 #+begin_src emacs-lisp
-(use-package ivy
-  :diminish
-  :bind (("C-s" . swiper)
-	 :map ivy-minibuffer-map
-	 ("TAB" . ivy-alt-done)
-	 ("C-l" . ivy-alt-done)
-	 ("C-k" . ivy-next-line)
-	 :map ivy-switch-buffer-map
-	 ("C-k" . ivy-previous-line)
-	 ("C-l" . ivy-done)
-	 ("C-d" . ivy-switch-buffer-kill)
-	 :map ivy-reverse-i-search-map
-	 ("C-k" . ivy-previous-line)
-	 ("C-d" . ivy-reverse-i-search-kill))
-  :config
-  (ivy-mode 1))
+;; Ivy for better minibuffer completions
+  (use-package ivy
+      :diminish
+      :bind (("C-s" . swiper)
+             :map ivy-minibuffer-map
+             ("TAB" . ivy-alt-done)
+             ("C-l" . ivy-alt-done)
+             ("C-k" . ivy-next-line)
+             :map ivy-switch-buffer-map
+             ("C-k" . ivy-previous-line)
+             ("C-l" . ivy-done)
+             ("C-d" . ivy-switch-buffer-kill)
+             :map ivy-reverse-i-search-map
+             ("C-k" . ivy-previous-line)
+             ("C-d" . ivy-reverse-i-search-kill))
+      :config
+      (ivy-mode 1))
 #+end_src
 
 *** Ivy-rich
+=Ivy-rich= gives us some nice metadata along with the competion
 #+begin_src emacs-lisp
-(use-package ivy-rich
-  :init
-  (ivy-rich-mode 1))
+;; Give us some more info in completions
+  (use-package ivy-rich
+      :init
+      (ivy-rich-mode 1))
 #+end_src
 
-** which-key
+** Counsel
+=Counsel= takes many emacs commands and fronts them to ivy ones like switching buffer, finding files, and seeing buffer history. Also works with =projectile= for my personal favorite command =counsel-projectile-grep=.
 #+begin_src emacs-lisp
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config (setq which-key-idle-delay 0.3))
+  ;; (unless (package-installed-p 'counsel)
+  ;;     (package-install 'counsel))
+
+  ;; (require 'counsel)
+
+    ;; use counsel and bind some useful keys for switching buffers and finding files
+  (use-package counsel
+    :bind (("M-x" . counsel-M-x)
+           ("C-x b" . counsel-ibuffer)
+           ("C-x C-f" . counsel-find-file)
+           :map minibuffer-local-map
+           ("C-r" . 'counsel-minibuffer-history)))
+#+end_src
+
+
+*** TODO Do we still need `require` if we're using-package?
+** which-key
+
+=which-key= gives us a pop-up window that will tell us the competions for any partial commands we have entered 
+#+begin_src emacs-lisp
+;; which-key for when we forget command completions
+  (use-package which-key
+    :init (which-key-mode)
+    :diminish which-key-mode
+    :config (setq which-key-idle-delay 0.3))
 #+end_src
 
 ** Hydra
+=Hydra= provides us with a nice minor mode that will allow us to repeat certain families of commads over and over again like zooming in and out
 #+begin_src emacs-lisp
-(use-package hydra)
+;; Get Hydra
+  (use-package hydra)
 
-(defhydra hydra-text-scale (:timeout 4)
-  "scale text"
-  ("j" text-scale-increase "in")
-  ("k" text-scale-decrease "out")
-  ("f" nil "finished" :exit t))
+  ;; Defining a hydra meny
+    (defhydra hydra-text-scale (:timeout 4)
+      "scale text"
+      ("j" text-scale-increase "in")
+      ("k" text-scale-decrease "out")
+      ("f" nil "finished" :exit t))
 
-(sloth/leader-keys
-  "ts" '(hydra-text-scale/body :which-key "scale text"))
+  ;; Add it to our leader-keys
+    (sloth/leader-keys
+      "ts" '(hydra-text-scale/body :which-key "scale text"))
 #+end_src
 
 * Projectile
