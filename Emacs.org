@@ -347,10 +347,13 @@ Evil collections provides extra evil faculties in missing areas
 #+end_src
 
 * Theme
-I'm not married to monokai, but every other theme I've tried has been terrible 
+Themes tried:
+- monokai: pretty, but code blocks in org blended a bit too much with the background and the code highlighting didn't look right.
+- gruvbox: Liking this so far, code highlighting stands out nicely on the dark background
+  
 #+begin_src emacs-lisp
-(use-package monokai-theme)
-(load-theme 'monokai t)
+(use-package gruvbox-theme)
+(load-theme 'gruvbox t)
 #+end_src
 
 * Commenting
