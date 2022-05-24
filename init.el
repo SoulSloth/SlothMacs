@@ -52,6 +52,8 @@
 ;; makes =:ensure t= the default for our =use-package= calls.
 (setq use-package-always-ensure t)
 
+(use-package no-littering)
+
 (use-package general
 ;; Creates qeuivalent vim mapping functions
   :config
@@ -201,6 +203,75 @@
 
 (use-package monokai-theme)
 (load-theme 'monokai t)
+
+(use-package evil-nerd-commenter
+  :bind ("M-/" . evilnc-comment-or-uncomment-lines))
+
+(defun efs/lsp-mode-setup ()
+  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+  (lsp-headerline-breadcrumb-mode))
+
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :hook (lsp-mode . efs/lsp-mode-setup)
+  :init
+  (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
+  :config
+  (lsp-enable-which-key-integration t))
+
+(use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode)
+  :custom
+  (lsp-ui-doc-position 'bottom))
+
+(use-package company
+:after lsp-mode
+:hook (lsp-mode . company-mode)
+:bind (:map company-active-map
+       ("<tab>" . company-complete-selection))
+      (:map lsp-mode-map
+       ("<tab>" . company-indent-or-complete-common))
+:custom
+(company-minimum-prefix-length 1)
+(company-idle-delay 0.0)) 
+
+(use-package company-box
+:hook (company-mode . company-box-mode))
+
+(use-package typescript-mode
+  :mode "\\.ts\\'" ;; Start up any time we open a fiel with .ts exentsion
+  :hook (typescript-mode . lsp-deferred) ;; Don't startup the server until buffer is visible
+  :config (setq typescript-indent-level 2))
+
+(use-package python-mode
+  :ensure t
+  :hook (python-mode . lsp-deferred)
+  :custom
+  (python-shell-interpreter "python"))
+
+(use-package clojure-mode
+  :ensure t
+  :mode (("\\.clj\\'" . clojure-mode)
+         ("\\.edn\\'" . clojure-mode))
+  :init
+  (add-hook 'clojure-mode-hook #'yas-minor-mode)         
+  (add-hook 'clojure-mode-hook #'linum-mode)             
+  (add-hook 'clojure-mode-hook #'subword-mode)           
+  (add-hook 'clojure-mode-hook #'smartparens-mode)       
+  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'clojure-mode-hook #'eldoc-mode)             
+  (add-hook 'clojure-mode-hook #'idle-highlight-mode))
+
+(use-package cider
+  :ensure t
+  :defer t
+  :diminish subword-mode
+  :config
+  (cider-repl-toggle-pretty-printing))
+
+;; Rainbow delimiters
+(use-package  rainbow-delimiters
+:hook (prog-mode . rainbow-delimiters-mode))
 
 (defun efs/org-mode-setup ()
   ;; Indent according to outline structure
@@ -357,8 +428,7 @@
   'org-babel-load-languages
   '((emacs-lisp . t)
     (python . t)
-    (clojure . t)
-    ))
+    (clojure . t)))
 
   (setq org-confirm-babel-evaluate nil)
 
@@ -381,80 +451,3 @@
 
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill))
-
-(use-package evil-nerd-commenter
-  :bind ("M-/" . evilnc-comment-or-uncomment-lines))
-
-(defun efs/lsp-mode-setup ()
-  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-  (lsp-headerline-breadcrumb-mode))
-
-(use-package lsp-mode
-  :commands (lsp lsp-deferred)
-  :hook (lsp-mode . efs/lsp-mode-setup)
-  :init
-  (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
-  :config
-  (lsp-enable-which-key-integration t))
-
-(use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode)
-  :custom
-  (lsp-ui-doc-position 'bottom))
-
-(use-package company
-:after lsp-mode
-:hook (lsp-mode . company-mode)
-:bind (:map company-active-map
-       ("<tab>" . company-complete-selection))
-      (:map lsp-mode-map
-       ("<tab>" . company-indent-or-complete-common))
-:custom
-(company-minimum-prefix-length 1)
-(company-idle-delay 0.0)) 
-
-(use-package company-box
-:hook (company-mode . company-box-mode))
-
-(use-package typescript-mode
-  :mode "\\.ts\\'" ;; Start up any time we open a fiel with .ts exentsion
-  :hook (typescript-mode . lsp-deferred) ;; Don't startup the server until buffer is visible
-  :config (setq typescript-indent-level 2))
-
-(use-package python-mode
-  :ensure t
-  :hook (python-mode . lsp-deferred)
-  :custom
-  (python-shell-interpreter "python"))
-
-(use-package clojure-mode
-  :ensure t
-  :mode (("\\.clj\\'" . clojure-mode)
-         ("\\.edn\\'" . clojure-mode))
-  :init
-  (add-hook 'clojure-mode-hook #'yas-minor-mode)         
-  (add-hook 'clojure-mode-hook #'linum-mode)             
-  (add-hook 'clojure-mode-hook #'subword-mode)           
-  (add-hook 'clojure-mode-hook #'smartparens-mode)       
-  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'clojure-mode-hook #'eldoc-mode)             
-  (add-hook 'clojure-mode-hook #'idle-highlight-mode))
-
-(use-package cider
-  :ensure t
-  :defer t
-  :init (add-hook 'cider-mode-hook #'clj-refactor-mode)
-  :diminish subword-mode
-  :config
-  (setq nrepl-log-messages t                  
-        cider-repl-display-in-current-window t
-        cider-repl-use-clojure-font-lock t    
-        cider-prompt-save-file-on-load 'always-save
-        cider-font-lock-dynamically '(macro core function var)
-        nrepl-hide-special-buffers t            
-        cider-overlays-use-font-lock t)         
-  (cider-repl-toggle-pretty-printing))
-
-;; Rainbow delimiters
-(use-package  rainbow-delimiters
-:hook (prog-mode . rainbow-delimiters-mode))
