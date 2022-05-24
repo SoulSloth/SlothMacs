@@ -190,7 +190,7 @@
 ;; Use visual line motions even outside of visual-line-mode buffers
 (evil-global-set-key 'motion "j" 'evil-next-visual-line)
 (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-;;
+;; Set the state when we enter certain modes
 (evil-set-initial-state 'messages-buffer-mode 'normal)
 (evil-set-initial-state 'dashboard-mode 'normal)
 
