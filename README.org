@@ -1,0 +1,3 @@
+#+TITLE: SlothMacs
+
+My current personal Emacs configuration. Everything is subject to change always.
