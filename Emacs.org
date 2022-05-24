@@ -61,8 +61,6 @@ Current font configuration.
 #+end_src
 
 *** TODO Complete Font Setup
-Look into fonts
-
 **** TODO Research how font families work
 
 **** TODO Gather a collection of good fonts
@@ -157,8 +155,6 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
    "f" '(counsel-projectile-grep :which-key "projectile-grep"))
 #+end_src
 
-#+RESULTS:
-
 * Swiper
 Swiper allows us to quickly search files for regex candidates
 #+begin_src emacs-lisp
@@ -169,6 +165,7 @@ Swiper allows us to quickly search files for regex candidates
 #+end_src
 
 * Completion
+Various completion packages which work together(sometimes).
 ** Ivy
 Ivy provides better mini buffer completions for packages like =swiper= and =counsel=
 *** Main Ivy
@@ -385,9 +382,6 @@ Using evil-nerd-commenter since the default emacs package has some weird behavoi
   (lsp-enable-which-key-integration t))
 #+end_src
 
-#+RESULTS:
-| efs/lsp-mode-setup |
-
 *** LSP UI
 
 Sideline IDE editor items
@@ -398,9 +392,6 @@ Sideline IDE editor items
   (lsp-ui-doc-position 'bottom))
 #+end_src
 
-#+RESULTS:
-| lsp-ui-mode | company-mode | efs/lsp-mode-setup |
-
 *** TODO LSP Ivy
 This is currently borked(at least on python language server.
 
@@ -408,8 +399,6 @@ Might just jump to helm instead
 #+begin_src emacs-lisp :tangle no
     (use-package lsp-ivy)
 #+end_src
-
-#+RESULTS:
 
 ** Company Mode
 
@@ -429,9 +418,6 @@ Using company mode to enable a selection box on tab completions
   (use-package company-box
   :hook (company-mode . company-box-mode))
 #+end_src
-
-#+RESULTS:
-| company-box-mode | company-mode-set-explicitly |
 
 ** Typescript
 
@@ -457,9 +443,6 @@ Using company mode to enable a selection box on tab completions
     :custom
     (python-shell-interpreter "python"))
 #+end_src
-
-#+RESULTS:
-| lsp-deferred | #[0 \211\207 [py--imenu-create-index-function imenu-create-index-function] 2] | evil-collection-python-set-evil-shift-width | doom-modeline-env-setup-python |
 
 *** Useful keystrokes
 - =run-python= : run a python shell in =*Python*=
@@ -506,6 +489,7 @@ Pretty rainbow delimiters to help balence parens
 #+end_src
 
 * Org Mode
+I use =org-mode= to take notes, write blogs, and create litearte coding "books" with =org-babel=
 ** Org Proper
 Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty useful so I'm keeping it
 #+begin_src emacs-lisp
@@ -557,8 +541,6 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
    '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
 
 #+end_src
-
-#+RESULTS:
 
 ** Tags
 #+begin_src emacs-lisp
@@ -740,9 +722,6 @@ Just Cider for now
   (add-to-list 'org-structure-template-alist '("conf" . "src conf"))
 #+end_src
 
-#+RESULTS:
-: ((conf . src conf) (yl . src yaml) (clj . src clojure) (py . src python) (el . src emacs-lisp) (sh . src shell) (a . export ascii) (c . center) (C . comment) (e . example) (E . export) (h . export html) (l . export latex) (q . quote) (s . src) (v . verse))
-
 ** Visual Fill
 #+begin_src emacs-lisp
 (defun efs/org-mode-visual-fill ()
@@ -760,7 +739,7 @@ CLOSED: [2022-05-19 Thu 20:41]
 :LOGBOOK:
 - State "DONE"       from "TODO"       [2022-05-19 Thu 20:41]
 :END:
-[[https://github.com/daviwil/emacs-from-scratch/blob/9388cf6ecd9b44c430867a5c3dad5f050fdc0ee1/Emacs.org#applications][Do a small app.conf file]] IDK for now when this will come in handy(maybe adding rss links to newsboat?)
+Easy way to configure dotfiles, need to find a good test case, maybe adding rss links to newsboat?
 
 Add =:noweb yes=
 
