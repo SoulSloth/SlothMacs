@@ -201,8 +201,8 @@
   :config
   (evil-collection-init))
 
-(use-package monokai-theme)
-(load-theme 'monokai t)
+(use-package gruvbox-theme)
+(load-theme 'gruvbox t)
 
 (use-package evil-nerd-commenter
   :bind ("M-/" . evilnc-comment-or-uncomment-lines))
@@ -301,9 +301,19 @@
 	   (efs/org-font-setup))
 
 (custom-theme-set-faces
-  'user
-  ;; Fixed pitch in org mode blocks
-  '(org-block ((t (:inherit fixed-pitch)))))
+ 'user
+ '(org-block ((t (:inherit fixed-pitch))))
+ '(org-code ((t (:inherit (shadow fixed-pitch)))))
+ '(org-document-info ((t (:foreground "dark orange"))))
+ '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+ '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+ '(org-link ((t (:foreground "royal blue" :underline t))))
+ '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-property-value ((t (:inherit fixed-pitch))) t)
+ '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+ '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
+ '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
+ '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
 
 (setq org-tag-alist
       '((:startgroup)
