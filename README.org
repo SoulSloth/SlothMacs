@@ -2,4 +2,4 @@
 
 My current personal Emacs configuration. Everything is subject to change always.
 
-Literate configuration can be found in the [[./Emacs.org][=Emacs.org=]] file
+Literate configuration can be found in the [[./Emacs.org][Emacs.org]] file
