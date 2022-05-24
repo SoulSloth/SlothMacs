@@ -534,6 +534,18 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 	   (efs/org-font-setup))
 #+end_src
 
+** Org Font Configuration
+
+
+#+begin_src emacs-lisp
+  (custom-theme-set-faces
+    'user
+    ;; Fixed pitch in org mode blocks
+    '(org-block ((t (:inherit fixed-pitch)))))
+#+end_src
+
+#+RESULTS:
+
 ** Tags
 #+begin_src emacs-lisp
 (setq org-tag-alist

@@ -300,6 +300,11 @@
 			 org-hide-emphasis-markers t)
 	   (efs/org-font-setup))
 
+(custom-theme-set-faces
+  'user
+  ;; Fixed pitch in org mode blocks
+  '(org-block ((t (:inherit fixed-pitch)))))
+
 (setq org-tag-alist
       '((:startgroup)
 	;; Mutually exclusive tags go here
