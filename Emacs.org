@@ -122,6 +122,12 @@ Useful for avoiding cases were
 #+end_src
 
 *** TODO Document various key maps that can be use with =use-package=. Link to examples in this config 
+* No littering
+Put temporary and backup files into =/etc= instead
+#+begin_src emacs-lisp
+(use-package no-littering)
+#+end_src
+
 * General
 =general.el= provides analgous macros to =use-package= in the key mapping space
 ** use-package general
