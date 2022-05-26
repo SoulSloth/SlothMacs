@@ -27,12 +27,15 @@ Display Column number in the mode line and line numbers by default
 
 Disable line numbers when we're in these modes were it isn't as relevent
 #+begin_src emacs-lisp
-(dolist (mode '(org-mode-hook
-                term-mode-hook
-                shell-mode-hook
-                eshell-mode-hook))
- (add-hook mode (lambda () (display-line-numbers-mode 0))))
+  (dolist (mode '(org-mode-hook
+                  term-mode-hook
+                  shell-mode-hook
+                  vterm-mode-hook
+                  eshell-mode-hook))
+   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
+
+#+RESULTS:
 
 ** Fringes
 Left and right display fringes
@@ -467,12 +470,13 @@ Currently working off of [[https://ccann.github.io/2015/10/18/cider.html][Clojur
 
 *** Cider clojure emacs tooling
 #+begin_src emacs-lisp
-(use-package cider
-  :ensure t
-  :defer t
-  :diminish subword-mode
-  :config
-  (cider-repl-toggle-pretty-printing))
+  (use-package cider
+    :ensure t
+    :defer t
+    :diminish subword-mode
+    :config
+    (setq nrepl-log-messages t)
+    (cider-repl-toggle-pretty-printing))
 #+end_src
 
 **** Errors
@@ -732,6 +736,33 @@ Just Cider for now
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill))
 #+end_src
+
+*  Terminals
+** term-mode
+=C-c C-k= char mode
+#+begin_src emacs-lisp
+  (use-package term
+  :config
+  (setq explicit-shell-file-name "zsh")
+  (setq explicit-zsh-args '())
+  (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
+
+  (use-package eterm-256color
+    :hook (term-mode . eterm-256color-mode))
+#+end_src
+** vterm
+
+[[https://github.com/akermu/emacs-libvterm#requirements][vterm has a few requirements that need to be installed for it to build properly]]
+
+#+begin_src emacs-lisp
+(use-package vterm
+  :commands vterm
+  :config
+  (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *")  ;; Set this to match your custom shell prompt
+  ;;(setq vterm-shell "zsh")                       ;; Set this to customize the shell to launch
+  (setq vterm-max-scrollback 10000))
+#+end_src
+
 
 * Applications
 **  Example Configuration

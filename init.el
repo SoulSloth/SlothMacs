@@ -12,6 +12,7 @@
 (dolist (mode '(org-mode-hook
                 term-mode-hook
                 shell-mode-hook
+                vterm-mode-hook
                 eshell-mode-hook))
  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
@@ -267,6 +268,7 @@
   :defer t
   :diminish subword-mode
   :config
+  (setq nrepl-log-messages t)
   (cider-repl-toggle-pretty-printing))
 
 ;; Rainbow delimiters
@@ -466,3 +468,19 @@
 
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill))
+
+(use-package term
+:config
+(setq explicit-shell-file-name "zsh")
+(setq explicit-zsh-args '())
+(setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
+
+(use-package eterm-256color
+  :hook (term-mode . eterm-256color-mode))
+
+(use-package vterm
+  :commands vterm
+  :config
+  (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *")  ;; Set this to match your custom shell prompt
+  ;;(setq vterm-shell "zsh")                       ;; Set this to customize the shell to launch
+  (setq vterm-max-scrollback 10000))
