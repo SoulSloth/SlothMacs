@@ -13,7 +13,9 @@
                 term-mode-hook
                 shell-mode-hook
                 vterm-mode-hook
-                eshell-mode-hook))
+                eshell-mode-hook
+                dired-mode-hook
+                ))
  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; Sets the size of left and right fringes
@@ -70,7 +72,12 @@
 (sloth/leader-keys
  "t" '(:ignore t :which-key "toggles")
  "tt" '(counsel-load-theme :which-key "choose theme")
- "f" '(counsel-projectile-grep :which-key "projectile-grep"))
+ "f" '(counsel-projectile-grep :which-key "projectile-grep")
+ ;; Clojure CIDER commands
+ "s" '(:ignore s :which-key "cider")
+ "sj" '(cider-jack-in :which-key "CIDER jack-in")
+ "sq" '(cider-quit :which-key "CIDER quit")
+ "se" '(cider-eval-region :which-key "cider eval region"))
 
 (unless (package-installed-p 'swiper)
   (package-install 'swiper))
@@ -484,3 +491,31 @@
   (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *")  ;; Set this to match your custom shell prompt
   ;;(setq vterm-shell "zsh")                       ;; Set this to customize the shell to launch
   (setq vterm-max-scrollback 10000))
+
+(use-package dired
+  :ensure nil
+  :commands (dired dired-jump)
+  :bind (("C-x C-j" . dired-jump))
+  :custom ((dired-listing-switches "-agho --group-directories-first"))
+  :config
+  (evil-collection-define-key 'normal 'dired-mode-map
+    "h" 'dired-single-up-directory
+    "l" 'dired-single-buffer))
+
+(use-package dired-single)
+
+(use-package all-the-icons-dired
+  :hook (dired-mode . all-the-icons-dired-mode))
+
+(use-package dired-open
+  :config
+  ;; Doesn't work as expected!
+  ;;(add-to-list 'dired-open-functions #'dired-open-xdg t)
+  (setq dired-open-extensions '(("png" . "feh")
+                                ("mkv" . "mpv"))))
+
+(use-package dired-hide-dotfiles
+  :hook (dired-mode . dired-hide-dotfiles-mode)
+  :config
+  (evil-collection-define-key 'normal 'dired-mode-map
+    "H" 'dired-hide-dotfiles-mode))
