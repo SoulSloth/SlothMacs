@@ -77,7 +77,8 @@
  "s" '(:ignore s :which-key "cider")
  "sj" '(cider-jack-in :which-key "CIDER jack-in")
  "sq" '(cider-quit :which-key "CIDER quit")
- "se" '(cider-eval-region :which-key "cider eval region"))
+ "se" '(cider-eval-region :which-key "cider eval region")
+ "ss" '(cider-insert-region-in-repl :which-key "cider send region to repl"))
 
 (unless (package-installed-p 'swiper)
   (package-install 'swiper))
@@ -276,6 +277,8 @@
   :diminish subword-mode
   :config
   (setq nrepl-log-messages t)
+  ;; I don't type things into the repl much
+  (setq cider-repl-pop-to-buffer-on-connect nil)
   (cider-repl-toggle-pretty-printing))
 
 ;; Rainbow delimiters
@@ -452,7 +455,8 @@
   'org-babel-load-languages
   '((emacs-lisp . t)
     (python . t)
-    (clojure . t)))
+    (clojure . t)
+    (shell . t)))
 
   (setq org-confirm-babel-evaluate nil)
 

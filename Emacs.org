@@ -713,14 +713,17 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 ** Org-Babel Config
 *** Load Languages
  #+begin_src emacs-lisp
-   (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((emacs-lisp . t)
-       (python . t)
-       (clojure . t)))
+         (org-babel-do-load-languages
+           'org-babel-load-languages
+           '((emacs-lisp . t)
+             (python . t)
+             (clojure . t)
+             (shell . t)))
 
-     (setq org-confirm-babel-evaluate nil)
+           (setq org-confirm-babel-evaluate nil)
  #+end_src
+
+ #+RESULTS:
 
 *** Backends
 Just Cider for now
