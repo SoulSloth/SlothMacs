@@ -486,8 +486,13 @@ Currently working off of [[https://ccann.github.io/2015/10/18/cider.html][Clojur
     :diminish subword-mode
     :config
     (setq nrepl-log-messages t)
+    ;; I don't type things into the repl much
+    (setq cider-repl-pop-to-buffer-on-connect nil)
     (cider-repl-toggle-pretty-printing))
 #+end_src
+
+#+RESULTS:
+: t
 
 **** Errors
 error in process filter: run-hooks: Symbol’s function definition is void: clj-refactor-mode
