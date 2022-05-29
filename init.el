@@ -497,11 +497,15 @@
   (setq vterm-max-scrollback 10000))
 
 (use-package dired
+;; dired is part of emacs proper so no need to ensure
   :ensure nil
   :commands (dired dired-jump)
+  ;; Jump out of visited file
   :bind (("C-x C-j" . dired-jump))
+  ;; `ls` options passed to dir
   :custom ((dired-listing-switches "-agho --group-directories-first"))
   :config
+  ;; navigate our dired buffers as if we were using lf
   (evil-collection-define-key 'normal 'dired-mode-map
     "h" 'dired-single-up-directory
     "l" 'dired-single-buffer))
