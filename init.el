@@ -375,7 +375,18 @@
 
       ("m" "Metrics Capture")
       ("mw" "Weight" table-line (file+headline "~/dump/metrics.org" "Weight")
-       "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)))
+       "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)
+
+      ("k" "Kata Capture")
+      ("kk" "Daily Kata" entry
+       (file+olp+datetree "~/org/kata.org")
+        "\n* %<%I:%M %p> - Kata :kata:\n\n%?\n\n"
+        :clock-in :clock-resume
+        :empty-lines 1)
+      ))
+
+(define-key global-map (kbd "C-c k")
+(lambda () (interactive) (org-capture nil "kk")))
 
 (define-key global-map (kbd "C-c j")
 (lambda () (interactive) (org-capture nil "jj")))
