@@ -279,6 +279,7 @@
   (setq nrepl-log-messages t)
   ;; I don't type things into the repl much
   (setq cider-repl-pop-to-buffer-on-connect nil)
+  (setq cider-repl-display-help-banner nil)
   (cider-repl-toggle-pretty-printing))
 
 ;; Rainbow delimiters
