@@ -303,15 +303,17 @@
 (defun efs/org-font-setup ()
   ;; Replace list hyphen with dot
   (font-lock-add-keywords 'org-mode
-			  '(("^ *\\([-]\\) "
-			     (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
 
 (use-package org
 :hook (org-mode . efs/org-mode-setup)
-	   :config (setq org-ellipsis " 🎈"
-			 ;; hides formatting markers
-			 org-hide-emphasis-markers t)
-	   (efs/org-font-setup))
+           :config (setq org-ellipsis " 🎈"
+                         ;; hides formatting markers
+                         org-hide-emphasis-markers t)
+	       ;; Don't auto-indent when we RET after a line
+           (setq org-edit-src-content-indentation 0)
+           (efs/org-font-setup))
 
 (custom-theme-set-faces
  'user

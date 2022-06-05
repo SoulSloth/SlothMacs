@@ -530,16 +530,21 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 (defun efs/org-font-setup ()
   ;; Replace list hyphen with dot
   (font-lock-add-keywords 'org-mode
-			  '(("^ *\\([-]\\) "
-			     (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
 
 (use-package org
 :hook (org-mode . efs/org-mode-setup)
-	   :config (setq org-ellipsis " 🎈"
-			 ;; hides formatting markers
-			 org-hide-emphasis-markers t)
-	   (efs/org-font-setup))
+           :config (setq org-ellipsis " 🎈"
+                         ;; hides formatting markers
+                         org-hide-emphasis-markers t)
+	       ;; Don't auto-indent when we RET after a line
+           (setq org-edit-src-content-indentation 0)
+           (efs/org-font-setup))
 #+end_src
+
+#+RESULTS:
+| efs/org-mode-visual-fill | org-tempo-setup | (lambda nil (add-hook 'after-save-hook #'efs/org-babel-tangle-config)) | org-bullets-mode | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | #[0 \301\211\207 [imenu-create-index-function org-imenu-get-tree] 2] | efs/org-mode-setup | (lambda nil (display-line-numbers-mode 0)) |
 
 ** Org Face Configuration
 [[https://zzamboni.org/post/beautifying-org-mode-in-emacs/][taken from zzamboni]]
