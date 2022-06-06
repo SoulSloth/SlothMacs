@@ -604,45 +604,52 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 
 ** Capture Templates
 #+begin_src emacs-lisp
-  (setq org-capture-templates
-      `(("t" "Tasks / Projects")
-        ("tt" "Task" entry (file+olp "~/dump/tasks.org" "Inbox")
-             "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+(setq org-capture-templates
+    `(("t" "Tasks / Projects")
+      ("tt" "Task" entry (file+olp "~/dump/tasks.org" "Inbox")
+           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
 
-        ("j" "Journal Entries")
-        ("jj" "Journal" entry
-             (file+olp+datetree "~/dump/journal.org")
-             "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
-             ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
-             :clock-in :clock-resume
-             :empty-lines 1)
-        ("jm" "Meeting" entry
-             (file+olp+datetree "~/dump/journal.org")
-             "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
-             :clock-in :clock-resume
-             :empty-lines 1)
+      ("j" "Journal Entries")
+      ("jj" "Journal" entry
+           (file+olp+datetree "~/dump/journal.org")
+           "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
+           ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
+           :clock-in :clock-resume
+           :empty-lines 1)
+      ("jm" "Meeting" entry
+           (file+olp+datetree "~/dump/journal.org")
+           "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
+           :clock-in :clock-resume
+           :empty-lines 1)
 
-        ("w" "Workflows")
-        ("we" "Checking Email" entry (file+olp+datetree "~/dump/journal.org")
-             "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
+      ("w" "Workflows")
+      ("we" "Checking Email" entry (file+olp+datetree "~/dump/journal.org")
+           "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
 
-        ("m" "Metrics Capture")
-        ("mw" "Weight" table-line (file+headline "~/dump/metrics.org" "Weight")
-         "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)
+      ("m" "Metrics Capture")
+      ("mw" "Weight" table-line (file+headline "~/dump/metrics.org" "Weight")
+       "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)
 
-        ("k" "Kata Capture")
-        ("kk" "Daily Kata" entry
-         (file+olp+datetree "~/org/kata.org")
-          "\n* %<%I:%M %p> - Kata :kata:\n\n%?\n\n"
-          :clock-in :clock-resume
-          :empty-lines 1)
-        ))
-  
-  (define-key global-map (kbd "C-c k")
-  (lambda () (interactive) (org-capture nil "kk")))
+      ("k" "Kata Capture")
+      ("kk" "Daily Kata" entry
+       (file+olp+datetree "~/org/kata.org")
+        "\n* %<%I:%M %p> - Kata :kata:\n\n%?\n\n"
+        :clock-in :clock-resume
+        :empty-lines 1)
+      
+      ("i" "Improvement Ideas")
+      ("ii" "Tooling Improvement" entry (file+olp "~/org/improvement.org" "Tooling")
+           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+      ))
 
-  (define-key global-map (kbd "C-c j")
-  (lambda () (interactive) (org-capture nil "jj")))
+(define-key global-map (kbd "C-c k")
+(lambda () (interactive) (org-capture nil "kk")))
+
+(define-key global-map (kbd "C-c t")
+(lambda () (interactive) (org-capture nil "ii")))
+
+(define-key global-map (kbd "C-c j")
+(lambda () (interactive) (org-capture nil "jj")))
 #+end_src
 
 #+RESULTS:

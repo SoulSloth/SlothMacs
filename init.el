@@ -386,10 +386,17 @@
         "\n* %<%I:%M %p> - Kata :kata:\n\n%?\n\n"
         :clock-in :clock-resume
         :empty-lines 1)
+      
+      ("i" "Improvement Ideas")
+      ("ii" "Tooling Improvement" entry (file+olp "~/org/improvement.org" "Tooling")
+           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
       ))
 
 (define-key global-map (kbd "C-c k")
 (lambda () (interactive) (org-capture nil "kk")))
+
+(define-key global-map (kbd "C-c t")
+(lambda () (interactive) (org-capture nil "ii")))
 
 (define-key global-map (kbd "C-c j")
 (lambda () (interactive) (org-capture nil "jj")))
