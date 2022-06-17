@@ -501,6 +501,20 @@
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill))
 
+(use-package org-roam
+	     :ensure t
+	     :init
+	     (setq org-roam-v2-ack t)
+	     :custom
+	     (org-roam-directory "~/org/roam")
+	     :bind (("C-c n l" . org-roam-buffer-toggle)
+	     ("C-c n f" . org-roam-node-find)
+	     ("C-c n i" . org-roam-node-insert)
+	     :map org-mode-map
+	     ("C-M-i" . completion-at-point))
+	     :config
+	     (org-roam-setup))
+
 (use-package term
 :config
 (setq explicit-shell-file-name "zsh")
@@ -524,12 +538,18 @@
   ;; Jump out of visited file
   :bind (("C-x C-j" . dired-jump))
   ;; `ls` options passed to dir
-  :custom ((dired-listing-switches "-agho --group-directories-first"))
+  :custom (
+	   (dired-listing-switches "-agho --group-directories-first")
+	   )
   :config
   ;; navigate our dired buffers as if we were using lf
   (evil-collection-define-key 'normal 'dired-mode-map
     "h" 'dired-single-up-directory
-    "l" 'dired-single-buffer))
+    "l" 'dired-single-buffer)
+  ;; When on mac, tell dired to use gls
+  (when (string= system-type "darwin")
+  (setq dired-use-ls-dired t
+        insert-directory-program "/usr/local/bin/gls")))
 
 (use-package dired-single)
 
