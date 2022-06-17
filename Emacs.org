@@ -2,6 +2,7 @@
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
 
 This configuraiton is my ongoing effort to improve my tooling.
+
 * Basic UI Configuration
 Basic UI Setup for most of our environment
 ** Disable The Defaults
@@ -460,6 +461,16 @@ Using company mode to enable a selection box on tab completions
 *** Useful keystrokes
 - =run-python= : run a python shell in =*Python*=
 - =python-shell-send-region= : Sends a python expression to the =*Python*= buffer
+** Java
+
+[[https://github.com/emacs-lsp/lsp-java][Github page for lsp-java]]
+
+#+begin_src emacs-lisp
+(use-package lsp-java
+  :ensure t
+  :hook (java-mode . lsp-deferred))
+#+end_src
+
 ** Clojure
 Currently working off of [[https://ccann.github.io/2015/10/18/cider.html][Clojure At Sea's configuraiton example]]
 *** Clojure mode
@@ -869,6 +880,7 @@ Give us a bunch of pretty icons for our dired buffer
   (use-package all-the-icons-dired
     :hook (dired-mode . all-the-icons-dired-mode))
 #+end_src
+
 *** dired-open
 Use specific programs to open certain files
 #+begin_src emacs-lisp
@@ -879,6 +891,7 @@ Use specific programs to open certain files
     (setq dired-open-extensions '(("png" . "feh")
                                   ("mkv" . "mpv"))))
 #+end_src
+
 *** dired-hide-dotfiles
 Hide dotfiles, which are usually clutter unless we're configuring something.
 #+begin_src emacs-lisp
@@ -888,6 +901,7 @@ Hide dotfiles, which are usually clutter unless we're configuring something.
     (evil-collection-define-key 'normal 'dired-mode-map
       "H" 'dired-hide-dotfiles-mode))
 #+end_src
+
 * Applications
 **  Example Configuration
 CLOSED: [2022-05-19 Thu 20:41]
