@@ -70,15 +70,32 @@
     :global-prefix "C-SPC"))
 
 (sloth/leader-keys
- "t" '(:ignore t :which-key "toggles")
- "tt" '(counsel-load-theme :which-key "choose theme")
- "f" '(counsel-projectile-grep :which-key "projectile-grep")
- ;; Clojure CIDER commands
- "s" '(:ignore s :which-key "cider")
- "sj" '(cider-jack-in :which-key "CIDER jack-in")
- "sq" '(cider-quit :which-key "CIDER quit")
- "se" '(cider-eval-region :which-key "cider eval region")
- "ss" '(cider-insert-region-in-repl :which-key "cider send region to repl"))
+   "t" '(:ignore t :which-key "toggles")
+   "tt" '(counsel-load-theme :which-key "choose theme")
+   "f" '(counsel-projectile-grep :which-key "projectile-grep")
+   ;; Clojure CIDER commands
+   "s" '(:ignore s :which-key "cider")
+   "sj" '(cider-jack-in :which-key "CIDER jack-in")
+   "sq" '(cider-quit :which-key "CIDER quit")
+   "se" '(cider-eval-region :which-key "cider eval region")
+   "ss" '(cider-insert-region-in-repl :which-key "cider send region to repl")
+   "sf" '(cider-format-buffer :which-key "cider format buffer")
+
+;; (defun spacemacs//cider-eval-in-repl-no-focus (form)
+;;   "Insert FORM in the REPL buffer and eval it."
+;;   (while (string-match "\\`[ \t\n\r]+\\|[ \t\n\r]+\\'" form)
+;;     (setq form (replace-match "" t t form)))
+;;   (with-current-buffer (cider-current-connection)
+;;     (let ((pt-max (point-max)))
+;;       (goto-char pt-max)
+;;       (insert form)
+;;       (indent-region pt-max (point))
+;;       (cider-repl-return)
+;;       (with-selected-window (get-buffer-window (cider-current-connection))
+;;         (goto-char (point-max))))))
+
+
+    )
 
 (unless (package-installed-p 'swiper)
   (package-install 'swiper))
@@ -258,6 +275,10 @@
   :custom
   (python-shell-interpreter "python"))
 
+(use-package lsp-java
+  :ensure t
+  :hook (java-mode . lsp-deferred))
+
 (use-package clojure-mode
   :ensure t
   :mode (("\\.clj\\'" . clojure-mode)
@@ -304,7 +325,9 @@
   ;; Replace list hyphen with dot
   (font-lock-add-keywords 'org-mode
                           '(("^ *\\([-]\\) "
-                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1)
+							  "•")))))))
+
 
 (use-package org
 :hook (org-mode . efs/org-mode-setup)
@@ -313,6 +336,7 @@
                          org-hide-emphasis-markers t)
 	       ;; Don't auto-indent when we RET after a line
            (setq org-edit-src-content-indentation 0)
+	       (setq org-export-with-toc nil)
            (efs/org-font-setup))
 
 (custom-theme-set-faces
@@ -549,7 +573,7 @@
   ;; When on mac, tell dired to use gls
   (when (string= system-type "darwin")
   (setq dired-use-ls-dired t
-        insert-directory-program "/usr/local/bin/gls")))
+        insert-directory-program "gls")))
 
 (use-package dired-single)
 
