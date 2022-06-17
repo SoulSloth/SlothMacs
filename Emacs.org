@@ -853,7 +853,7 @@ Dired, the Directory Editor, allows us to quickly navigate our filesystem, make 
   ;; When on mac, tell dired to use gls
   (when (string= system-type "darwin")
   (setq dired-use-ls-dired t
-        insert-directory-program "/usr/local/bin/gls")))
+        insert-directory-program "gls")))
 
 #+end_src
 
