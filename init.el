@@ -80,6 +80,8 @@
    "se" '(cider-eval-region :which-key "cider eval region")
    "ss" '(cider-insert-region-in-repl :which-key "cider send region to repl")
    "sf" '(cider-format-buffer :which-key "cider format buffer")
+   "sb" '(cider-load-buffer :which-key "cider load buffer")
+   "p" '(projectile-switch-project :which-key "projectile switch project")
 
 ;; (defun spacemacs//cider-eval-in-repl-no-focus (form)
 ;;   "Insert FORM in the REPL buffer and eval it."
