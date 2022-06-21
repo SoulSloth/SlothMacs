@@ -498,15 +498,9 @@ Currently working off of [[https://ccann.github.io/2015/10/18/cider.html][Clojur
   :ensure t
   :mode (("\\.clj\\'" . clojure-mode)
          ("\\.edn\\'" . clojure-mode))
-  :init
-  (add-hook 'clojure-mode-hook #'yas-minor-mode)         
-  (add-hook 'clojure-mode-hook #'linum-mode)             
-  (add-hook 'clojure-mode-hook #'subword-mode)           
-  (add-hook 'clojure-mode-hook #'smartparens-mode)       
-  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'clojure-mode-hook #'eldoc-mode)             
-  (add-hook 'clojure-mode-hook #'idle-highlight-mode)) 
+  :hook (clojure-mode . lsp-deferred)) 
 #+end_src
+
 
 *** Cider clojure emacs tooling
 #+begin_src emacs-lisp
