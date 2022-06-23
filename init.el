@@ -285,14 +285,7 @@
   :ensure t
   :mode (("\\.clj\\'" . clojure-mode)
          ("\\.edn\\'" . clojure-mode))
-  :init
-  (add-hook 'clojure-mode-hook #'yas-minor-mode)         
-  (add-hook 'clojure-mode-hook #'linum-mode)             
-  (add-hook 'clojure-mode-hook #'subword-mode)           
-  (add-hook 'clojure-mode-hook #'smartparens-mode)       
-  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'clojure-mode-hook #'eldoc-mode)             
-  (add-hook 'clojure-mode-hook #'idle-highlight-mode))
+  :hook (clojure-mode . lsp-deferred))
 
 (use-package cider
   :ensure t
@@ -366,8 +359,8 @@
        ("planning" . ?p)))
 
 (setq org-refile-targets
-        '(("archive.org" :maxlevel . 1)
-          ("tasks.org" :maxlevel . 1)))
+        '(("~/org/archive.org" :maxlevel . 1)
+          ("~/org/tasks.org" :maxlevel . 1)))
 
 (advice-add 'org-refile :after `org-save-all-org-buffers)
 
@@ -540,6 +533,16 @@
 	     ("C-M-i" . completion-at-point))
 	     :config
 	     (org-roam-setup))
+
+(use-package deft
+  :after org
+  :bind
+  ("C-c n d" . deft)
+  :custom
+  (deft-recursive t)
+  (deft-use-filter-string-for-filename t)
+  (deft-default-extension "org")
+  (deft-directory org-roam-directory))
 
 (use-package term
 :config

@@ -826,8 +826,21 @@ Just Cider for now
 	     (org-roam-setup))
 #+end_src
 
+*** Deft
+#+begin_src emacs-lisp
+(use-package deft
+  :after org
+  :bind
+  ("C-c n d" . deft)
+  :custom
+  (deft-recursive t)
+  (deft-use-filter-string-for-filename t)
+  (deft-default-extension "org")
+  (deft-directory org-roam-directory))
+#+end_src
+
 #+RESULTS:
-: completion-at-point
+: deft
 
 * Terminals
 ** term-mode
