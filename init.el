@@ -496,11 +496,15 @@
   '((emacs-lisp . t)
     (python . t)
     (clojure . t)
-    (shell . t)))
+    (shell . t)
+    (plantuml . t)))
 
   (setq org-confirm-babel-evaluate nil)
 
 (setq org-babel-clojure-backend 'cider)
+
+(setq org-plantuml-jar-path
+      (expand-file-name "/usr/bin/plantuml.jar"))
 
 ;; This is needed as of Org 9.2
 (require 'org-tempo)
@@ -511,6 +515,7 @@
 (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
 (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
 (add-to-list 'org-structure-template-alist '("conf" . "src conf"))
+(add-to-list 'org-structure-template-alist '("pl" . "src plantuml"))
 
 (defun efs/org-mode-visual-fill ()
   (setq visual-fill-column-width 125

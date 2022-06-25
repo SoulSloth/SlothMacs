@@ -767,36 +767,49 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 ** Org-Babel Config
 *** Load Languages
  #+begin_src emacs-lisp
-         (org-babel-do-load-languages
-           'org-babel-load-languages
-           '((emacs-lisp . t)
-             (python . t)
-             (clojure . t)
-             (shell . t)))
+ (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)
+     (clojure . t)
+     (shell . t)
+     (plantuml . t)))
 
-           (setq org-confirm-babel-evaluate nil)
+   (setq org-confirm-babel-evaluate nil)
  #+end_src
 
- #+RESULTS:
-
 *** Backends
-Just Cider for now
+
+**** CIDER
+cider provides support for clojure emacs tooling
 #+begin_src emacs-lisp
 (setq org-babel-clojure-backend 'cider)
 #+end_src
 
+**** Plantuml
+Plant uml diagrams
+https://eschulte.github.io/babel-dev/DONE-integrate-plantuml-support.html
+#+begin_src emacs-lisp
+(setq org-plantuml-jar-path
+      (expand-file-name "/usr/bin/plantuml.jar"))
+#+end_src
+
 *** Structure Templates
 #+begin_src  emacs-lisp
-  ;; This is needed as of Org 9.2
-  (require 'org-tempo)
+;; This is needed as of Org 9.2
+(require 'org-tempo)
 
-  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
-  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-  (add-to-list 'org-structure-template-alist '("py" . "src python"))
-  (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
-  (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
-  (add-to-list 'org-structure-template-alist '("conf" . "src conf"))
+(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+(add-to-list 'org-structure-template-alist '("py" . "src python"))
+(add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
+(add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
+(add-to-list 'org-structure-template-alist '("conf" . "src conf"))
+(add-to-list 'org-structure-template-alist '("pl" . "src plantuml"))
 #+end_src
+
+#+RESULTS:
+: ((pl . src plantuml) (conf . src conf) (yl . src yaml) (clj . src clojure) (py . src python) (el . src emacs-lisp) (sh . src shell) (a . export ascii) (c . center) (C . comment) (e . example) (E . export) (h . export html) (l . export latex) (q . quote) (s . src) (v . verse))
 
 ** Visual Fill
 #+begin_src emacs-lisp
