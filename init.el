@@ -82,6 +82,8 @@
    "sf" '(cider-format-buffer :which-key "cider format buffer")
    "sb" '(cider-load-buffer :which-key "cider load buffer")
    "p" '(projectile-switch-project :which-key "projectile switch project")
+   "o" '(:ignore t :which-key "org")
+   "ot" '(org-toggle-inline-images :which-key "toggle-inline-images")
 
 ;; (defun spacemacs//cider-eval-in-repl-no-focus (form)
 ;;   "Insert FORM in the REPL buffer and eval it."
