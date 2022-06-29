@@ -211,6 +211,8 @@
     ;; Give us back up from emacs
     (setq evil-want-C-u-scroll t)
     (setq evil-want-C-i-jump nil)
+    ;; Get undo-redo functionality
+    (setq evil-undo-system 'undo-redo)
     :config
     (evil-mode 1)
     ;; Exit to evil normal state with C-g instead of having to hit esc

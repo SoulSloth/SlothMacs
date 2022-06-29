@@ -344,28 +344,34 @@ Ensure you run  =M-x all-the-icons-install-fonts= for this to work
 Gives us a vi layer over emacs.
 ** Evil proper
 #+begin_src emacs-lisp
-    (use-package evil
-      :ensure t
-      :init
-      ;; evil-collections required sets
-      (setq evil-want-integration t)
-      (setq evil-want-keybinding nil)
-      ;; Give us back up from emacs
-      (setq evil-want-C-u-scroll t)
-      (setq evil-want-C-i-jump nil)
-      :config
-      (evil-mode 1)
-      ;; Exit to evil normal state with C-g instead of having to hit esc
-      :config
-      (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state))
+  (use-package evil
+    :ensure t
+    :init
+    ;; evil-collections required sets
+    (setq evil-want-integration t)
+    (setq evil-want-keybinding nil)
+    ;; Give us back up from emacs
+    (setq evil-want-C-u-scroll t)
+    (setq evil-want-C-i-jump nil)
+    ;; Get undo-redo functionality
+    (setq evil-undo-system 'undo-redo)
+    :config
+    (evil-mode 1)
+    ;; Exit to evil normal state with C-g instead of having to hit esc
+    :config
+    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state))
 
-  ;; Use visual line motions even outside of visual-line-mode buffers
-  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-  ;; Set the state when we enter certain modes
-  (evil-set-initial-state 'messages-buffer-mode 'normal)
-  (evil-set-initial-state 'dashboard-mode 'normal)
+;; Use visual line motions even outside of visual-line-mode buffers
+(evil-global-set-key 'motion "j" 'evil-next-visual-line)
+(evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+;; Set the state when we enter certain modes
+(evil-set-initial-state 'messages-buffer-mode 'normal)
+(evil-set-initial-state 'dashboard-mode 'normal)
 #+end_src
+
+
+#+RESULTS:
+| dashboard-mode | messages-buffer-mode | edebug-mode | woman-mode | Man-mode | lsp-ui-imenu-mode | view-mode | Custom-mode | apropos-mode | ediff-mode | bookmark-bmenu-mode | eww-bookmark-mode | eww-buffers-mode | eww-history-mode | eww-mode | speedbar-mode | gnus-summary-mode | gnus-server-mode | gnus-group-mode | gnus-browse-mode | gnus-bookmark-bmenu-mode | gnus-article-mode | doc-view-mode | cider-stacktrace-mode | archive-mode | arc-mode | vc-git-log-view-mode | outline-mode | calendar-mode | xref--transient-buffer-mode | xref--xref-buffer-mode | tabulated-list-mode | tab-switcher-mode | package-menu-mode | occur-mode | git-commit-mode | magit-gitflow-mode | magit-blob-mode | magit-status-mode | magit-stashes-mode | magit-stash-mode | magit-revision-mode | magit-refs-mode | magit-reflog-mode | magit-process-mode | magit-log-select-mode | magit-log-mode | magit-diff-mode | magit-cherry-mode | magit-mode | git-rebase-mode | magit-submodule-list-mode | magit-repolist-mode | Info-mode | image-mode | ibuffer-mode | help-mode | emacs-lisp-mode | diff-mode | compilation-mode | calc-mode | Buffer-menu-mode |
 
 ** Evil collection
 Evil collections provides extra evil faculties in missing areas
