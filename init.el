@@ -302,6 +302,8 @@
   (setq cider-repl-display-help-banner nil)
   (cider-repl-toggle-pretty-printing))
 
+(use-package docker-compose-mode)
+
 ;; Rainbow delimiters
 (use-package  rainbow-delimiters
 :hook (prog-mode . rainbow-delimiters-mode))
@@ -606,3 +608,9 @@
   :config
   (evil-collection-define-key 'normal 'dired-mode-map
     "H" 'dired-hide-dotfiles-mode))
+
+(if (eq system-type 'darwin)
+    (let ((gls (executable-find "gls")))
+      (when gls
+	(setq insert-directory-program gls
+	      dired-listing-switches "-aBhl --group-directories-first"))))
