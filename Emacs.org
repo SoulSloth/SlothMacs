@@ -617,11 +617,13 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 ** Refile Targets
 #+begin_src emacs-lisp
     (setq org-refile-targets
-          '(("archive.org" :maxlevel . 1)
-            ("tasks.org" :maxlevel . 1)))
+          '(("~/org/archive.org" :maxlevel . 1)
+            ("~/org/tasks.org" :maxlevel . 1)))
   
   (advice-add 'org-refile :after `org-save-all-org-buffers)
 #+end_src
+
+#+RESULTS:
 
 *** TODO Setup some more sensible targets for refile
 
