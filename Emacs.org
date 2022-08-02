@@ -137,17 +137,17 @@ Put temporary and backup files into =/etc= instead
 ** use-package general
 Our installation of general.el proper
 #+begin_src emacs-lisp
-  (use-package general
-  ;; Creates qeuivalent vim mapping functions
-    :config
-    (general-evil-setup t)
-    ;; Add our leader keys
-    :config
-    (general-create-definer sloth/leader-keys
-      :keymaps '(normal insert visual emacs)
-      ;; EVIL spacemacs goodness
-      :prefix "SPC"
-      :global-prefix "C-SPC"))
+(use-package general
+;; Creates qeuivalent vim mapping functions
+  :config
+  (general-evil-setup t)
+  ;; Add our leader keys
+  :config
+  (general-create-definer sloth/leader-keys
+    :keymaps '(normal insert visual emacs)
+    ;; EVIL spacemacs goodness
+    :prefix "SPC"
+    :global-prefix "C-SPC"))
 #+end_src
 
 ** Leader-keys
