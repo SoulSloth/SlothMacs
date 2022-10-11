@@ -402,7 +402,8 @@ Using evil-nerd-commenter since the default emacs package has some weird behavoi
 * Languages
 
 [[https://emacs-lsp.github.io/lsp-mode/][Emacs LSP Mode Site]]: For all your language finding needs
-=C-c l=
+The hotkey is set to =C-c l=
+Lsp servers must be installed for these modes to work. For linux machines, the command =lsp-install-server= will easily handle it. I've had no such luck on mac and have had to typically install such servers with =brew=. Be sure to check the lsp mode site for specifics.
 
 ** Language Server Protocol
 
