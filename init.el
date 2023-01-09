@@ -302,6 +302,12 @@
   (setq cider-repl-display-help-banner nil)
   (cider-repl-toggle-pretty-printing))
 
+(use-package go-mode
+  :ensure t
+  :mode (("\\.go\\'" . go-mode))
+  :hook ((before-save . gofmt-before-save) (go-mode . lsp-deferred))
+  )
+
 (use-package docker-compose-mode)
 
 ;; Rainbow delimiters
