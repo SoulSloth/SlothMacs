@@ -1,3 +1,7 @@
+(when (string= system-type "darwin")
+  (use-package exec-path-from-shell)
+    (exec-path-from-shell-initialize))
+
 (setq inhibit-startup-message t) ; no startup message
       (scroll-bar-mode -1) ; Disable scroll bar
       (tool-bar-mode -1) ; Disable tool bar
@@ -211,6 +215,8 @@
     ;; Give us back up from emacs
     (setq evil-want-C-u-scroll t)
     (setq evil-want-C-i-jump nil)
+    ;; Use evil in the minibuffer
+    (setq evil-want-minibuffer t)
     ;; Get undo-redo functionality
     (setq evil-undo-system 'undo-redo)
     :config
@@ -392,7 +398,7 @@
 
       ("j" "Journal Entries")
       ("jj" "Journal" entry
-           (file+olp+datetree "~/dump/journal.org")
+           (file+olp+datetree "~/org/journal.org")
            "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
            ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
            :clock-in :clock-resume
@@ -420,6 +426,8 @@
       
       ("i" "Improvement Ideas")
       ("ii" "Tooling Improvement" entry (file+olp "~/org/improvement.org" "Tooling")
+           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+      ("il" "Learning Improvement" entry (file+olp "~/org/improvement.org" "Learning")
            "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
       ))
 
@@ -524,6 +532,7 @@
 (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 (add-to-list 'org-structure-template-alist '("py" . "src python"))
+(add-to-list 'org-structure-template-alist '("go" . "src go"))
 (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
 (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
 (add-to-list 'org-structure-template-alist '("conf" . "src conf"))
