@@ -2,6 +2,12 @@
   (use-package exec-path-from-shell)
     (exec-path-from-shell-initialize))
 
+(if (eq system-type 'darwin)
+    (let ((gls (executable-find "gls")))
+      (when gls
+	(setq insert-directory-program gls
+	      dired-listing-switches "-aBhl --group-directories-first"))))
+
 (setq inhibit-startup-message t) ; no startup message
       (scroll-bar-mode -1) ; Disable scroll bar
       (tool-bar-mode -1) ; Disable tool bar
@@ -504,7 +510,8 @@
 ;; Automatically tangle our Emacs.org config file when we save it
 (defun efs/org-babel-tangle-config ()
   (when (string-equal (buffer-file-name)
-                      (expand-file-name "~/.emacs.provingGrounds/Emacs.org"))
+                      (expand-file-name "~/.emacs.d/Emacs.org"))
+    
     ;; Dynamic scoping to the rescue
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle)))) 
@@ -623,9 +630,3 @@
   :config
   (evil-collection-define-key 'normal 'dired-mode-map
     "H" 'dired-hide-dotfiles-mode))
-
-(if (eq system-type 'darwin)
-    (let ((gls (executable-find "gls")))
-      (when gls
-	(setq insert-directory-program gls
-	      dired-listing-switches "-aBhl --group-directories-first"))))
