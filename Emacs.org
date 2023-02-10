@@ -3,6 +3,14 @@
 
 This configuraiton is my ongoing effort to improve my tooling.
 
+* System-centric configs
+** Fix shell path on mac
+#+begin_src emacs-lisp
+(when (string= system-type "darwin")
+  (use-package exec-path-from-shell)
+    (exec-path-from-shell-initialize))
+#+end_src
+
 * Basic UI Configuration
 Basic UI Setup for most of our environment
 ** Disable The Defaults
