@@ -4,11 +4,22 @@
 This configuraiton is my ongoing effort to improve my tooling.
 
 * System-centric configs
-** Fix shell path on mac
+** Fix shell path on Mac
 #+begin_src emacs-lisp
 (when (string= system-type "darwin")
   (use-package exec-path-from-shell)
     (exec-path-from-shell-initialize))
+#+end_src
+
+** Dired defaults on Mac
+
+#+begin_src emacs-lisp
+(if (eq system-type 'darwin)
+    (let ((gls (executable-find "gls")))
+      (when gls
+	(setq insert-directory-program gls
+	      dired-listing-switches "-aBhl --group-directories-first"))))
+
 #+end_src
 
 * Basic UI Configuration
@@ -995,25 +1006,5 @@ CLOSED: [2022-05-19 Thu 20:41]
 :END:
 Easy way to configure dotfiles, need to find a good test case, maybe adding rss links to newsboat?
 
-Add =:noweb yes=
-
-#+NAME: the-value
-#+begin_src emacs-lisp :tangle no
-155
-#+end_src
-#+begin_src conf :tangle .config/some-app/config :noweb yes 
-Ourvalue = <<the-value>>
-#+end_src
-
 * System Specific
 Items specific to differnt operating systems
-** Dired defaults on Mac Darwin systems
-
-#+begin_src emacs-lisp
-(if (eq system-type 'darwin)
-    (let ((gls (executable-find "gls")))
-      (when gls
-	(setq insert-directory-program gls
-	      dired-listing-switches "-aBhl --group-directories-first"))))
-
-#+end_src
