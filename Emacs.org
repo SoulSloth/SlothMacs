@@ -706,6 +706,8 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
       ("i" "Improvement Ideas")
       ("ii" "Tooling Improvement" entry (file+olp "~/org/improvement.org" "Tooling")
            "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+      ("il" "Learning Improvement" entry (file+olp "~/org/improvement.org" "Learning")
+           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
       ))
 
 (define-key global-map (kbd "C-c k")
