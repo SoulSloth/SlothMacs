@@ -361,6 +361,8 @@ Gives us a vi layer over emacs.
     ;; Give us back up from emacs
     (setq evil-want-C-u-scroll t)
     (setq evil-want-C-i-jump nil)
+    ;; Use evil in the minibuffer
+    (setq evil-want-minibuffer t)
     ;; Get undo-redo functionality
     (setq evil-undo-system 'undo-redo)
     :config
