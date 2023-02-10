@@ -677,7 +677,7 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 
       ("j" "Journal Entries")
       ("jj" "Journal" entry
-           (file+olp+datetree "~/dump/journal.org")
+           (file+olp+datetree "~/org/journal.org")
            "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
            ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
            :clock-in :clock-resume
