@@ -797,7 +797,8 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 ;; Automatically tangle our Emacs.org config file when we save it
 (defun efs/org-babel-tangle-config ()
   (when (string-equal (buffer-file-name)
-                      (expand-file-name "~/.emacs.provingGrounds/Emacs.org"))
+                      (expand-file-name "~/.emacs.d/Emacs.org"))
+    
     ;; Dynamic scoping to the rescue
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle)))) 
