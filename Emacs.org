@@ -694,17 +694,21 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
            :clock-in :clock-resume
            :empty-lines 1)
       ("jm" "Meeting" entry
-           (file+olp+datetree "~/dump/journal.org")
+           (file+olp+datetree "~/org/journal.org")
            "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
            :clock-in :clock-resume
            :empty-lines 1)
-
+      ("jl" "WorkLogs" entry
+           (file+olp+datetree "~/org/journal.org")
+           "* %<%I:%M %p> - %a :Logs:\n\n%?\n\n"
+           :clock-in :clock-resume
+           :empty-lines 0)
       ("w" "Workflows")
-      ("we" "Checking Email" entry (file+olp+datetree "~/dump/journal.org")
+      ("we" "Checking Email" entry (file+olp+datetree "~/org/journal.org")
            "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
 
       ("m" "Metrics Capture")
-      ("mw" "Weight" table-line (file+headline "~/dump/metrics.org" "Weight")
+      ("mw" "Weight" table-line (file+headline "~/org/metrics.org" "Weight")
        "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)
 
       ("k" "Kata Capture")
