@@ -496,13 +496,16 @@
 
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
 
+(use-package ob-go)
+
 (org-babel-do-load-languages
   'org-babel-load-languages
   '((emacs-lisp . t)
     (python . t)
     (clojure . t)
     (shell . t)
-    (plantuml . t)))
+    (plantuml . t)
+    (go . t)))
 
   (setq org-confirm-babel-evaluate nil)
 

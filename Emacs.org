@@ -530,7 +530,7 @@ error in process filter: Symbol’s function definition is void: clj-refactor-mo
 #+end_src
 
 *** Install
-**** Install =go= and =gopls =:  =go install golang.org/x/tools/gopls@latest=
+**** Install =go= and the Golang lsp server: =gopls =:  =go install golang.org/x/tools/gopls@latest=
 **** Add go to path
 #+begin_src shell :tangle no
 export GOPATH="$(go env GOPATH)"
@@ -789,18 +789,29 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 #+end_src
 
 ** Org-Babel Config
+*** Golang support provided by [[https://github.com/pope/ob-go][ob-go]]
+#+begin_src emacs-lisp
+  (use-package ob-go)
+#+end_src
+
 *** Load Languages
+[[https://orgmode.org/worg/org-contrib/babel/languages/index.html][Currently supported languages can be found in the Org documentation]]
+
  #+begin_src emacs-lisp
+
  (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
      (python . t)
      (clojure . t)
      (shell . t)
-     (plantuml . t)))
+     (plantuml . t)
+     (go . t)))
 
    (setq org-confirm-babel-evaluate nil)
  #+end_src
+
+ #+RESULTS:
 
 *** Backends
 **** CIDER
