@@ -451,9 +451,9 @@
 ;; Fold log entries into drawer
 (setq org-log-into-drawer t)
 
-(setq org-agenda-files '("~/.emacs.provingGrounds/orgfiles/tasks.org"
-                         "~/.emacs.provingGrounds/orgfiles/birthdays.org"
-                         "~/.emacs.provingGrounds/orgfiles/habits.org"
+(setq org-agenda-files '("~/org/tasks.org"
+                         "~/org/birthdays.org"
+                         "~/org/habits.org"
                          )) 
 
 (require 'org-habit)
