@@ -140,12 +140,7 @@
       :init
       (ivy-rich-mode 1))
 
-;; (unless (package-installed-p 'counsel)
-;;     (package-install 'counsel))
-
-;; (require 'counsel)
-
-  ;; use counsel and bind some useful keys for switching buffers and finding files
+;; use counsel and bind some useful keys for switching buffers and finding files
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
          ("C-x b" . counsel-ibuffer)

@@ -145,7 +145,6 @@ Useful for avoiding cases were
   (setq use-package-always-ensure t)
 #+end_src
 
-*** TODO Document various key maps that can be use with =use-package=. Link to examples in this config 
 * No littering
 Put temporary and backup files into =/etc= instead
 #+begin_src emacs-lisp
@@ -257,11 +256,6 @@ The main Ivy package
 ** Counsel
 =Counsel= takes many emacs commands and fronts them to ivy ones like switching buffer, finding files, and seeing buffer history. Also works with =projectile= for my personal favorite command =counsel-projectile-grep=.
 #+begin_src emacs-lisp
-  ;; (unless (package-installed-p 'counsel)
-  ;;     (package-install 'counsel))
-
-  ;; (require 'counsel)
-
     ;; use counsel and bind some useful keys for switching buffers and finding files
   (use-package counsel
     :bind (("M-x" . counsel-M-x)
@@ -271,8 +265,6 @@ The main Ivy package
            ("C-r" . 'counsel-minibuffer-history)))
 #+end_src
 
-
-*** TODO Do we still need `require` if we're using-package?
 ** which-key
 
 =which-key= gives us a pop-up window that will tell us the competions for any partial commands we have entered 
@@ -391,7 +383,6 @@ Gives us a vi layer over emacs.
 (evil-set-initial-state 'dashboard-mode 'normal)
 #+end_src
 
-
 ** Evil collection
 Evil collections provides extra evil faculties in missing areas
 #+begin_src emacs-lisp
@@ -453,7 +444,7 @@ Sideline IDE editor items
   (lsp-ui-doc-position 'bottom))
 #+end_src
 
-*** TODO LSP Ivy
+*** LSP Ivy
 This is currently borked(at least on python language server.
 
 Might just jump to helm instead
@@ -663,10 +654,6 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
   
   (advice-add 'org-refile :after `org-save-all-org-buffers)
 #+end_src
-
-#+RESULTS:
-
-*** TODO Setup some more sensible targets for refile
 
 ** Keywords
 #+begin_src emacs-lisp
