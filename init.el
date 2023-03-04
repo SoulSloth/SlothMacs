@@ -28,10 +28,8 @@
                 ))
  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-;; Sets the size of left and right fringes
-  (set-fringe-mode 10)
+(set-fringe-mode 10)
 
-;; Fix gap in tiling window environments
 (setq frame-resize-pixelwise t)
 
 (defvar sloth/default-font-size 140)
@@ -41,29 +39,22 @@
 (when (not (string= system-type "darwin"))
  (set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115))
 
-;; Requires package.el so we can get our packages 
-  (require 'package)
+(require 'package)
 
-;; Elisp package repositories
-  (setq package-archives '(("org" .  "http://orgmode.org/elpa/") ;; Org mode latest
-                             ("elpa" . "http://elpa.gnu.org/packages/") ;; Standard elisp packages
-                             ("melpa" . "https://melpa.org/packages/"))) ;;Milkypostman's Emacs Lisp Pacakge Archive
+(setq package-archives '(("org" .  "http://orgmode.org/elpa/") ;; Org mode latest
+                           ("elpa" . "http://elpa.gnu.org/packages/") ;; Standard elisp packages
+                           ("melpa" . "https://melpa.org/packages/"))) ;;Milkypostman's Emacs Lisp Pacakge Archive
 
-;; Load and activate emacs lisp packages
-  (package-initialize)
+(package-initialize)
 
-;; Refresh package contents
 (unless package-archive-contents
   (package-refresh-contents))
 
-;; Bootstrap use-pacakge if it's not installed
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
-;; Require the use-package package
 (require 'use-package)
 
-;; makes =:ensure t= the default for our =use-package= calls.
 (setq use-package-always-ensure t)
 
 (use-package no-littering)
@@ -81,59 +72,42 @@
     :global-prefix "C-SPC"))
 
 (sloth/leader-keys
-   "t" '(:ignore t :which-key "toggles")
-   "tt" '(counsel-load-theme :which-key "choose theme")
-   "f" '(counsel-projectile-grep :which-key "projectile-grep")
-   ;; Clojure CIDER commands
-   "s" '(:ignore s :which-key "cider")
-   "sj" '(cider-jack-in :which-key "CIDER jack-in")
-   "sq" '(cider-quit :which-key "CIDER quit")
-   "se" '(cider-eval-region :which-key "cider eval region")
-   "ss" '(cider-insert-region-in-repl :which-key "cider send region to repl")
-   "sf" '(cider-format-buffer :which-key "cider format buffer")
-   "sb" '(cider-load-buffer :which-key "cider load buffer")
-   "p" '(projectile-switch-project :which-key "projectile switch project")
-   "o" '(:ignore t :which-key "org")
-   "ot" '(org-toggle-inline-images :which-key "toggle-inline-images")
-
-;; (defun spacemacs//cider-eval-in-repl-no-focus (form)
-;;   "Insert FORM in the REPL buffer and eval it."
-;;   (while (string-match "\\`[ \t\n\r]+\\|[ \t\n\r]+\\'" form)
-;;     (setq form (replace-match "" t t form)))
-;;   (with-current-buffer (cider-current-connection)
-;;     (let ((pt-max (point-max)))
-;;       (goto-char pt-max)
-;;       (insert form)
-;;       (indent-region pt-max (point))
-;;       (cider-repl-return)
-;;       (with-selected-window (get-buffer-window (cider-current-connection))
-;;         (goto-char (point-max))))))
-
-
-    )
+ "t" '(:ignore t :which-key "toggles")
+ "tt" '(counsel-load-theme :which-key "choose theme")
+ "f" '(counsel-projectile-grep :which-key "projectile-grep")
+ ;; Clojure CIDER commands
+ "s" '(:ignore s :which-key "cider")
+ "sj" '(cider-jack-in :which-key "CIDER jack-in")
+ "sq" '(cider-quit :which-key "CIDER quit")
+ "se" '(cider-eval-region :which-key "cider eval region")
+ "ss" '(cider-insert-region-in-repl :which-key "cider send region to repl")
+ "sf" '(cider-format-buffer :which-key "cider format buffer")
+ "sb" '(cider-load-buffer :which-key "cider load buffer")
+ "p" '(projectile-switch-project :which-key "projectile switch project")
+ "o" '(:ignore t :which-key "org")
+ "ot" '(org-toggle-inline-images :which-key "toggle-inline-images"))
 
 (unless (package-installed-p 'swiper)
   (package-install 'swiper))
 
 (require 'swiper)
 
-;; Ivy for better minibuffer completions
-  (use-package ivy
-      :diminish
-      :bind (("C-s" . swiper)
-             :map ivy-minibuffer-map
-             ("TAB" . ivy-alt-done)
-             ("C-l" . ivy-alt-done)
-             ("C-k" . ivy-next-line)
-             :map ivy-switch-buffer-map
-             ("C-k" . ivy-previous-line)
-             ("C-l" . ivy-done)
-             ("C-d" . ivy-switch-buffer-kill)
-             :map ivy-reverse-i-search-map
-             ("C-k" . ivy-previous-line)
-             ("C-d" . ivy-reverse-i-search-kill))
-      :config
-      (ivy-mode 1))
+(use-package ivy
+    :diminish
+    :bind (("C-s" . swiper)
+           :map ivy-minibuffer-map
+           ("TAB" . ivy-alt-done)
+           ("C-l" . ivy-alt-done)
+           ("C-k" . ivy-next-line)
+           :map ivy-switch-buffer-map
+           ("C-k" . ivy-previous-line)
+           ("C-l" . ivy-done)
+           ("C-d" . ivy-switch-buffer-kill)
+           :map ivy-reverse-i-search-map
+           ("C-k" . ivy-previous-line)
+           ("C-d" . ivy-reverse-i-search-kill))
+    :config
+    (ivy-mode 1))
 
 ;; Give us some more info in completions
   (use-package ivy-rich

@@ -57,12 +57,9 @@ Disable line numbers when we're in these modes were it isn't as relevent
    (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
 
-#+RESULTS:
-
 ** Fringes
 Left and right display fringes
 #+begin_src emacs-lisp
-;; Sets the size of left and right fringes
   (set-fringe-mode 10)
 #+end_src
 
@@ -71,7 +68,6 @@ Resizes the window based on pixel size instead of font size
 
 Otherwise we get a nasty gap at the bottom of our window
 #+begin_src emacs-lisp
-  ;; Fix gap in tiling window environments
   (setq frame-resize-pixelwise t)
 #+end_src
 
@@ -100,14 +96,12 @@ Package.el and use-pacakge installation + configuration
 
 Requires the =package.el= file that'll help us install things from various pacakge archives like =elpa=, =melpa=, and the org =elpa=
 #+begin_src emacs-lisp
-;; Requires package.el so we can get our packages 
   (require 'package)
 #+end_src
 
 ** Package Sources
 Set the =package-archives= variable up with =org=, =elpa=, and the =melpa= package archives
 #+begin_src emacs-lisp
-;; Elisp package repositories
   (setq package-archives '(("org" .  "http://orgmode.org/elpa/") ;; Org mode latest
                              ("elpa" . "http://elpa.gnu.org/packages/") ;; Standard elisp packages
                              ("melpa" . "https://melpa.org/packages/"))) ;;Milkypostman's Emacs Lisp Pacakge Archive
@@ -116,7 +110,6 @@ Set the =package-archives= variable up with =org=, =elpa=, and the =melpa= packa
 ** Initialize Packages
 Loads and activates our installed elisp packages
 #+begin_src emacs-lisp
-    ;; Load and activate emacs lisp packages
       (package-initialize)
 #+end_src
 
@@ -125,7 +118,6 @@ Loads and activates our installed elisp packages
 
 Useful for avoiding cases were 
 #+begin_src emacs-lisp
-  ;; Refresh package contents
   (unless package-archive-contents
     (package-refresh-contents))
 #+end_src
@@ -134,14 +126,11 @@ Useful for avoiding cases were
 
 [[https://github.com/jwiegley/use-package][use-package]] is a macro that allows us to do many boiler-plate things like config packages after they're loaded, adding hooks to when our package does things, and activating package modes when opening certain files.
 #+begin_src emacs-lisp
-  ;; Bootstrap use-pacakge if it's not installed
   (unless (package-installed-p 'use-package)
     (package-install 'use-package))
 
-  ;; Require the use-package package
   (require 'use-package)
 
-  ;; makes =:ensure t= the default for our =use-package= calls.
   (setq use-package-always-ensure t)
 #+end_src
 
@@ -188,26 +177,8 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
    "sb" '(cider-load-buffer :which-key "cider load buffer")
    "p" '(projectile-switch-project :which-key "projectile switch project")
    "o" '(:ignore t :which-key "org")
-   "ot" '(org-toggle-inline-images :which-key "toggle-inline-images")
-
-;; (defun spacemacs//cider-eval-in-repl-no-focus (form)
-;;   "Insert FORM in the REPL buffer and eval it."
-;;   (while (string-match "\\`[ \t\n\r]+\\|[ \t\n\r]+\\'" form)
-;;     (setq form (replace-match "" t t form)))
-;;   (with-current-buffer (cider-current-connection)
-;;     (let ((pt-max (point-max)))
-;;       (goto-char pt-max)
-;;       (insert form)
-;;       (indent-region pt-max (point))
-;;       (cider-repl-return)
-;;       (with-selected-window (get-buffer-window (cider-current-connection))
-;;         (goto-char (point-max))))))
-
-
-    )
+   "ot" '(org-toggle-inline-images :which-key "toggle-inline-images"))
 #+end_src
-
-#+RESULTS:
 
 * Swiper
 Swiper allows us to quickly search files for regex candidates
@@ -225,7 +196,6 @@ Ivy provides better mini buffer completions for packages like =swiper= and =coun
 *** Main Ivy
 The main Ivy package
 #+begin_src emacs-lisp
-;; Ivy for better minibuffer completions
   (use-package ivy
       :diminish
       :bind (("C-s" . swiper)
@@ -520,6 +490,7 @@ Currently working off of [[https://ccann.github.io/2015/10/18/cider.html][Clojur
   :hook (clojure-mode . lsp-deferred)) 
 #+end_src
 
+*** TODO  set up a function for sending a form to the cider-repl for evaluation
 *** Cider clojure emacs tooling
 #+begin_src emacs-lisp
   (use-package cider
