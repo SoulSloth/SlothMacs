@@ -163,21 +163,22 @@ We define our leader-keys that will be passed to =general-create-definer=
 
 Unsure as to why, but we get an error on start-up that leader-keys are not defined if we put this definition BEFORE the =use-package= def of =general=. 
 #+begin_src emacs-lisp
-  (sloth/leader-keys
-   "t" '(:ignore t :which-key "toggles")
-   "tt" '(counsel-load-theme :which-key "choose theme")
-   "f" '(counsel-projectile-grep :which-key "projectile-grep")
-   ;; Clojure CIDER commands
-   "s" '(:ignore s :which-key "cider")
-   "sj" '(cider-jack-in :which-key "CIDER jack-in")
-   "sq" '(cider-quit :which-key "CIDER quit")
-   "se" '(cider-eval-region :which-key "cider eval region")
-   "ss" '(cider-insert-region-in-repl :which-key "cider send region to repl")
-   "sf" '(cider-format-buffer :which-key "cider format buffer")
-   "sb" '(cider-load-buffer :which-key "cider load buffer")
-   "p" '(projectile-switch-project :which-key "projectile switch project")
-   "o" '(:ignore t :which-key "org")
-   "ot" '(org-toggle-inline-images :which-key "toggle-inline-images"))
+(sloth/leader-keys
+ "t" '(:ignore t :which-key "toggles")
+ "tt" '(counsel-load-theme :which-key "choose theme")
+ "f" '(counsel-projectile-grep :which-key "projectile-grep")
+ ;; Clojure CIDER commands
+ "s" '(:ignore s :which-key "cider")
+ "sj" '(cider-jack-in :which-key "CIDER jack-in")
+ "sq" '(cider-quit :which-key "CIDER quit")
+ "se" '(cider-eval-region :which-key "cider eval region")
+ "ss" '(cider-insert-region-in-repl :which-key "cider send region to repl")
+ "sf" '(cider-format-buffer :which-key "cider format buffer")
+ "sb" '(cider-load-buffer :which-key "cider load buffer")
+ "li" '(lsp-ivy-workspace-symbol :which-key "ivy workspace symbol")
+ "p" '(projectile-switch-project :which-key "projectile switch project")
+ "o" '(:ignore t :which-key "org")
+ "ot" '(org-toggle-inline-images :which-key "toggle-inline-images"))
 #+end_src
 
 * Swiper
@@ -423,9 +424,7 @@ Sideline IDE editor items
 #+end_src
 
 *** LSP Ivy
-This is currently borked(at least on python language server.
-
-Might just jump to helm instead
+Find symbols in the workspace quickly:
 #+begin_src emacs-lisp :tangle no
     (use-package lsp-ivy)
 #+end_src

@@ -83,6 +83,7 @@
  "ss" '(cider-insert-region-in-repl :which-key "cider send region to repl")
  "sf" '(cider-format-buffer :which-key "cider format buffer")
  "sb" '(cider-load-buffer :which-key "cider load buffer")
+ "li" '(lsp-ivy-workspace-symbol :which-key "ivy workspace symbol")
  "p" '(projectile-switch-project :which-key "projectile switch project")
  "o" '(:ignore t :which-key "org")
  "ot" '(org-toggle-inline-images :which-key "toggle-inline-images"))
