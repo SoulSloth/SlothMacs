@@ -364,6 +364,14 @@ Evil collections provides extra evil faculties in missing areas
   (evil-collection-init))
 #+end_src
 
+** Evil Matchit
+Better =%= matching for evil
+#+begin_src emacs-lisp
+(use-package evil-matchit
+ :after evil
+ :config (global-evil-matchit-mode 1))
+#+end_src
+
 * Theme
 Themes tried:
 - monokai: pretty, but code blocks in org blended a bit too much with the background and the code highlighting didn't look right.

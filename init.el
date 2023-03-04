@@ -215,6 +215,10 @@
   :config
   (evil-collection-init))
 
+(use-package evil-matchit
+ :after evil
+ :config (global-evil-matchit-mode 1))
+
 (use-package gruvbox-theme)
 (load-theme 'gruvbox t)
 
