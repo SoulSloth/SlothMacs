@@ -577,6 +577,7 @@
 (use-package dired
 ;; dired is part of emacs proper so no need to ensure
   :ensure nil
+  :init (setq dired-auto-revert-buffer  (lambda (_dir) (null (cdr dired-subdir-alist))))
   :commands (dired dired-jump)
   ;; Jump out of visited file
   :bind (("C-x C-j" . dired-jump))
