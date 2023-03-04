@@ -34,11 +34,12 @@
 ;; Fix gap in tiling window environments
 (setq frame-resize-pixelwise t)
 
-;; Fonts
-  (defvar sloth/default-font-size 140)
+(defvar sloth/default-font-size 140)
+(set-face-attribute 'default nil :font "Source code pro" :family "sans" :height 100 :width 'normal)
 
-    (set-face-attribute 'default nil :font "Source code pro" :family "sans" :height 100 :width 'normal)
-    (set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115)
+;; Haven't found an easy analog to Nimbus Mono PS on Mac
+(when (not (string= system-type "darwin"))
+ (set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115))
 
 ;; Requires package.el so we can get our packages 
   (require 'package)

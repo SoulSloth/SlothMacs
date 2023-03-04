@@ -78,11 +78,12 @@ Otherwise we get a nasty gap at the bottom of our window
 ** Font Configuration
 Current font configuration.
 #+begin_src emacs-lisp
-;; Fonts
-  (defvar sloth/default-font-size 140)
+(defvar sloth/default-font-size 140)
+(set-face-attribute 'default nil :font "Source code pro" :family "sans" :height 100 :width 'normal)
 
-    (set-face-attribute 'default nil :font "Source code pro" :family "sans" :height 100 :width 'normal)
-    (set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115)
+;; Haven't found an easy analog to Nimbus Mono PS on Mac
+(when (not (string= system-type "darwin"))
+ (set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115))
 #+end_src
 
 *** TODO Complete Font Setup
