@@ -289,6 +289,8 @@
   (setq cider-repl-display-help-banner nil)
   (cider-repl-toggle-pretty-printing))
 
+(use-package clojure-essential-ref)
+
 (use-package go-mode
   :ensure t
   :mode (("\\.go\\'" . go-mode))
@@ -373,9 +375,15 @@
 	(sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
 
 (setq org-capture-templates
-    `(("t" "Tasks / Projects")
-      ("tt" "Task" entry (file+olp "~/dump/tasks.org" "Inbox")
-           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+    `(("d" "Daily Planning")
+      ;; Our plan for the day
+      ;; Currently prompting the user for the datetime just so I can set it to tomarrow,
+      ;; But I guess I can plan a couple days in advance
+      ("dd" "Daily Todos" entry (file+olp+datetree "~/org/dailies.org" "dailies")
+           "* Planned  %?\n  %U\n %a\n %i" :empty-lines 0 :time-prompt t)
+      ;; Record what actually happens on the day we're doing things
+      ("da" "Daily activities" entry (file+olp+datetree "~/org/dailies.org" "dailies")
+           "* %U  %i \ \n" :empty-lines 0)
 
       ("j" "Journal Entries")
       ("jj" "Journal" entry
@@ -384,24 +392,7 @@
            ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
            :clock-in :clock-resume
            :empty-lines 1)
-      ("jm" "Meeting" entry
-           (file+olp+datetree "~/org/journal.org")
-           "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
-           :clock-in :clock-resume
-           :empty-lines 1)
-      ("jl" "WorkLogs" entry
-           (file+olp+datetree "~/org/journal.org")
-           "* %<%I:%M %p> - %a :Logs:\n\n%?\n\n"
-           :clock-in :clock-resume
-           :empty-lines 0)
-      ("w" "Workflows")
-      ("we" "Checking Email" entry (file+olp+datetree "~/org/journal.org")
-           "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
-
-      ("m" "Metrics Capture")
-      ("mw" "Weight" table-line (file+headline "~/org/metrics.org" "Weight")
-       "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)
-
+      
       ("k" "Kata Capture")
       ("kk" "Daily Kata" entry
        (file+olp+datetree "~/org/kata.org")
@@ -414,7 +405,33 @@
            "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
       ("il" "Learning Improvement" entry (file+olp "~/org/improvement.org" "Learning")
            "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
-      ))
+
+      ("m" "Metrics Capture")
+      ("ms" "Sleep" table-line (file+headline "~/org/metrics.org" "Sleep")
+       "| %U | %^{How Are You Feeling} | %^{Sleep/Wake?} |" :kill-buffer t)
+      
+      ("jm" "Meeting" entry
+           (file+olp+datetree "~/org/journal.org")
+           "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
+           :clock-in :clock-resume
+           :empty-lines 1)
+      ("jl" "WorkLogs" entry
+           (file+olp+datetree "~/org/journal.org")
+           "* %<%I:%M %p> - %a :Logs:\n\n%?\n\n"
+           :clock-in :clock-resume
+           :empty-lines 0)
+      
+      ("w" "Workflows")
+      ("we" "Checking Email" entry (file+olp+datetree "~/org/journal.org")
+           "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
+      
+      
+      ("mw" "Weight" table-line (file+headline "~/org/metrics.org" "Weight")
+       "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)
+
+      ("t" "Tasks / Projects")
+      ("tt" "Task" entry (file+olp "~/org/tasks.org" "Inbox")
+           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)))
 
 (define-key global-map (kbd "C-c k")
 (lambda () (interactive) (org-capture nil "kk")))
@@ -506,7 +523,8 @@
     (clojure . t)
     (shell . t)
     (plantuml . t)
-    (go . t)))
+    (go . t)
+    (js .t)))
 
   (setq org-confirm-babel-evaluate nil)
 
@@ -526,6 +544,7 @@
 (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
 (add-to-list 'org-structure-template-alist '("conf" . "src conf"))
 (add-to-list 'org-structure-template-alist '("pl" . "src plantuml"))
+(add-to-list 'org-structure-template-alist '("js" . "src js"))
 
 (defun efs/org-mode-visual-fill ()
   (setq visual-fill-column-width 125
