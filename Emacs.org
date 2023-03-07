@@ -163,7 +163,14 @@ We define our leader-keys that will be passed to =general-create-definer=
 
 Unsure as to why, but we get an error on start-up that leader-keys are not defined if we put this definition BEFORE the =use-package= def of =general=. 
 #+begin_src emacs-lisp
+(defun open-emacs-conf ()
+  "Opens the emacs literate conf"
+  (interactive)
+  (find-file "~/.emacs.d/Emacs.org"))
+
 (sloth/leader-keys
+  ;; Open our emacs literate conf in the current window
+ "e" '(open-emacs-conf :which-key "open emacs config")
  "t" '(:ignore t :which-key "toggles")
  "tt" '(counsel-load-theme :which-key "choose theme")
  "f" '(counsel-projectile-grep :which-key "projectile-grep")
@@ -180,6 +187,8 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
  "o" '(:ignore t :which-key "org")
  "ot" '(org-toggle-inline-images :which-key "toggle-inline-images"))
 #+end_src
+
+#+RESULTS:
 
 * Swiper
 Swiper allows us to quickly search files for regex candidates
@@ -722,9 +731,6 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 (define-key global-map (kbd "C-c j")
 (lambda () (interactive) (org-capture nil "jj")))
 #+end_src
-
-#+RESULTS:
-| lambda | nil | (interactive) | (org-capture nil jj) |
 
 ** Org Agenda
 #+begin_src emacs-lisp

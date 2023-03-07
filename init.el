@@ -71,7 +71,14 @@
     :prefix "SPC"
     :global-prefix "C-SPC"))
 
+(defun open-emacs-conf ()
+  "Opens the emacs literate conf"
+  (interactive)
+  (find-file "~/.emacs.d/Emacs.org"))
+
 (sloth/leader-keys
+  ;; Open our emacs literate conf in the current window
+ "e" '(open-emacs-conf :which-key "open emacs config")
  "t" '(:ignore t :which-key "toggles")
  "tt" '(counsel-load-theme :which-key "choose theme")
  "f" '(counsel-projectile-grep :which-key "projectile-grep")
