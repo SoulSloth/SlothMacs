@@ -171,6 +171,7 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
 (sloth/leader-keys
   ;; Open our emacs literate conf in the current window
  "e" '(open-emacs-conf :which-key "open emacs config")
+ "c" '(org-capture :which-key "org capture")
  "t" '(:ignore t :which-key "toggles")
  "tt" '(counsel-load-theme :which-key "choose theme")
  "f" '(counsel-projectile-grep :which-key "projectile-grep")
