@@ -986,6 +986,30 @@ Org-Roam provides us with tooling to create linked knowledge bases in org files
   (setq vterm-max-scrollback 10000))
 #+end_src
 
+*** Directory and Prompt tracking fixes
+Add the following to your =.zshrc= to make directory tracking and prompt tracking work correctly.
+
+[[https://github.com/akermu/emacs-libvterm#directory-tracking-and-prompt-tracking][Taken from the Vterm github]]
+#+begin_src shell :tangle no :eval never
+vterm_printf() {
+    if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ]); then
+        # Tell tmux to pass the escape sequences through
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+    elif [ "${TERM%%-*}" = "screen" ]; then
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$1"
+    else
+        printf "\e]%s\e\\" "$1"
+    fi
+}
+
+vterm_prompt_end() {
+    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+}
+setopt PROMPT_SUBST
+PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+#+end_src
+
 * File Management
 ** Dired
 Dired for managing our filesystem.
