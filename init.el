@@ -321,6 +321,14 @@
 
 (use-package docker-compose-mode)
 
+(use-package scala-mode
+   :interpreter
+     ("scala" . scala-mode)
+   :mode (("\\.scala\\'" . scala-mode))
+     )
+
+(use-package terraform-mode)
+
 ;; Rainbow delimiters
 (use-package  rainbow-delimiters
 :hook (prog-mode . rainbow-delimiters-mode))
