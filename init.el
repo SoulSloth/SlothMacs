@@ -80,7 +80,17 @@
   (interactive)
   (find-file "~/.emacs.d/Emacs.org"))
 
+(defun open-tasks-file ()
+   "Opens the emacs literate conf"
+   (interactive)
+   (find-file "~/org/dailies.org"))
+
 (sloth/leader-keys
+ "SPC" '(execute-extended-command :which "M-x" )
+ "d" '(open-tasks-file :which-key "open tasks")
+ "g" '(:ignore t :which-key "Magit")
+ "gs" '(magit-status :which-key "Status")
+ "b" '(switch-to-buffer :which-key "Switch to buffer")
   ;; Open our emacs literate conf in the current window
  "e" '(open-emacs-conf :which-key "open emacs config")
  "c" '(org-capture :which-key "org capture")
