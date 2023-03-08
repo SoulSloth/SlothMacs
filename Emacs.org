@@ -884,12 +884,16 @@ cider provides support for clojure emacs tooling
 #+end_src
 
 **** Plantuml
-Plant uml diagrams
+Plant uml diagrams jar file needs to be downloaded:
 https://eschulte.github.io/babel-dev/DONE-integrate-plantuml-support.html
 #+begin_src emacs-lisp
-(setq org-plantuml-jar-path
-      (expand-file-name "/usr/bin/plantuml.jar"))
+(if (string= system-type "darwin")
+     (setq org-plantuml-jar-path
+       (expand-file-name "/usr/local/bin/plantuml.jar"))
+     (setq org-plantuml-jar-path
+       (expand-file-name "/usr/bin/plantuml.jar")))
 #+end_src
+
 
 *** Structure Templates
 #+begin_src  emacs-lisp

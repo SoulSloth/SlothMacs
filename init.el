@@ -560,8 +560,11 @@
 
 (setq org-babel-clojure-backend 'cider)
 
-(setq org-plantuml-jar-path
-      (expand-file-name "/usr/bin/plantuml.jar"))
+(if (string= system-type "darwin")
+     (setq org-plantuml-jar-path
+       (expand-file-name "/usr/local/bin/plantuml.jar"))
+     (setq org-plantuml-jar-path
+       (expand-file-name "/usr/bin/plantuml.jar")))
 
 ;; This is needed as of Org 9.2
 (require 'org-tempo)
