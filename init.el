@@ -20,6 +20,7 @@
 (global-display-line-numbers-mode t)
 
 (dolist (mode '(org-mode-hook
+		markdown-mode-hook
                 term-mode-hook
                 shell-mode-hook
                 vterm-mode-hook
