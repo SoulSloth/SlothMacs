@@ -64,6 +64,9 @@
 ;; Creates qeuivalent vim mapping functions
   :config
   (general-evil-setup t)
+  ;; see https://github.com/noctuid/general.el#automatic-key-unbinding
+  :config
+  (general-auto-unbind-keys)
   ;; Add our leader keys
   :config
   (general-create-definer sloth/leader-keys
