@@ -251,13 +251,13 @@
 (use-package evil-nerd-commenter
   :bind ("M-/" . evilnc-comment-or-uncomment-lines))
 
-(defun efs/lsp-mode-setup ()
+(defun sloth/lsp-mode-setup ()
   (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode))
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
-  :hook (lsp-mode . efs/lsp-mode-setup)
+  :hook (lsp-mode . sloth/lsp-mode-setup)
   :init
   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
   :config
@@ -336,7 +336,7 @@
 (use-package  rainbow-delimiters
 :hook (prog-mode . rainbow-delimiters-mode))
 
-(defun efs/org-mode-setup ()
+(defun sloth/org-mode-setup ()
   ;; Indent according to outline structure
   (org-indent-mode)
   (variable-pitch-mode 1)
@@ -350,7 +350,7 @@
     :custom
     (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
-(defun efs/org-font-setup ()
+(defun sloth/org-font-setup ()
   ;; Replace list hyphen with dot
   (font-lock-add-keywords 'org-mode
                           '(("^ *\\([-]\\) "
@@ -359,14 +359,14 @@
 
 
 (use-package org
-:hook (org-mode . efs/org-mode-setup)
+:hook (org-mode . sloth/org-mode-setup)
            :config (setq org-ellipsis " 🎈"
                          ;; hides formatting markers
                          org-hide-emphasis-markers t)
 	       ;; Don't auto-indent when we RET after a line
            (setq org-edit-src-content-indentation 0)
 	       (setq org-export-with-toc nil)
-           (efs/org-font-setup))
+           (sloth/org-font-setup))
 
 (custom-theme-set-faces
  'user
@@ -537,7 +537,7 @@
                    (org-agenda-files org-agenda-files)))))))
 
 ;; Automatically tangle our Emacs.org config file when we save it
-(defun efs/org-babel-tangle-config ()
+(defun sloth/org-babel-tangle-config ()
   (when (string-equal (buffer-file-name)
                       (expand-file-name "~/.emacs.d/Emacs.org"))
     
@@ -545,7 +545,7 @@
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle)))) 
 
-(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
+(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'sloth/org-babel-tangle-config)))
 
 (use-package ob-go)
 
@@ -582,13 +582,13 @@
 (add-to-list 'org-structure-template-alist '("pl" . "src plantuml"))
 (add-to-list 'org-structure-template-alist '("js" . "src js"))
 
-(defun efs/org-mode-visual-fill ()
+(defun sloth/org-mode-visual-fill ()
   (setq visual-fill-column-width 125
         visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
 
 (use-package visual-fill-column
-  :hook (org-mode . efs/org-mode-visual-fill))
+  :hook (org-mode . sloth/org-mode-visual-fill))
 
 (use-package org-roam
 	     :ensure t

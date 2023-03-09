@@ -434,13 +434,13 @@ Lsp servers must be installed for these modes to work. For linux machines, the c
 ** Language Server Protocol
 
 #+begin_src emacs-lisp
-(defun efs/lsp-mode-setup ()
+(defun sloth/lsp-mode-setup ()
   (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode))
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
-  :hook (lsp-mode . efs/lsp-mode-setup)
+  :hook (lsp-mode . sloth/lsp-mode-setup)
   :init
   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
   :config
@@ -613,7 +613,7 @@ I use =org-mode= to take notes, write blogs, and create litearte coding "books" 
 ** Org Proper
 Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty useful so I'm keeping it
 #+begin_src emacs-lisp
-(defun efs/org-mode-setup ()
+(defun sloth/org-mode-setup ()
   ;; Indent according to outline structure
   (org-indent-mode)
   (variable-pitch-mode 1)
@@ -627,7 +627,7 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
     :custom
     (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
-(defun efs/org-font-setup ()
+(defun sloth/org-font-setup ()
   ;; Replace list hyphen with dot
   (font-lock-add-keywords 'org-mode
                           '(("^ *\\([-]\\) "
@@ -636,14 +636,14 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 
 
 (use-package org
-:hook (org-mode . efs/org-mode-setup)
+:hook (org-mode . sloth/org-mode-setup)
            :config (setq org-ellipsis " 🎈"
                          ;; hides formatting markers
                          org-hide-emphasis-markers t)
 	       ;; Don't auto-indent when we RET after a line
            (setq org-edit-src-content-indentation 0)
 	       (setq org-export-with-toc nil)
-           (efs/org-font-setup))
+           (sloth/org-font-setup))
 #+end_src
 
 #+RESULTS:
@@ -846,7 +846,7 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 ** Auto-tangle Configuration Files
 #+begin_src emacs-lisp
 ;; Automatically tangle our Emacs.org config file when we save it
-(defun efs/org-babel-tangle-config ()
+(defun sloth/org-babel-tangle-config ()
   (when (string-equal (buffer-file-name)
                       (expand-file-name "~/.emacs.d/Emacs.org"))
     
@@ -854,7 +854,7 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle)))) 
 
-(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'efs/org-babel-tangle-config)))
+(add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'sloth/org-babel-tangle-config)))
 #+end_src
 
 ** Org-Babel Config
@@ -922,13 +922,13 @@ https://eschulte.github.io/babel-dev/DONE-integrate-plantuml-support.html
 
 ** Visual Fill
 #+begin_src emacs-lisp
-(defun efs/org-mode-visual-fill ()
+(defun sloth/org-mode-visual-fill ()
   (setq visual-fill-column-width 125
         visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
 
 (use-package visual-fill-column
-  :hook (org-mode . efs/org-mode-visual-fill))
+  :hook (org-mode . sloth/org-mode-visual-fill))
 #+end_src
 
 ** Org-Roam
