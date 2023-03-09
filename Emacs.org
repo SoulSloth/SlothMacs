@@ -153,7 +153,7 @@ Put temporary and backup files into =/etc= instead
 (use-package no-littering)
 #+end_src
 
-* General
+* General Key Mapper Macros
 =general.el= provides analgous macros to =use-package= in the key mapping space
 ** use-package general
 Our installation of general.el proper
@@ -263,7 +263,6 @@ The main Ivy package
 ** Counsel
 =Counsel= takes many emacs commands and fronts them to ivy ones like switching buffer, finding files, and seeing buffer history. Also works with =projectile= for my personal favorite command =counsel-projectile-grep=.
 #+begin_src emacs-lisp
-    ;; use counsel and bind some useful keys for switching buffers and finding files
   (use-package counsel
     :bind (("M-x" . counsel-M-x)
            ("C-x b" . counsel-ibuffer)
