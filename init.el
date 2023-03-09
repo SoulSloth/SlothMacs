@@ -168,6 +168,9 @@
 (use-package projectile
     :diminish projectile-mode
     :config (projectile-mode)
+    ;; Use git grep in source controlled projects
+    ;; Invaluable for ignoring temp files
+    :config (setq projectile-use-git-grep t)
     :custom ((projectile-completion-system 'ivy))
     :bind-keymap
     ("C-c p" . projectile-command-map)

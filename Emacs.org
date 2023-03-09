@@ -292,11 +292,17 @@ The main Ivy package
 #+end_src
 
 * Projectile
-Projectile project management faculties
+
+Projectile project management faculties.
+
+Consider install =fd= for [[https://docs.projectile.mx/projectile/configuration.html#alien-indexing][faster finds.]]
 #+begin_src emacs-lisp
   (use-package projectile
     :diminish projectile-mode
     :config (projectile-mode)
+    ;; Use git grep in source controlled projects
+    ;; Invaluable for ignoring temp files
+    :config (setq projectile-use-git-grep t)
     :custom ((projectile-completion-system 'ivy))
     :bind-keymap
     ("C-c p" . projectile-command-map)
