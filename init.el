@@ -40,6 +40,9 @@
 (when (not (string= system-type "darwin"))
  (set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115))
 
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
 (require 'package)
 
 (setq package-archives '(("org" .  "http://orgmode.org/elpa/") ;; Org mode latest
@@ -137,7 +140,6 @@
       :init
       (ivy-rich-mode 1))
 
-;; use counsel and bind some useful keys for switching buffers and finding files
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
          ("C-x b" . counsel-ibuffer)

@@ -92,6 +92,16 @@ Current font configuration.
 
 **** TODO Create a font config and tangle it to our local dotfile
 
+* Flyspell
+ Minor emacs mode for spell checking, Built-in
+** Enable Flyspell in all modes
+- Normal =flyspell mode= for text mode stuff which gives us the checking we'd expect
+- =prog-mode= for programming buffers to check spelling errors in comments
+#+begin_src emacs-lisp
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+#+end_src
+
 * Package
 Package.el and use-pacakge installation + configuration
 
@@ -317,6 +327,7 @@ Consider install =fd= for [[https://docs.projectile.mx/projectile/configuration.
   (use-package counsel-projectile
     :config (counsel-projectile-mode))
 #+end_src
+
 
 ** TODO Need to add directories like "clj-kondo" to the ignore for finds/greps
 
