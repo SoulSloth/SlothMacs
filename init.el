@@ -420,6 +420,11 @@
       ("da" "Daily activities" entry (file+olp+datetree "~/org/dailies.org" "dailies")
            "* %U  %i \ \n" :empty-lines 0)
 
+      ;; Location for useful/interesting code snippits
+      ("c" "Capture code snippet"
+        entry (file+olp "~/org/code.org" "Snippets")
+           "* %?\n  %U\n  %a\n  #+begin_src\n %i \n #+end_src\n" :empty-lines 1)
+
       ("j" "Journal Entries")
       ("jj" "Journal" entry
            (file+olp+datetree "~/org/journal.org")
