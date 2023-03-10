@@ -40,11 +40,6 @@
 (when (not (string= system-type "darwin"))
  (set-face-attribute 'default nil :font "Nimbus Mono PS" :family "monospace" :height 115))
 
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
-
-(use-package flyspell-correct-ivy)
-
 (require 'package)
 
 (setq package-archives '(("org" .  "http://orgmode.org/elpa/") ;; Org mode latest
@@ -62,6 +57,11 @@
 (require 'use-package)
 
 (setq use-package-always-ensure t)
+
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+(use-package flyspell-correct-ivy)
 
 (use-package no-littering)
 

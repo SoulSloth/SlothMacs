@@ -92,23 +92,6 @@ Current font configuration.
 
 **** TODO Create a font config and tangle it to our local dotfile
 
-* Flyspell
- Minor emacs mode for spell checking, Built-in
-** Enable Flyspell in all modes
-- Normal =flyspell mode= for text mode stuff which gives us the checking we'd expect
-- =prog-mode= for programming buffers to check spelling errors in comments
-#+begin_src emacs-lisp
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
-#+end_src
-
-** Flyspell Correct
-Provides a nice ivy-interface for flyspell corrections. 
-
-#+begin_src emacs-lisp
-(use-package flyspell-correct-ivy)
-#+end_src
-
 * Package
 Package.el and use-pacakge installation + configuration
 
@@ -152,6 +135,23 @@ Useful for avoiding cases were
   (require 'use-package)
 
   (setq use-package-always-ensure t)
+#+end_src
+
+* Flyspell
+ Minor emacs mode for spell checking, Built-in
+** Enable Flyspell in all modes
+- Normal =flyspell mode= for text mode stuff which gives us the checking we'd expect
+- =prog-mode= for programming buffers to check spelling errors in comments
+#+begin_src emacs-lisp
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+#+end_src
+
+** Flyspell Correct
+Provides a nice ivy-interface for flyspell corrections. 
+
+#+begin_src emacs-lisp
+(use-package flyspell-correct-ivy)
 #+end_src
 
 * No littering
@@ -241,7 +241,6 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
  ;; Org Capture
  "c" '(org-capture :which-key "org capture"))
 #+end_src
-
 
 
 * Swiper
