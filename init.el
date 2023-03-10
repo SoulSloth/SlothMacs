@@ -590,6 +590,8 @@
      (setq org-plantuml-jar-path
        (expand-file-name "/usr/bin/plantuml.jar")))
 
+(setq org-babel-after-execute-hook 'org-display-inline-images)
+
 ;; This is needed as of Org 9.2
 (require 'org-tempo)
 
@@ -600,7 +602,7 @@
 (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
 (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
 (add-to-list 'org-structure-template-alist '("conf" . "src conf"))
-(add-to-list 'org-structure-template-alist '("pl" . "src plantuml"))
+(add-to-list 'org-structure-template-alist '("pl" . "src plantuml :file diagram.png"))
 (add-to-list 'org-structure-template-alist '("js" . "src js"))
 
 (defun sloth/org-mode-visual-fill ()

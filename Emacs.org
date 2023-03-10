@@ -932,6 +932,13 @@ https://eschulte.github.io/babel-dev/DONE-integrate-plantuml-support.html
        (expand-file-name "/usr/bin/plantuml.jar")))
 #+end_src
 
+*** PlantUml hook
+Display the images created by the plantUml org-babel calls
+#+begin_src emacs-lisp
+(setq org-babel-after-execute-hook 'org-display-inline-images)
+#+end_src
+
+**** TODO Really this should only run /after/ the calls for plantUml
 
 *** Structure Templates
 #+begin_src  emacs-lisp
@@ -945,12 +952,10 @@ https://eschulte.github.io/babel-dev/DONE-integrate-plantuml-support.html
 (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
 (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
 (add-to-list 'org-structure-template-alist '("conf" . "src conf"))
-(add-to-list 'org-structure-template-alist '("pl" . "src plantuml"))
+(add-to-list 'org-structure-template-alist '("pl" . "src plantuml :file diagram.png"))
 (add-to-list 'org-structure-template-alist '("js" . "src js"))
 #+end_src
 
-#+RESULTS:
-: ((js . src js) (pl . src plantuml) (conf . src conf) (yl . src yaml) (clj . src clojure) (go . src go) (py . src python) (el . src emacs-lisp) (sh . src shell) (a . export ascii) (c . center) (C . comment) (e . example) (E . export) (h . export html) (l . export latex) (q . quote) (s . src) (v . verse))
 
 ** Visual Fill
 #+begin_src emacs-lisp
