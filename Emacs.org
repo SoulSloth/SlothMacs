@@ -190,17 +190,22 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
    (find-file "~/org/dailies.org"))
 
 (sloth/leader-keys
- "SPC" '(counsel-M-x :which "M-x" )
- "d" '(open-tasks-file :which-key "open tasks")
- "g" '(:ignore t :which-key "Magit")
+ "SPC" '(counsel-M-x :which-key "Execute Command" )
+ ;; Opening relevent org files
+ "a" '(:ignore a :which-key "Open file")
+ "ad" '(open-tasks-file :which-key "open tasks")
+ "ae" '(open-emacs-conf :which-key "open emacs config")
+ 
+ ;; Magit
+ "g" '(:ignore g :which-key "Magit")
  "gs" '(magit-status :which-key "Status")
+ ;; Buffers
  "b" '(switch-to-buffer :which-key "Switch to buffer")
-  ;; Open our emacs literate conf in the current window
- "e" '(open-emacs-conf :which-key "open emacs config")
- "c" '(org-capture :which-key "org capture")
+ 
+ ;; toggles 
  "t" '(:ignore t :which-key "toggles")
  "tt" '(counsel-load-theme :which-key "choose theme")
- "f" '(counsel-projectile-grep :which-key "projectile-grep")
+ 
  ;; Clojure CIDER commands
  "s" '(:ignore s :which-key "cider")
  "sj" '(cider-jack-in :which-key "CIDER jack-in")
@@ -209,13 +214,22 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
  "ss" '(cider-insert-region-in-repl :which-key "cider send region to repl")
  "sf" '(cider-format-buffer :which-key "cider format buffer")
  "sb" '(cider-load-buffer :which-key "cider load buffer")
+
+ ;; General Project management
  "li" '(lsp-ivy-workspace-symbol :which-key "ivy workspace symbol")
  "p" '(projectile-switch-project :which-key "projectile switch project")
- "o" '(:ignore t :which-key "org")
- "ot" '(org-toggle-inline-images :which-key "toggle-inline-images"))
+ "f" '(counsel-projectile-grep :which-key "projectile-grep")
+ 
+ ;; Org
+ "o" '(:ignore o :which-key "org")
+ "od" '(org-display-inline-images :which-key "display inline images")
+ "or" '(org-remove-inline-images :which-key "remove inline images")
+
+ ;; Org Capture
+ "c" '(org-capture :which-key "org capture"))
 #+end_src
 
-#+RESULTS:
+
 
 * Swiper
 Swiper allows us to quickly search files for regex candidates
