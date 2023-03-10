@@ -43,6 +43,8 @@
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
+(use-package flyspell-correct-ivy)
+
 (require 'package)
 
 (setq package-archives '(("org" .  "http://orgmode.org/elpa/") ;; Org mode latest
@@ -94,6 +96,10 @@
  "a" '(:ignore a :which-key "Open file")
  "ad" '(open-tasks-file :which-key "open tasks")
  "ae" '(open-emacs-conf :which-key "open emacs config")
+
+ ;; Flyspell
+ "d" '(:ignore d :which-key "Flyspell")
+ "dd" '(flyspell-correct-wrapper :which-key "Auto-correct word")
  
  ;; Magit
  "g" '(:ignore g :which-key "Magit")

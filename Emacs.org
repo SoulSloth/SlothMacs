@@ -102,6 +102,13 @@ Current font configuration.
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 #+end_src
 
+** Flyspell Correct
+Provides a nice ivy-interface for flyspell corrections. 
+
+#+begin_src emacs-lisp
+(use-package flyspell-correct-ivy)
+#+end_src
+
 * Package
 Package.el and use-pacakge installation + configuration
 
@@ -195,6 +202,10 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
  "a" '(:ignore a :which-key "Open file")
  "ad" '(open-tasks-file :which-key "open tasks")
  "ae" '(open-emacs-conf :which-key "open emacs config")
+
+ ;; Flyspell
+ "d" '(:ignore d :which-key "Flyspell")
+ "dd" '(flyspell-correct-wrapper :which-key "Auto-correct word")
  
  ;; Magit
  "g" '(:ignore g :which-key "Magit")
