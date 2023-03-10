@@ -714,6 +714,7 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 #+end_src
 
 ** Capture Templates
+
 #+begin_src emacs-lisp
 (setq org-capture-templates
     `(("d" "Daily Planning")
@@ -729,7 +730,7 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
       ;; Location for useful/interesting code snippits
       ("c" "Capture code snippet"
         entry (file+olp "~/org/code.org" "Snippets")
-           "* %?\n  %U\n  %a\n  #+begin_src\n %i \n #+end_src\n" :empty-lines 1)
+           "* %^{What is this?} :%^{Language|clojure|emacs-lisp|python}:  %?\n  %U\n  %a\n #+begin_src %\\2 \n %i \n #+end_src\n" :empty-lines 1)
 
       ("j" "Journal Entries")
       ("jj" "Journal" entry
@@ -788,6 +789,8 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 (define-key global-map (kbd "C-c j")
 (lambda () (interactive) (org-capture nil "jj")))
 #+end_src
+
+*** TODO The capture snippet for code blocks has a slight bug where if you capture that snippet template it will EXPAND the templates within the =%i= initial content
 
 ** Org Agenda
 #+begin_src emacs-lisp

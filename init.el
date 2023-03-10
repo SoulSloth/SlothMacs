@@ -423,7 +423,7 @@
       ;; Location for useful/interesting code snippits
       ("c" "Capture code snippet"
         entry (file+olp "~/org/code.org" "Snippets")
-           "* %?\n  %U\n  %a\n  #+begin_src\n %i \n #+end_src\n" :empty-lines 1)
+           "* %^{What is this?} :%^{Language|clojure|emacs-lisp|python}:  %?\n  %U\n  %a\n #+begin_src %\\2 \n %i \n #+end_src\n" :empty-lines 1)
 
       ("j" "Journal Entries")
       ("jj" "Journal" entry
