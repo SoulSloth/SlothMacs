@@ -89,7 +89,7 @@
    (find-file "~/org/dailies.org"))
 
 (sloth/leader-keys
- "SPC" '(execute-extended-command :which "M-x" )
+ "SPC" '(counsel-M-x :which "M-x" )
  "d" '(open-tasks-file :which-key "open tasks")
  "g" '(:ignore t :which-key "Magit")
  "gs" '(magit-status :which-key "Status")
