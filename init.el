@@ -104,6 +104,8 @@
  ;; Magit
  "g" '(:ignore g :which-key "Magit")
  "gs" '(magit-status :which-key "Status")
+ "gl" '(magit-log-current :which-key "Status")
+ 
  ;; Buffers
  "b" '(switch-to-buffer :which-key "Switch to buffer")
  
