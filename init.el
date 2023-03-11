@@ -214,6 +214,8 @@
 ;; Just show the magit window in the same buffer
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
+(use-package ediff)
+
 (use-package helpful
     :ensure t
     :custom
