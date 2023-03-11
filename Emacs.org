@@ -160,7 +160,7 @@ Put temporary and backup files into =/etc= instead
 (use-package no-littering)
 #+end_src
 
-* General Key Mapper Macros
+* General Key Mappings
 =general.el= provides analgous macros to =use-package= in the key mapping space
 ** use-package general
 Our installation of general.el proper
@@ -242,6 +242,7 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
  "c" '(org-capture :which-key "org capture"))
 #+end_src
 
+*** TODO We can probably macro these =find-file= functions...
 
 * Swiper
 Swiper allows us to quickly search files for regex candidates
@@ -625,15 +626,10 @@ export PATH="${PATH}:${GOPATH}/bin"
      )
 #+end_src
 
-#+RESULTS:
-: ((scala . scala-mode) (bb . clojure-mode) (ruby1.8 . ruby-mode) (ruby1.9 . ruby-mode) (jruby . ruby-mode) (rbx . ruby-mode) (ruby . ruby-mode) (python[0-9.]* . python-mode) (rhino . js-mode) (gjs . js-mode) (nodejs . js-mode) (node . js-mode) (gawk . awk-mode) (nawk . awk-mode) (mawk . awk-mode) (awk . awk-mode) (pike . pike-mode) (\(mini\)?perl5? . perl-mode) (wishx? . tcl-mode) (tcl\(sh\)? . tcl-mode) (expect . tcl-mode) (octave . octave-mode) (scm . scheme-mode) ([acjkwz]sh . sh-mode) (r?bash2? . sh-mode) (dash . sh-mode) (mksh . sh-mode) (\(dt\|pd\|w\)ksh . sh-mode) (es . sh-mode) (i?tcsh . sh-mode) (oash . sh-mode) (rc . sh-mode) (rpm . sh-mode) (sh5? . sh-mode) (tail . text-mode) (more . text-mode) (less . text-mode) (pg . text-mode) (make . makefile-gmake-mode) (guile . scheme-mode) (clisp . lisp-mode) (emacs . emacs-lisp-mode))
-
 ** Terraform
 #+begin_src emacs-lisp
 (use-package terraform-mode)
 #+end_src
-
-#+RESULTS:
 
 * General Programming Utils
 ** Rainbow delimiters
@@ -968,7 +964,6 @@ Display the images created by the plantUml org-babel calls
 (add-to-list 'org-structure-template-alist '("js" . "src js"))
 #+end_src
 
-
 ** Visual Fill
 #+begin_src emacs-lisp
 (defun sloth/org-mode-visual-fill ()
@@ -1127,14 +1122,3 @@ Hide dotfiles, which are usually clutter unless we're configuring something.
     (evil-collection-define-key 'normal 'dired-mode-map
       "H" 'dired-hide-dotfiles-mode))
 #+end_src
-
-* Applications
-**  Example Configuration
-CLOSED: [2022-05-19 Thu 20:41]
-:LOGBOOK:
-- State "DONE"       from "TODO"       [2022-05-19 Thu 20:41]
-:END:
-Easy way to configure dotfiles, need to find a good test case, maybe adding rss links to newsboat?
-
-* System Specific
-Items specific to differnt operating systems

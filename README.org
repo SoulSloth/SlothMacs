@@ -3,3 +3,18 @@
 My current personal Emacs configuration. Everything is subject to change always.
 
 Literate configuration can be found in the [[./Emacs.org][Emacs.org]] file
+
+* Principles
+Like all custom configs, this one is opinionated toward the preferences of the users, and I roughly follow these guidelines:
+
+** Chords Suck
+I do not like key chords and will remap frequently used commands to sequences wherever possible. In /general/ 🌚: sequences >>> chords.
+
+** System Ubiquity
+Part of the reason for this config is so that I can have roughly the same Emacs on all my machines split across Arch, Mac OS, and Windows. This causes a little complication, but has worked thus far.
+
+** Progression
+My config is very immature, so I consider it pertinent to improve my workflows and user experience /rather/ then make sure everything is always squeaky clean(however much I would like to spend just a year learning elisp in depth).
+
+** Simplicity of Config
+Until I have a great need to, I'll be keeping the config in [[file:Emacs.org::+title: SlothMacs Config][the literate config]] and the [[file:init.el::when (string= system-type "darwin"][init.el]] file only. Having only one file I have to edit has been a great boon to iteration. so unless I need to write whole libraries of elisp(unlikely) then this suits my purposes.
