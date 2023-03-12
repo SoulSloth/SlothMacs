@@ -1,4 +1,6 @@
 #+TITLE: SlothMacs
+#+AUTHOR: SoulSloth
+#+LANGUAGE: en
 
 My current personal Emacs configuration. Everything is subject to change always.
 
