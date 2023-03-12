@@ -743,7 +743,7 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
 #+end_src
 
 ** Capture Templates
-
+=org-capture= allows you to quickly pull up an org buffer which will have some filled-in values that you can immediately edit and save without interrupting your work. Said files can be automatically organized by date, filling highlighted text, link to the file you're capturing in, or even put data into a org table for processing.
 #+begin_src emacs-lisp
 (setq org-capture-templates
     `(("d" "Daily Planning")

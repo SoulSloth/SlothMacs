@@ -18,3 +18,12 @@ My config is very immature, so I consider it pertinent to improve my workflows a
 
 ** Simplicity of Config
 Until I have a great need to, I'll be keeping the config in [[file:Emacs.org::+title: SlothMacs Config][the literate config]] and the [[file:init.el::when (string= system-type "darwin"][init.el]] file only. Having only one file I have to edit has been a great boon to iteration. so unless I need to write whole libraries of elisp(unlikely) then this suits my purposes.
+
+* Thoughts On Tools and Workflows
+Some of my current ideas around tooling and workflows. 
+
+** Org Capture
+[[file:Emacs.org::Capture Templates][My Capture templates]] are my current way to take notes and plan my day.
+- Noting significant daily occurrences like blockers, task completions, and insights is pretty powerful.
+- Current planning scheme revolves around a date-tree with a =Plan= bullet and a capture template for the happenings of the day under it. Linking tickets/slack messages/docs that I know I'll have to use the night before makes doing that work a little easier and provides it for faster lookup if I ever need to recall something specific.
+- Journaling has been a pretty nice experience so far for brain-dumping and refining plans for the next day.
