@@ -1,4 +1,4 @@
-#+TITLE: SlothMacs
+#+TITLE: 🦥 SlothMacs
 #+AUTHOR: SoulSloth
 #+LANGUAGE: en
 
