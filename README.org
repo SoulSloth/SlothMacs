@@ -6,25 +6,25 @@ My current personal Emacs configuration. Everything is subject to change always.
 
 Literate configuration can be found in the [[./Emacs.org][Emacs.org]] file
 
-* Principles
+* 🐃Principles
 Like all custom configs, this one is opinionated toward the preferences of the users, and I roughly follow these guidelines:
 
-** Chords Suck
-I do not like key chords and will remap frequently used commands to sequences wherever possible. In /general/ 🌚: sequences >>> chords.
+** 🎸 Chords Suck
+I do not like key chords and will remap frequently used commands to sequences wherever possible. The war against RSI is a long one.
 
-** System Ubiquity
-Part of the reason for this config is so that I can have roughly the same Emacs on all my machines split across Arch, Mac OS, and Windows. This causes a little complication, but has worked thus far.
+** 📈 Constant Improvement
+The config will never be /"good enough"/. There will always be something to improve, try, and fix. 
 
-** Progression
-My config is very immature, so I consider it pertinent to improve my workflows and user experience /rather/ then make sure everything is always squeaky clean(however much I would like to spend just a year learning elisp in depth).
+** 🪓 Simplicity of Config
+Currently I have one file to edit, [[./Emacs.org][Emacs.org]], and I intend to keep it that way for as long as possible! 
 
-** Simplicity of Config
-Until I have a great need to, I'll be keeping the config in [[file:Emacs.org::+title: SlothMacs Config][the literate config]] and the [[file:init.el::when (string= system-type "darwin"][init.el]] file only. Having only one file I have to edit has been a great boon to iteration. so unless I need to write whole libraries of elisp(unlikely) then this suits my purposes.
+** 🧩System Ubiquity
+Things should work the same across my Arch laptop, Macbook, and Windows desktop. 
 
-* Thoughts On Tools and Workflows
+* 🤔 Thoughts On Tools and Workflows
 Some of my current ideas around tooling and workflows. 
 
-** Org Capture
+** 📸 Org Capture
 [[file:Emacs.org::Capture Templates][My Capture templates]] are my current way to take notes and plan my day.
 - Noting significant daily occurrences like blockers, task completions, and insights is pretty powerful.
 - Current planning scheme revolves around a date-tree with a =Plan= bullet and a capture template for the happenings of the day under it. Linking tickets/slack messages/docs that I know I'll have to use the night before makes doing that work a little easier and provides it for faster lookup if I ever need to recall something specific.
