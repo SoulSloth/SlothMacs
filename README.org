@@ -13,7 +13,7 @@ Like all custom configs, this one is opinionated toward the preferences of the u
 I do not like key chords and will remap frequently used commands to sequences wherever possible. The war against RSI is a long one.
 
 ** 📈 Constant Improvement
-The config will never be /"good enough"/. There will always be something to improve, try, and fix. 
+The config will never be /"good enough"/ , there will always be something to improve, try, and fix. 
 
 ** 🪓 Simplicity of Config
 Currently I have one file to edit, [[./Emacs.org][Emacs.org]], and I intend to keep it that way for as long as possible! 
