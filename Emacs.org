@@ -54,6 +54,7 @@ Disable line numbers when we're in these modes were it isn't as relevent
                 vterm-mode-hook
                 eshell-mode-hook
                 dired-mode-hook
+		help-mode-hook
                 ))
  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src

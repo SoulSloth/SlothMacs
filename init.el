@@ -26,6 +26,7 @@
                 vterm-mode-hook
                 eshell-mode-hook
                 dired-mode-hook
+		help-mode-hook
                 ))
  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
