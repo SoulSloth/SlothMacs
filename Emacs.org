@@ -156,9 +156,18 @@ Provides a nice ivy-interface for flyspell corrections.
 #+end_src
 
 * No littering
+
 Put temporary and backup files into =/etc= instead
 #+begin_src emacs-lisp
 (use-package no-littering)
+
+#+end_src
+
+** Keep temp emacs files in =var=
+
+#+begin_src emacs-lisp
+ (setq auto-save-file-name-transforms
+	`((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 #+end_src
 
 * General Key Mappings

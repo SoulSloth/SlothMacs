@@ -66,6 +66,9 @@
 
 (use-package no-littering)
 
+(setq auto-save-file-name-transforms
+       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
 (use-package general
 ;; Creates qeuivalent vim mapping functions
   :config
