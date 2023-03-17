@@ -84,6 +84,15 @@
     :prefix "SPC"
     :global-prefix "C-SPC"))
 
+(defun open-project-file ()
+  "Prompts the user for a file in ~/org/projects and opens it"
+  (interactive)
+  (find-file
+   (ivy-read "Open Project File: "
+	       (directory-files "~/org/projects/" t "\.org")
+	      :require-match "yes" )))
+
+
 (defun open-emacs-conf ()
   "Opens the emacs literate conf"
   (interactive)
@@ -100,6 +109,7 @@
  "a" '(:ignore a :which-key "Open file")
  "ad" '(open-tasks-file :which-key "open tasks")
  "ae" '(open-emacs-conf :which-key "open emacs config")
+ "ap" '(open-project-file :which-key "open project file")
 
  ;; Flyspell
  "d" '(:ignore d :which-key "Flyspell")

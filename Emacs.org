@@ -196,6 +196,15 @@ We define our leader-keys that will be passed to =general-create-definer=
 
 Unsure as to why, but we get an error on start-up that leader-keys are not defined if we put this definition BEFORE the =use-package= def of =general=. 
 #+begin_src emacs-lisp
+(defun open-project-file ()
+  "Prompts the user for a file in ~/org/projects and opens it"
+  (interactive)
+  (find-file
+   (ivy-read "Open Project File: "
+	       (directory-files "~/org/projects/" t "\.org")
+	      :require-match "yes" )))
+
+
 (defun open-emacs-conf ()
   "Opens the emacs literate conf"
   (interactive)
@@ -212,6 +221,7 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
  "a" '(:ignore a :which-key "Open file")
  "ad" '(open-tasks-file :which-key "open tasks")
  "ae" '(open-emacs-conf :which-key "open emacs config")
+ "ap" '(open-project-file :which-key "open project file")
 
  ;; Flyspell
  "d" '(:ignore d :which-key "Flyspell")
@@ -252,7 +262,13 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
  "c" '(org-capture :which-key "org capture"))
 #+end_src
 
+
 *** TODO We can probably macro these =find-file= functions...
+
+*** TODO Completions for project files shouldn't have to be the entire path 🤔
+- Even if passed a hash-map =completling-read= will only complete and return keys...
+
+*** TODO If completion for project isn't found, create the project file?
 
 * Swiper
 Swiper allows us to quickly search files for regex candidates
