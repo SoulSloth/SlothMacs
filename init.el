@@ -145,6 +145,7 @@
  "o" '(:ignore o :which-key "org")
  "od" '(org-display-inline-images :which-key "display inline images")
  "or" '(org-remove-inline-images :which-key "remove inline images")
+ "ol" '(org-store-link :which-key "remove inline images")
 
  ;; Org Capture
  "c" '(org-capture :which-key "org capture"))
