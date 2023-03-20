@@ -651,7 +651,11 @@
 	     :custom
 	     (org-roam-directory "~/org/roam")
 	     :config
-	     (org-roam-setup))
+	     (org-roam-setup)
+	     :config
+	     (setq org-roam-node-display-template
+		   (concat "${title:*} "
+              (propertize "${tags:10}" 'face 'org-tag))))
 
 (use-package deft
   :after org

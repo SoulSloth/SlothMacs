@@ -1026,8 +1026,13 @@ Org-Roam provides us with tooling to create linked knowledge bases in org files
 	     :custom
 	     (org-roam-directory "~/org/roam")
 	     :config
-	     (org-roam-setup))
+	     (org-roam-setup)
+	     :config
+	     (setq org-roam-node-display-template
+		   (concat "${title:*} "
+              (propertize "${tags:10}" 'face 'org-tag))))
 #+end_src
+
 
 *** Deft
 #+begin_src emacs-lisp
