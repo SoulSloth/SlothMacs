@@ -114,6 +114,12 @@
  ;; Flyspell
  "d" '(:ignore d :which-key "Flyspell")
  "dd" '(flyspell-correct-wrapper :which-key "Auto-correct word")
+
+ ;; org-roam
+ "r" '(:ignore r :which-key "Org-Roam")
+ "ri" '(org-roam-node-insert :which-key "Insert Node")
+ "rf" '(org-roam-node-find :which-key "Find Node")
+ "rl" '(org-roam-buffer-toggle :which-key "Show Backlinks")
  
  ;; Magit
  "g" '(:ignore g :which-key "Magit")
@@ -644,11 +650,6 @@
 	     (setq org-roam-v2-ack t)
 	     :custom
 	     (org-roam-directory "~/org/roam")
-	     :bind (("C-c n l" . org-roam-buffer-toggle)
-	     ("C-c n f" . org-roam-node-find)
-	     ("C-c n i" . org-roam-node-insert)
-	     :map org-mode-map
-	     ("C-M-i" . completion-at-point))
 	     :config
 	     (org-roam-setup))
 
