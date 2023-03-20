@@ -115,6 +115,8 @@
  "d" '(:ignore d :which-key "Flyspell")
  "dd" '(flyspell-correct-wrapper :which-key "Auto-correct word")
 
+ ;; Help items
+ "h" '(counsel-describe-symbol :which-key "describe symbol")
  ;; org-roam
  "r" '(:ignore r :which-key "Org-Roam")
  "ri" '(org-roam-node-insert :which-key "Insert Node")
