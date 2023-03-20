@@ -117,11 +117,13 @@
 
  ;; Help items
  "h" '(counsel-describe-symbol :which-key "describe symbol")
+
  ;; org-roam
  "r" '(:ignore r :which-key "Org-Roam")
  "ri" '(org-roam-node-insert :which-key "Insert Node")
  "rf" '(org-roam-node-find :which-key "Find Node")
  "rl" '(org-roam-buffer-toggle :which-key "Show Backlinks")
+ "rt" '(org-roam-tag-add :which-key "Add tag")
  
  ;; Magit
  "g" '(:ignore g :which-key "Magit")
