@@ -326,6 +326,7 @@
        ("<tab>" . company-complete-selection))
       (:map lsp-mode-map
        ("<tab>" . company-indent-or-complete-common))
+:config (add-to-list 'company-backends 'company-capf)
 :custom
 (company-minimum-prefix-length 1)
 (company-idle-delay 0.0)) 
@@ -393,7 +394,9 @@
   (variable-pitch-mode 1)
   ;; Word Wrap
   (visual-line-mode 1)
-  (linum-mode 0))
+  (linum-mode 0)
+  ;; Company mode for org-roam link completion
+  (company-mode))
 
 (use-package org-bullets
     :after org
@@ -659,7 +662,9 @@
 	     :config
 	     (setq org-roam-node-display-template
 		   (concat "${title:*} "
-              (propertize "${tags:10}" 'face 'org-tag))))
+              (propertize "${tags:10}" 'face 'org-tag)))
+	     :config
+	     (setq org-roam-completion-everywhere t))
 
 (use-package deft
   :after org

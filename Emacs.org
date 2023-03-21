@@ -549,19 +549,20 @@ Find symbols in the workspace quickly:
 
 Using company mode to enable a selection box on tab completions
 #+begin_src emacs-lisp
-  (use-package company
-  :after lsp-mode
-  :hook (lsp-mode . company-mode)
-  :bind (:map company-active-map
-         ("<tab>" . company-complete-selection))
-        (:map lsp-mode-map
-         ("<tab>" . company-indent-or-complete-common))
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0)) 
+(use-package company
+:after lsp-mode
+:hook (lsp-mode . company-mode)
+:bind (:map company-active-map
+       ("<tab>" . company-complete-selection))
+      (:map lsp-mode-map
+       ("<tab>" . company-indent-or-complete-common))
+:config (add-to-list 'company-backends 'company-capf)
+:custom
+(company-minimum-prefix-length 1)
+(company-idle-delay 0.0)) 
 
-  (use-package company-box
-  :hook (company-mode . company-box-mode))
+(use-package company-box
+:hook (company-mode . company-box-mode))
 #+end_src
 
 ** Typescript
@@ -696,7 +697,9 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
   (variable-pitch-mode 1)
   ;; Word Wrap
   (visual-line-mode 1)
-  (linum-mode 0))
+  (linum-mode 0)
+  ;; Company mode for org-roam link completion
+  (company-mode))
 
 (use-package org-bullets
     :after org
@@ -1034,9 +1037,10 @@ Org-Roam provides us with tooling to create linked knowledge bases in org files
 	     :config
 	     (setq org-roam-node-display-template
 		   (concat "${title:*} "
-              (propertize "${tags:10}" 'face 'org-tag))))
+              (propertize "${tags:10}" 'face 'org-tag)))
+	     :config
+	     (setq org-roam-completion-everywhere t))
 #+end_src
-
 
 *** Deft
 #+begin_src emacs-lisp
