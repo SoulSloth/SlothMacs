@@ -660,7 +660,7 @@
 	     :config
 	     (setq org-roam-node-display-template
 		   (concat "${title:*} "
-              (propertize "${tags:10}" 'face 'org-tag))))
+              (propertize "${tags:50}" 'face 'org-tag))))
 
 (use-package deft
   :after org
