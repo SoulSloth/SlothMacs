@@ -394,9 +394,7 @@
   (variable-pitch-mode 1)
   ;; Word Wrap
   (visual-line-mode 1)
-  (linum-mode 0)
-  ;; Company mode for org-roam link completion
-  (company-mode))
+  (linum-mode 0))
 
 (use-package org-bullets
     :after org
