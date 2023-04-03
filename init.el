@@ -633,7 +633,7 @@
 
 (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-(add-to-list 'org-structure-template-alist '("py" . "src python"))
+(add-to-list 'org-structure-template-alist '("py" . "src python :results output"))
 (add-to-list 'org-structure-template-alist '("go" . "src go"))
 (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
 (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
