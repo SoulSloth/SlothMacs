@@ -675,6 +675,10 @@
   (deft-default-extension "org")
   (deft-directory org-roam-directory))
 
+(use-package ox-hugo
+  :ensure t 
+  :after ox)
+
 (use-package term
 :config
 (setq explicit-shell-file-name "zsh")

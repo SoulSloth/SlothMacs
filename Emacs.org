@@ -1058,6 +1058,16 @@ Org-Roam provides us with tooling to create linked knowledge bases in org files
 #+RESULTS:
 : deft
 
+** Ox-Hugo
+Ox-hugo is a package to allow the generation of static-sites with Hugo with Org files instead of Markdown
+#+begin_src emacs-lisp
+(use-package ox-hugo
+  :ensure t 
+  :after ox)
+#+end_src
+
+#+RESULTS:
+
 * Terminals
 ** term-mode
 =C-c C-k= char mode
