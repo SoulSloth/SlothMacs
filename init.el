@@ -156,6 +156,7 @@
  ;; Org
  "o" '(:ignore o :which-key "org")
  "od" '(org-display-inline-images :which-key "display inline images")
+ "of" '(org-footnote-new :which-key "create a new footnote")
  "or" '(org-remove-inline-images :which-key "remove inline images")
  "ol" '(org-store-link :which-key "store link")
 
