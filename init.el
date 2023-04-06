@@ -148,7 +148,9 @@
 
  ;; General Project management
  "li" '(lsp-ivy-workspace-symbol :which-key "ivy workspace symbol")
- "p" '(projectile-switch-project :which-key "projectile switch project")
+ "p" '(:ignore p :which-key "Projectile")
+ "pp" '(projectile-switch-project :which-key "projectile switch project")
+ "pf" '(projectile-find-file :which-key "projectile find file")
  "f" '(counsel-projectile-grep :which-key "projectile-grep")
  
  ;; Org
