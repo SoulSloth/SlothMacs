@@ -377,6 +377,7 @@
   :hook ((before-save . gofmt-before-save) (go-mode . lsp-deferred))
   )
 
+(use-package dockerfile-mode)
 (use-package docker-compose-mode)
 
 (use-package scala-mode
