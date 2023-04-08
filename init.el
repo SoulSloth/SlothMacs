@@ -103,13 +103,20 @@
    (interactive)
    (find-file "~/org/dailies.org"))
 
+(defun open-snippits-file ()
+   "Opens the code snippits file"
+   (interactive)
+   (find-file "~/org/code.org"))
+
 (sloth/leader-keys
  "SPC" '(counsel-M-x :which-key "Execute Command" )
- ;; Opening relevent org files
+ ;; Opening relevent org files/terminal buffers
  "a" '(:ignore a :which-key "Open file")
  "ad" '(open-tasks-file :which-key "open tasks")
  "ae" '(open-emacs-conf :which-key "open emacs config")
+ "ac" '(open-snippits-file :which-key "open code snippits")
  "ap" '(open-project-file :which-key "open project file")
+ "at" '(vterm :which-key "open vterm buffer")
 
  ;; Flyspell
  "d" '(:ignore d :which-key "Flyspell")
@@ -128,6 +135,7 @@
  ;; Magit
  "g" '(:ignore g :which-key "Magit")
  "gs" '(magit-status :which-key "Status")
+ "gb" '(magit-blame :which-key "Blame")
  "gl" '(magit-log-current :which-key "Status")
  
  ;; Buffers
@@ -146,11 +154,21 @@
  "sf" '(cider-format-buffer :which-key "cider format buffer")
  "sb" '(cider-load-buffer :which-key "cider load buffer")
 
+
+ ;; Language management
+ "ls" '(lsp-ivy-workspace-symbol :which-key "ivy workspace symbol")
+ "ld" '(lsp-find-definition :which-key "find definition")
+ "lr" '(lsp-find-references :which-key "find references")
+ "li" '(lsp-find-implementations :which-key "find implementations")
+ "le" '(lsp-treemacs-errors-list :which-key "Show static code analysis errors")
+ 
  ;; General Project management
  "li" '(lsp-ivy-workspace-symbol :which-key "ivy workspace symbol")
  "p" '(:ignore p :which-key "Projectile")
  "pp" '(projectile-switch-project :which-key "projectile switch project")
  "pf" '(projectile-find-file :which-key "projectile find file")
+ "pb" '(projectile-compile-project :which-key "build project")
+ "pt" '(projectile-test-project :which-key "test project")
  "f" '(counsel-projectile-grep :which-key "projectile-grep")
  
  ;; Org
