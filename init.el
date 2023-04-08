@@ -27,6 +27,7 @@
                 eshell-mode-hook
                 dired-mode-hook
 		help-mode-hook
+		;; on WSL line numbers will show up in magit panes, but I don't experience that problem anywhere else...
                 ))
  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
@@ -350,10 +351,12 @@
 :config (add-to-list 'company-backends 'company-capf)
 :custom
 (company-minimum-prefix-length 1)
-(company-idle-delay 0.0)) 
+(company-idle-delay 0.0))
 
 (use-package company-box
-:hook (company-mode . company-box-mode))
+:hook (company-mode . company-box-mode)
+:init (setq company-box-icons-alist 'company-box-icons-all-the-icons)
+)
 
 (use-package typescript-mode
   :mode "\\.ts\\'" ;; Start up any time we open a fiel with .ts exentsion

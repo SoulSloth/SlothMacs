@@ -451,7 +451,7 @@ Helpful provides more helpful help messages
 * DOOM Modeline
 Currently just DOOM at the moment.
 
-Ensure you run  =M-x all-the-icons-install-fonts= for this to work
+Ensure you run  =M-x all-the-icons-install-fonts= for this to work [fn:5] 
 #+begin_src emacs-lisp
  (use-package all-the-icons)
 
@@ -531,11 +531,17 @@ Using evil-nerd-commenter since the default emacs package has some weird behavoi
 
 * Languages
 
-[[https://emacs-lsp.github.io/lsp-mode/][Emacs LSP Mode Site]]: For all your language finding needs
-The hotkey is set to =C-c l=
-Lsp servers must be installed for these modes to work. For linux machines, the command =lsp-install-server= will easily handle it. I've had no such luck on mac and have had to typically install such servers with =brew=. Be sure to check the lsp mode site for specifics.
+I use Language Server Protocol servers(LSP) in order to provide editor support for various languages which typically requires a separate installation. It's important that you read the instructions for whatever LSP you're installing, since it may have additional requirements see the [[*Python][Python section]] below for an example. Common pain points tend to be that language server support is implemented within language-specific tooling itself, such as python-lsp-server written in python and gopls written in golang. You'll generally end up installing this tooling for your language anyway, but just be wary of environment isolation tools like =pyenv=.
+
+If you require an LSP server for a specific language, the [[https://emacs-lsp.github.io/lsp-mode/][Emacs LSP mode site]] is a great resource for finding some options.
+
+Some servers support automatic install with  =lsp-install-server=, but they may not work on Mac or Windows machines.
 
 ** Language Server Protocol
+
+The mode that makes language support work.
+
+=lsp-mode= provides support for talking with [[https://microsoft.github.io/language-server-protocol/][language servers]] and integrating with tools and modes like =company=, =flycheck=, and =projectile= [fn:3]
 
 #+begin_src emacs-lisp
 (defun sloth/lsp-mode-setup ()
@@ -562,6 +568,7 @@ Sideline IDE editor items
 #+end_src
 
 *** LSP Ivy
+
 Find symbols in the workspace quickly:
 #+begin_src emacs-lisp :tangle no
     (use-package lsp-ivy)
@@ -569,7 +576,7 @@ Find symbols in the workspace quickly:
 
 ** Company Mode
 
-Using company mode to enable a selection box on tab completions
+Stands for "Complete Anything", provides text completion support with is front-end back-end agnostic [fn:4]
 #+begin_src emacs-lisp
 (use-package company
 :after lsp-mode
@@ -583,8 +590,15 @@ Using company mode to enable a selection box on tab completions
 (company-minimum-prefix-length 1)
 (company-idle-delay 0.0)) 
 
+#+end_src
+
+*** Company-Box
+Our Company frontend to display completions using =all-the-icons= to provide little icons for our completions, [[*DOOM Modeline][as stated previously]], make sure you run =all-the-icons-install-fonts= 
+#+begin_src emacs-lisp
 (use-package company-box
-:hook (company-mode . company-box-mode))
+:hook (company-mode . company-box-mode)
+:init (setq company-box-icons-alist 'company-box-icons-all-the-icons)
+)
 #+end_src
 
 ** Typescript
@@ -600,7 +614,9 @@ Using company mode to enable a selection box on tab completions
 
 ** Python
 
-- Install with =pip install 'python-lsp-server[all]'=
+- Install with =pip install 'python-lsp-server[all]'=  [fn:2]
+- Install =pip install jedi= for Completions, Definitions, Hover, References, Signature Help, and Symbols.[fn:1]
+- Also make _SURE_ that if you're operating in a =pyenv= environment, _that_ environment has these deps installed(Python dep isolation has messed me up several times)
 - [[https://github.com/python-lsp/python-lsp-server][Project github]]
 - Ensure =python= is on PATH!
 
@@ -672,7 +688,7 @@ error in process filter: Symbol’s function definition is void: clj-refactor-mo
 #+end_src
 
 *** TODO  set up a function for sending a form to the cider-repl for evaluation
-** Go
+** Golang
 #+begin_src emacs-lisp
 (use-package go-mode
   :ensure t
@@ -1212,3 +1228,13 @@ Hide dotfiles, which are usually clutter unless we're configuring something.
     (evil-collection-define-key 'normal 'dired-mode-map
       "H" 'dired-hide-dotfiles-mode))
 #+end_src
+
+* Footnotes
+
+[fn:5] https://github.com/domtronn/all-the-icons.el
+[fn:4] Company Mode's homepage https://company-mode.github.io/ 
+
+[fn:3] lsp-mode's site https://emacs-lsp.github.io/lsp-mode/ 
+[fn:2] Python-lsp-server's github repo  https://github.com/python-lsp/python-lsp-server 
+
+[fn:1] The Jedi installation instructions https://jedi.readthedocs.io/en/latest/docs/installation.html
