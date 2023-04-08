@@ -387,6 +387,12 @@
   (setq cider-repl-display-help-banner nil)
   (cider-repl-toggle-pretty-printing))
 
+(use-package scala-mode
+  :interpreter
+    ("scala" . scala-mode)
+  :mode (("\\.scala\\'" . scala-mode))
+    )
+
 (use-package clojure-essential-ref)
 
 (use-package go-mode

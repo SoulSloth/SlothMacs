@@ -55,6 +55,7 @@ Disable line numbers when we're in these modes were it isn't as relevent
                 eshell-mode-hook
                 dired-mode-hook
 		help-mode-hook
+		;; on WSL line numbers will show up in magit panes, but I don't experience that problem anywhere else...
                 ))
  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
@@ -655,6 +656,15 @@ Currently working off of [[https://ccann.github.io/2015/10/18/cider.html][Clojur
 **** Errors
 error in process filter: run-hooks: Symbol’s function definition is void: clj-refactor-mode
 error in process filter: Symbol’s function definition is void: clj-refactor-mode
+
+** Scala
+#+begin_src emacs-lisp
+(use-package scala-mode
+  :interpreter
+    ("scala" . scala-mode)
+  :mode (("\\.scala\\'" . scala-mode))
+    )
+#+end_src
 
 *** Clojure-essential-ref for clojure doc lookups
 #+begin_src emacs-lisp
