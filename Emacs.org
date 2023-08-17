@@ -747,7 +747,7 @@ Having the `org-ellipsis key be 🎈 started as a joke, but I found it pretty us
   (variable-pitch-mode 1)
   ;; Word Wrap
   (visual-line-mode 1)
-  (linum-mode 0))
+  (display-line-numbers-mode 0))
 
 (use-package org-bullets
     :after org

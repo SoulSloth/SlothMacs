@@ -425,7 +425,7 @@
   (variable-pitch-mode 1)
   ;; Word Wrap
   (visual-line-mode 1)
-  (linum-mode 0))
+  (display-line-numbers-mode 0))
 
 (use-package org-bullets
     :after org
