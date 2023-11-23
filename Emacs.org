@@ -244,6 +244,8 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
  "rf" '(org-roam-node-find :which-key "Find Node")
  "rl" '(org-roam-buffer-toggle :which-key "Show Backlinks")
  "rt" '(org-roam-tag-add :which-key "Add tag")
+ "ro" '(org-roam-dailies-capture-tomorrow :which-key "Capture tomorrows dailies")
+ "rd" '(org-roam-dailies-goto-today :which-key "Goto Today's Dailies")
  
  ;; Magit
  "g" '(:ignore g :which-key "Magit")
