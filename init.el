@@ -754,6 +754,8 @@ contextual information."
   (deft-default-extension "org")
   (deft-directory org-roam-directory))
 
+(use-package org-roam-ui)
+
 (use-package ox-hugo
   :ensure t 
   :after ox)

@@ -1164,8 +1164,12 @@ Insert an empty note without breaking writing flow.
   (deft-directory org-roam-directory))
 #+end_src
 
-#+RESULTS:
-: deft
+*** Org-roam-ui
+Provides a web-based node graph for viewing my Org-Roam database.[fn:6]
+
+#+begin_src emacs-lisp
+(use-package org-roam-ui)
+#+end_src
 
 ** Ox-Hugo
 Ox-hugo is a package to allow the generation of static-sites with Hugo with Org files instead of Markdown
