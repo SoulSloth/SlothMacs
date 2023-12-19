@@ -24,8 +24,41 @@ Things should work the same across my Arch laptop, Macbook, and Windows desktop.
 * 🤔 Thoughts On Tools and Workflows
 Some of my current ideas around tooling and workflows. 
 
-** 📸 Org Capture
-[[file:Emacs.org::Capture Templates][My Capture templates]] are my current way to take notes and plan my day.
-- Noting significant daily occurrences like blockers, task completions, and insights is pretty powerful.
-- Current planning scheme revolves around a date-tree with a =Plan= bullet and a capture template for the happenings of the day under it. Linking tickets/slack messages/docs that I know I'll have to use the night before makes doing that work a little easier and provides it for faster lookup if I ever need to recall something specific.
-- Journaling has been a pretty nice experience so far for brain-dumping and refining plans for the next day.
+** 🐂Note Database is King
+Most of my writing goes into my [[file:Emacs.org::*Org-Roam][Org-Roam database]]. It's consumed most of my workflows and times outside specific programming projects.
+
+*** ⚙ Executing Code Blocks In Documents Is God Mode
+Although I've been using a literate configuration since the start of this project, I didn't fully appreciate how much sense it makes to add code blocks that can be executed within org documents. Now I frequently write or copy down code snippits in order to prove to prove to myself that a programming concept works as expected.
+
+It's also a Godsend for later reference, since I can quickly tell if some code bit worked, at least in abstract at the time I wrote the article.
+
+*** 📊 Diagrams In Code Are Useful
+Babel also supports creating diagrams with languages like [[https://en.wikipedia.org/wiki/DOT_(graph_description_language)#:~:text=DOT%20is%20historically%20an%20acronym,handled%20only%20directed%20acyclic%20graphs.][DOT]] and [[https://plantuml.com/][plantUML]], which are useful for creating diagrams for mathematical/algorithmic concepts or systems engineering respectively.
+
+Initially this served as a stop-gap for me since I don't have a good physical drawing -> sync to my computer workflow yet, but creating diagrams with written text has been surprising delightful. Although I do find myself fiddling a bit too much with it sometimes to get the results I want.
+
+** 🫠Pain Points
+A few things that irk me at the moment. Most can probably be overcome with some work.
+
+*** 💔 Failing At Being an IDE
+I find myself doing more writing in Emacs then programming, which I hear is not uncommon, but I dislike reaching for solutions like Intellij or VScode for seemingly simple things like looking up a class definition in Java.
+
+I will keep these editors around in professional situations when pair programming out of courtesy, however I feel like I need to sit down and think deeply about what I expect out of an IDE and decide whether I can get emacs to that point with the tools available in a reasonable time free or let sleeping dogs lie and bide my time for a little while longer.
+
+_Some common issues:_
+- LSP Server lacks method I require
+- Setting up build/run automation with a few keystrokes(should be simple with projectile, but like many things here I just haven't taken the time)
+- =Projectile-find-file= looking up files in =.gitignore=, which tend to be many, many files in folders like =.clj-kondo=
+- CIDER error reporting, piecing through a Java stack trace in a REPL windows causes me to die a little inside
+
+*** ❌ Must Improve Spelling
+I'm terrible at spelling and the default [[file:Emacs.org::*Flyspell][Flyspell]] checker is not up to par, often missing corrections Google gets instantly. I feel as though at this point there's either a better spellchecking engine or a lightweight AI model that can do a better job.
+
+Or I could just grab some English flash cards 🎴 and go ham for a few months...
+
+*** 🔧 Janky UX
+A few small issues that if I could solve I'd be 1% happier:
+- Disabling that one Dired keystroke that brings up the =I see you've just tried to use X feature, do you know that it's really confusing and you shouldn't?= message
+- Removing the starting =^= at the =M-X= prompt.
+
+
