@@ -456,7 +456,7 @@ Currently just DOOM at the moment.
 
 Ensure you run  =M-x all-the-icons-install-fonts= for this to work [fn:5] 
 #+begin_src emacs-lisp
- (use-package all-the-icons)
+(use-package all-the-icons)
 
 (use-package doom-modeline
   :ensure t
@@ -853,11 +853,18 @@ contextual information."
       '((:startgroup)
 	;; Mutually exclusive tags go here
 	(:endgroup)
-       ("@errand" . ?E)
-       ("@home" . ?H)
-       ("@work" . ?W)
-       ("planning" . ?p)))
+	   ("polish" . ?p)
+	   ("marketing" . ?m)
+	   ("usability" . ?u)
+	   ("defect" . ?d)
+	   ("shaders" . ?s)
+	   ("narrative" . ?n)
+	   ("content" . ?c)
+	   ("refactoring" . ?r)))
 #+end_src
+
+#+RESULTS:
+: ((:startgroup) (:endgroup) (polish . 112) (marketing . 109) (usability . 117) (defect . 100) (shaders . 115) (narrative . 110) (content . 99) (refactoring . 114))
 
 ** Refile Targets
 #+begin_src emacs-lisp
@@ -1301,6 +1308,7 @@ Hide dotfiles, which are usually clutter unless we're configuring something.
 #+end_src
 
 * Footnotes
+[fn:6]https://github.com/org-roam/org-roam-ui 
 
 [fn:5] https://github.com/domtronn/all-the-icons.el
 [fn:4] Company Mode's homepage https://company-mode.github.io/ 

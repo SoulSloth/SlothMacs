@@ -514,10 +514,14 @@ contextual information."
       '((:startgroup)
 	;; Mutually exclusive tags go here
 	(:endgroup)
-       ("@errand" . ?E)
-       ("@home" . ?H)
-       ("@work" . ?W)
-       ("planning" . ?p)))
+	   ("polish" . ?p)
+	   ("marketing" . ?m)
+	   ("usability" . ?u)
+	   ("defect" . ?d)
+	   ("shaders" . ?s)
+	   ("narrative" . ?n)
+	   ("content" . ?c)
+	   ("refactoring" . ?r)))
 
 (setq org-refile-targets
         '(("~/org/archive.org" :maxlevel . 1)
