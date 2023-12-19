@@ -102,7 +102,7 @@
 (defun open-tasks-file ()
    "Opens the emacs literate conf"
    (interactive)
-   (find-file "~/org/dailies.org"))
+   (find-file "~/org/tasks.org"))
 
 (defun open-snippits-file ()
    "Opens the code snippits file"
