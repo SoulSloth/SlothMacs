@@ -1101,13 +1101,18 @@ Display the images created by the plantUml org-babel calls
 (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 (add-to-list 'org-structure-template-alist '("py" . "src python :results output"))
-(add-to-list 'org-structure-template-alist '("go" . "src go"))
+(add-to-list 'org-structure-template-alist '("go" . "src go :imports `(\"fmt\")"))
 (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
 (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
 (add-to-list 'org-structure-template-alist '("conf" . "src conf"))
 (add-to-list 'org-structure-template-alist '("pl" . "src plantuml :file diagram.png"))
 (add-to-list 'org-structure-template-alist '("js" . "src js"))
+(add-to-list 'org-structure-template-alist '("d" . "src dockerfile"))
+(add-to-list 'org-structure-template-alist '("dot" . "src dot :file dotDiagram.png :exports both"))
 #+end_src
+
+#+RESULTS:
+: ((dot . src dot :file dotDiagram.png :exports both) (d . src dockerfile) (js . src js) (pl . src plantuml :file diagram.png) (conf . src conf) (yl . src yaml) (clj . src clojure) (go . src go :imports `("fmt")) (py . src python :results output) (el . src emacs-lisp) (sh . src shell) (a . export ascii) (c . center) (C . comment) (e . example) (E . export) (h . export html) (l . export latex) (q . quote) (s . src) (v . verse))
 
 ** Visual Fill
 #+begin_src emacs-lisp

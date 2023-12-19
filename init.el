@@ -709,12 +709,14 @@ contextual information."
 (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 (add-to-list 'org-structure-template-alist '("py" . "src python :results output"))
-(add-to-list 'org-structure-template-alist '("go" . "src go"))
+(add-to-list 'org-structure-template-alist '("go" . "src go :imports `(\"fmt\")"))
 (add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
 (add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
 (add-to-list 'org-structure-template-alist '("conf" . "src conf"))
 (add-to-list 'org-structure-template-alist '("pl" . "src plantuml :file diagram.png"))
 (add-to-list 'org-structure-template-alist '("js" . "src js"))
+(add-to-list 'org-structure-template-alist '("d" . "src dockerfile"))
+(add-to-list 'org-structure-template-alist '("dot" . "src dot :file dotDiagram.png :exports both"))
 
 (defun sloth/org-mode-visual-fill ()
   (setq visual-fill-column-width 125
