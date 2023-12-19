@@ -693,7 +693,8 @@ contextual information."
     (shell . t)
     (plantuml . t)
     (go . t)
-    (js .t)))
+    (js . t)
+    (dot . t)))
 
   (setq org-confirm-babel-evaluate nil)
 
