@@ -246,6 +246,7 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
  "rt" '(org-roam-tag-add :which-key "Add tag")
  "ro" '(org-roam-dailies-capture-tomorrow :which-key "Capture tomorrows dailies")
  "rd" '(org-roam-dailies-goto-today :which-key "Goto Today's Dailies")
+ "re" '(org-roam-node-insert-immediate :which-key "Insert Empty Note")
  
  ;; Magit
  "g" '(:ignore g :which-key "Magit")
@@ -1136,6 +1137,19 @@ Org-Roam provides us with tooling to create linked knowledge bases in org files
               (propertize "${tags:50}" 'face 'org-tag))))
 #+end_src
 
+*** Insert Empty Note
+Insert an empty note without breaking writing flow.
+#+begin_src emacs-lisp
+(defun org-roam-node-insert-immediate (arg &rest args)
+  (interactive "P")
+  (let ((args (cons arg args))
+        (org-roam-capture-templates (list (append (car org-roam-capture-templates)
+                                                  '(:immediate-finish t)))))
+    (apply #'org-roam-node-insert args)))
+#+end_src
+
+#+RESULTS:
+: org-roam-node-insert-immediate
 
 *** Deft
 #+begin_src emacs-lisp

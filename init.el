@@ -134,6 +134,7 @@
  "rt" '(org-roam-tag-add :which-key "Add tag")
  "ro" '(org-roam-dailies-capture-tomorrow :which-key "Capture tomorrows dailies")
  "rd" '(org-roam-dailies-goto-today :which-key "Goto Today's Dailies")
+ "re" '(org-roam-node-insert-immediate :which-key "Insert Empty Note")
  
  ;; Magit
  "g" '(:ignore g :which-key "Magit")
@@ -735,6 +736,13 @@ contextual information."
 	     (setq org-roam-node-display-template
 		   (concat "${title:*} "
               (propertize "${tags:50}" 'face 'org-tag))))
+
+(defun org-roam-node-insert-immediate (arg &rest args)
+  (interactive "P")
+  (let ((args (cons arg args))
+        (org-roam-capture-templates (list (append (car org-roam-capture-templates)
+                                                  '(:immediate-finish t)))))
+    (apply #'org-roam-node-insert args)))
 
 (use-package deft
   :after org
