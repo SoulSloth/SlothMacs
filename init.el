@@ -135,6 +135,7 @@
  "ro" '(org-roam-dailies-capture-tomorrow :which-key "Capture tomorrows dailies")
  "rd" '(org-roam-dailies-goto-today :which-key "Goto Today's Dailies")
  "re" '(org-roam-node-insert-immediate :which-key "Insert Empty Note")
+ "rm" '(org-roam-insert-image :which-key "Insert Pic")
  
  ;; Magit
  "g" '(:ignore g :which-key "Magit")
@@ -775,6 +776,15 @@ contextual information."
         (org-roam-capture-templates (list (append (car org-roam-capture-templates)
                                                   '(:immediate-finish t)))))
     (apply #'org-roam-node-insert args)))
+
+(defun org-roam-insert-image ()
+  "Fuzzy search for a picture in ~/org/roam/pics and insert it into an org document."
+  (interactive)
+  (let ((image-files (directory-files-recursively "~/org/roam/pics" "\\.\\(png\\|jpg\\|jpeg\\|gif\\)$")))
+    (ivy-read "Select image to insert: " 
+              (mapcar (lambda (path) (cons (file-name-nondirectory path) path)) image-files)
+              :action (lambda (x)
+                        (insert (format "[[file:%s]]" (cdr x)))))))
 
 (use-package deft
   :after org
