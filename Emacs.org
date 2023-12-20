@@ -1083,6 +1083,8 @@ contextual information."
 #+end_src
 
 ** Org-Babel Config
+Execute code within org-mode code blocks. [fn:7]
+
 *** Golang support provided by [[https://github.com/pope/ob-go][ob-go]]
 #+begin_src emacs-lisp
   (use-package ob-go)
@@ -1183,7 +1185,7 @@ Org-Roam provides us with tooling to create linked knowledge bases in org files
               (propertize "${tags:50}" 'face 'org-tag))))
 #+end_src
 
-*** Insert Empty Note
+*** Inserting Empty Notes
 Insert an empty note without breaking writing flow.
 #+begin_src emacs-lisp
 (defun org-roam-node-insert-immediate (arg &rest args)
@@ -1356,6 +1358,8 @@ Hide dotfiles, which are usually clutter unless we're configuring something.
 #+end_src
 
 * Footnotes
+
+[fn:7]https://orgmode.org/worg/org-contrib/babel/ 
 [fn:6]https://github.com/org-roam/org-roam-ui 
 
 [fn:5] https://github.com/domtronn/all-the-icons.el
