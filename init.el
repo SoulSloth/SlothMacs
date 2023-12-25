@@ -780,7 +780,7 @@ contextual information."
 (defun org-roam-insert-image ()
   "Fuzzy search for a picture in ~/org/roam/pics and insert it into an org document."
   (interactive)
-  (let ((image-files (directory-files-recursively "~/org/roam/pics" "\\.\\(png\\|jpg\\|jpeg\\|gif\\)$")))
+  (let ((image-files (directory-files-recursively "~/org/roam/pics" "\\.\\(png\\|jpg\\|jpeg\\|gif\\|webp\\)$")))
     (ivy-read "Select image to insert: " 
               (mapcar (lambda (path) (cons (file-name-nondirectory path) path)) image-files)
               :action (lambda (x)
