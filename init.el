@@ -709,8 +709,6 @@ contextual information."
 
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'sloth/org-babel-tangle-config)))
 
-(use-package ob-go)
-
 (org-babel-do-load-languages
   'org-babel-load-languages
   '((emacs-lisp . t)

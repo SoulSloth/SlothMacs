@@ -299,8 +299,6 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
  "c" '(org-capture :which-key "org capture"))
 #+end_src
 
-
-
 *** TODO We can probably macro these =find-file= functions...
 
 *** TODO Completions for project files shouldn't have to be the entire path 🤔
@@ -1085,11 +1083,6 @@ contextual information."
 ** Org-Babel Config
 Execute code within org-mode code blocks. [fn:7]
 
-*** Golang support provided by [[https://github.com/pope/ob-go][ob-go]]
-#+begin_src emacs-lisp
-  (use-package ob-go)
-#+end_src
-
 *** Load Languages
 [[https://orgmode.org/worg/org-contrib/babel/languages/index.html][Currently supported languages can be found in the Org documentation]]
 
@@ -1128,6 +1121,12 @@ https://eschulte.github.io/babel-dev/DONE-integrate-plantuml-support.html
        (expand-file-name "/usr/local/bin/plantuml.jar"))
      (setq org-plantuml-jar-path
        (expand-file-name "/usr/bin/plantuml.jar")))
+#+end_src
+
+**** Golang 
+[[https://github.com/pope/ob-go][ob-go]]
+#+begin_src emacs-lisp
+  (use-package ob-go)
 #+end_src
 
 *** PlantUml hook
@@ -1227,9 +1226,6 @@ Insert Image Links found in =~/org/roam/pics=
               :action (lambda (x)
                         (insert (format "[[file:%s]]" (cdr x)))))))
 #+end_src
-
-#+RESULTS:
-: org-roam-node-insert-immediate
 
 *** Deft
 #+begin_src emacs-lisp
