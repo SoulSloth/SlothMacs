@@ -1143,21 +1143,37 @@ Display the images created by the plantUml org-babel calls
 ;; This is needed as of Org 9.2
 (require 'org-tempo)
 
-(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
-(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-(add-to-list 'org-structure-template-alist '("py" . "src python :results output"))
-(add-to-list 'org-structure-template-alist '("go" . "src go :imports `(\"fmt\")"))
-(add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
-(add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
-(add-to-list 'org-structure-template-alist '("conf" . "src conf"))
-(add-to-list 'org-structure-template-alist '("pl" . "src plantuml :file diagram.png"))
-(add-to-list 'org-structure-template-alist '("js" . "src js"))
-(add-to-list 'org-structure-template-alist '("d" . "src dockerfile"))
-(add-to-list 'org-structure-template-alist '("dot" . "src dot :file dotDiagram.png :exports both"))
+(setq org-structure-template-alist
+      '(;; Basic org templates
+	      ("a" . "export ascii")
+        ("cen" . "center")
+        ("C" . "comment")
+        ("e" . "example")
+        ("E" . "export")
+        ("h" . "export html")
+        ("l" . "export latex")
+        ("q" . "quote")
+        ("s" . "src")
+        ("v" . "verse")
+	      ;; Specific programming languages
+        ("sh" . "src shell")
+        ("c" . "src C :includes <stdio.h>")
+        ("el" . "src emacs-lisp")
+        ("py" . "src python :results output")
+        ("go" . "src go :imports `(\"fmt\")")
+        ("clj" . "src clojure")
+        ("js" . "src js")
+	      ;; Configuration languages
+        ("d" . "src dockerfile")
+        ("yl" . "src yaml")
+        ("conf" . "src conf")
+	      ;; Diagram languages
+	      ("pl" . "src plantuml :file diagram.png")
+        ("dot" . "src dot :file dotDiagram.png :exports both")))
 #+end_src
 
 #+RESULTS:
-: ((dot . src dot :file dotDiagram.png :exports both) (d . src dockerfile) (js . src js) (pl . src plantuml :file diagram.png) (conf . src conf) (yl . src yaml) (clj . src clojure) (go . src go :imports `("fmt")) (py . src python :results output) (el . src emacs-lisp) (sh . src shell) (a . export ascii) (c . center) (C . comment) (e . example) (E . export) (h . export html) (l . export latex) (q . quote) (s . src) (v . verse))
+: ((a . export ascii) (cen . center) (C . comment) (e . example) (E . export) (h . export html) (l . export latex) (q . quote) (s . src) (v . verse) (sh . src shell) (c . src C :includes <stdio.h>) (el . src emacs-lisp) (py . src python :results output) (go . src go :imports `("fmt")) (clj . src clojure) (yl . src yaml) (conf . src conf) (pl . src plantuml :file diagram.png) (js . src js) (d . src dockerfile) (dot . src dot :file dotDiagram.png :exports both))
 
 ** Visual Fill
 #+begin_src emacs-lisp

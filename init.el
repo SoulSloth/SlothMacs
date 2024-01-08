@@ -734,22 +734,40 @@ contextual information."
      (setq org-plantuml-jar-path
        (expand-file-name "/usr/bin/plantuml.jar")))
 
+(use-package ob-go)
+
 (setq org-babel-after-execute-hook 'org-display-inline-images)
 
 ;; This is needed as of Org 9.2
 (require 'org-tempo)
 
-(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
-(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-(add-to-list 'org-structure-template-alist '("py" . "src python :results output"))
-(add-to-list 'org-structure-template-alist '("go" . "src go :imports `(\"fmt\")"))
-(add-to-list 'org-structure-template-alist '("clj" . "src clojure"))
-(add-to-list 'org-structure-template-alist '("yl" . "src yaml"))
-(add-to-list 'org-structure-template-alist '("conf" . "src conf"))
-(add-to-list 'org-structure-template-alist '("pl" . "src plantuml :file diagram.png"))
-(add-to-list 'org-structure-template-alist '("js" . "src js"))
-(add-to-list 'org-structure-template-alist '("d" . "src dockerfile"))
-(add-to-list 'org-structure-template-alist '("dot" . "src dot :file dotDiagram.png :exports both"))
+(setq org-structure-template-alist
+      '(;; Basic org templates
+	      ("a" . "export ascii")
+        ("cen" . "center")
+        ("C" . "comment")
+        ("e" . "example")
+        ("E" . "export")
+        ("h" . "export html")
+        ("l" . "export latex")
+        ("q" . "quote")
+        ("s" . "src")
+        ("v" . "verse")
+	      ;; Specific programming languages
+        ("sh" . "src shell")
+        ("c" . "src C :includes <stdio.h>")
+        ("el" . "src emacs-lisp")
+        ("py" . "src python :results output")
+        ("go" . "src go :imports `(\"fmt\")")
+        ("clj" . "src clojure")
+        ("js" . "src js")
+	      ;; Configuration languages
+        ("d" . "src dockerfile")
+        ("yl" . "src yaml")
+        ("conf" . "src conf")
+	      ;; Diagram languages
+	      ("pl" . "src plantuml :file diagram.png")
+        ("dot" . "src dot :file dotDiagram.png :exports both")))
 
 (defun sloth/org-mode-visual-fill ()
   (setq visual-fill-column-width 125
