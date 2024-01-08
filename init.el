@@ -141,7 +141,7 @@
  "g" '(:ignore g :which-key "Magit")
  "gs" '(magit-status :which-key "Status")
  "gb" '(magit-blame :which-key "Blame")
- "gl" '(magit-log-current :which-key "Status")
+ "gl" '(magit-log-current :which-key "Log")
  
  ;; Buffers
  "b" '(switch-to-buffer :which-key "Switch to buffer")
