@@ -1103,7 +1103,9 @@ Execute code within org-mode code blocks. [fn:7]
      (plantuml . t)
      (go . t)
      (js . t)
-     (dot . t)))
+     (dot . t)
+     (C . t)
+     (java . t)))
 
    (setq org-confirm-babel-evaluate nil)
  #+end_src

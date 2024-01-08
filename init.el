@@ -720,7 +720,9 @@ contextual information."
     (plantuml . t)
     (go . t)
     (js . t)
-    (dot . t)))
+    (dot . t)
+    (C . t)
+    (java . t)))
 
   (setq org-confirm-babel-evaluate nil)
 
