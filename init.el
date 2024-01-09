@@ -174,6 +174,7 @@
  "pf" '(projectile-find-file :which-key "projectile find file")
  "pb" '(projectile-compile-project :which-key "build project")
  "pt" '(projectile-test-project :which-key "test project")
+ "pr" '(projectile-run-project :which-key "run project")
  "f" '(counsel-projectile-grep :which-key "projectile-grep")
  
  ;; Org
@@ -253,7 +254,7 @@
     ;; This lets us rapidly switch between different projects in our
     ;; work directory
     (when (file-directory-p "~/projects")
-      (setq projectile-project-search-path '("~/projects")))
+      (setq projectile-project-search-path '("~/projects" "~/org/roam/scripts")))
     (setq projectile-swith-project-action #'projectile-dired))
 
 ;; Play nice with Counsel

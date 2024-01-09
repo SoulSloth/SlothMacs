@@ -49,3 +49,4 @@ flycheck_*
 /forge-database.sqlite
 /eshell/
 /.dir-locals.el
+/straight/
