@@ -475,7 +475,7 @@
 
 
 (use-package org
-:hook (org-mode . sloth/org-mode-setup)
+  :hook (org-mode . sloth/org-mode-setup)
            :config (setq org-ellipsis " 🎈"
                          ;; hides formatting markers
                          org-hide-emphasis-markers t)
@@ -532,7 +532,7 @@ contextual information."
  '(org-document-info ((t (:foreground "dark orange"))))
  '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
  '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
- '(org-link ((t (:foreground "royal blue" :underline t))))
+ '(org-link ((t (:foreground "light pink" :underline t))))
  '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
  '(org-property-value ((t (:inherit fixed-pitch))) t)
  '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
