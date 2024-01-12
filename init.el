@@ -175,6 +175,7 @@
  "pb" '(projectile-compile-project :which-key "build project")
  "pt" '(projectile-test-project :which-key "test project")
  "pr" '(projectile-run-project :which-key "run project")
+ "pl" '(sloth/view-project-logs  :which-key "view project logs")
  "f" '(counsel-projectile-grep :which-key "projectile-grep")
  
  ;; Org
@@ -263,6 +264,27 @@
 ;; Play nice with Counsel
   (use-package counsel-projectile
     :config (counsel-projectile-mode))
+
+(defun sloth/view-project-logs ()
+  "Run the projects log command in another buffer"
+  (interactive)
+  ;; Check if config is set
+  (if (boundp 'project-log-command)
+  (let (
+	;; Capture the local value of project-log-command before we create a new buffer
+	(log-command  project-log-command)
+	;; Create the buffer
+	(log-buffer (get-buffer-create (format "*%s Logs*" (projectile-project-name)))))
+    (with-current-buffer log-buffer
+      (read-only-mode 0)
+      (erase-buffer)
+      (start-process "project-log-process" log-buffer "sh" "-c" log-command)
+      (read-only-mode 1))
+    (pop-to-buffer log-buffer))
+  (message "project-log-command not set")))
+
+;; Mark local variable as safe
+(put 'project-log-command 'safe-local-variable #'stringp)
 
 (use-package magit
   :custom
