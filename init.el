@@ -505,6 +505,8 @@
            (setq org-edit-src-content-indentation 0)
 	       (setq org-export-with-toc nil)
 	       (setq org-html-validation-link nil)
+	       ;; I want to actually be able to edit the width and hieghts of iamges in org
+	       (setq org-image-actual-width nil)
            (sloth/org-font-setup))
 
 (defun org-html-src-block (src-block _contents info)
@@ -845,6 +847,11 @@ contextual information."
 (use-package ox-hugo
   :ensure t 
   :after ox)
+
+(if (eq system-type 'darwin)
+    (custom-set-faces
+     '(org-level-1 ((t (:inherit outline-1 :height 1.1))))
+     '(org-level-2 ((t (:inherit outline-2 :height 1))))))
 
 (use-package term
 :config
