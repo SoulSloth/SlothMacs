@@ -144,7 +144,10 @@
  "gl" '(magit-log-current :which-key "Log")
  
  ;; Buffers
- "b" '(switch-to-buffer :which-key "Switch to buffer")
+ "b" '(:ignore b :which-key "buffers")
+ "bb" '(switch-to-buffer :which-key "Switch to buffer")
+ "br" '(revert-buffer-quick :which-key "Revert buffer")
+ "bk" '(kill-current-buffer :which-key "Kill buffer")
  
  ;; toggles 
  "t" '(:ignore t :which-key "toggles")
