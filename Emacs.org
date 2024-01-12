@@ -297,8 +297,13 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
  "ol" '(org-store-link :which-key "store link")
 
  ;; Org Capture
- "c" '(org-capture :which-key "org capture"))
+ "c" '(org-capture :which-key "org capture")
+
+ ;; Yanking
+ "y" '(sloth/copy-file-path-to-clipboard :which-key "Yank current path"))
 #+end_src
+
+#+RESULTS:
 
 *** TODO We can probably macro these =find-file= functions...
 
@@ -1370,6 +1375,22 @@ Hide dotfiles, which are usually clutter unless we're configuring something.
     :config
     (evil-collection-define-key 'normal 'dired-mode-map
       "H" 'dired-hide-dotfiles-mode))
+#+end_src
+** Copy File Path of Buffer/Hovered file in Dired
+A pretty frequent case in programming and writing notes is that I need to reference an external filepath, this blocks simplifies the operation:
+#+begin_src emacs-lisp
+(defun sloth/copy-file-path-to-clipboard ()
+  "Copy the filepath for the file open in a buffer/dired to clipboard"
+  (interactive)
+  (let ((file-path (if (equal major-mode 'dired-mode)
+                       (dired-get-file-for-visit)
+                     (buffer-file-name))))
+    (if file-path
+        (progn
+          (kill-new file-path)
+          (message "Copied: '%s'" file-path))
+      (message "No file is associated with this buffer."))))
+
 #+end_src
 
 * Footnotes

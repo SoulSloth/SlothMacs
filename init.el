@@ -185,7 +185,10 @@
  "ol" '(org-store-link :which-key "store link")
 
  ;; Org Capture
- "c" '(org-capture :which-key "org capture"))
+ "c" '(org-capture :which-key "org capture")
+
+ ;; Yanking
+ "y" '(sloth/copy-file-path-to-clipboard :which-key "Yank current path"))
 
 (unless (package-installed-p 'swiper)
   (package-install 'swiper))
@@ -875,3 +878,15 @@ contextual information."
   :config
   (evil-collection-define-key 'normal 'dired-mode-map
     "H" 'dired-hide-dotfiles-mode))
+
+(defun sloth/copy-file-path-to-clipboard ()
+  "Copy the filepath for the file open in a buffer/dired to clipboard"
+  (interactive)
+  (let ((file-path (if (equal major-mode 'dired-mode)
+                       (dired-get-file-for-visit)
+                     (buffer-file-name))))
+    (if file-path
+        (progn
+          (kill-new file-path)
+          (message "Copied: '%s'" file-path))
+      (message "No file is associated with this buffer."))))
