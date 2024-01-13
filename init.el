@@ -833,7 +833,7 @@ contextual information."
     (ivy-read "Select image to insert: " 
               (mapcar (lambda (path) (cons (file-name-nondirectory path) path)) image-files)
               :action (lambda (x)
-                        (insert (format "[[file:%s]]" (cdr x)))))))
+                        (insert (format "#+ATTR_ORG: :width 750\n[[file:%s]]" (cdr x)))))))
 
 (use-package deft
   :after org
