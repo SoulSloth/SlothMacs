@@ -21,11 +21,13 @@
 
 (dolist (mode '(org-mode-hook
 		markdown-mode-hook
-                term-mode-hook
-                shell-mode-hook
-                vterm-mode-hook
-                eshell-mode-hook
-                dired-mode-hook
+		term-mode-hook
+          shell-mode-hook
+          vterm-mode-hook
+          eshell-mode-hook
+          dired-mode-hook
+		nov-mode-hook
+		doc-view-mode-hook
 		help-mode-hook
 		;; on WSL line numbers will show up in magit panes, but I don't experience that problem anywhere else...
                 ))
