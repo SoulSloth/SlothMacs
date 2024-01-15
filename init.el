@@ -95,7 +95,6 @@
 	       (directory-files "~/org/projects/" t "\.org")
 	      :require-match "yes" )))
 
-
 (defun open-emacs-conf ()
   "Opens the emacs literate conf"
   (interactive)
@@ -131,12 +130,12 @@
  ;; org-roam
  "r" '(:ignore r :which-key "Org-Roam")
  "ri" '(org-roam-node-insert :which-key "Insert Node")
+ "re" '(org-roam-node-insert-immediate :which-key "Insert Empty Note")
  "rf" '(org-roam-node-find :which-key "Find Node")
  "rl" '(org-roam-buffer-toggle :which-key "Show Backlinks")
  "rt" '(org-roam-tag-add :which-key "Add tag")
  "ro" '(org-roam-dailies-capture-tomorrow :which-key "Capture tomorrows dailies")
  "rd" '(org-roam-dailies-goto-today :which-key "Goto Today's Dailies")
- "re" '(org-roam-node-insert-immediate :which-key "Insert Empty Note")
  "rm" '(org-roam-insert-image :which-key "Insert Pic")
  
  ;; Magit
