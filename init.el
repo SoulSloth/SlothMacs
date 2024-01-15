@@ -856,6 +856,10 @@ contextual information."
      '(org-level-1 ((t (:inherit outline-1 :height 1.1))))
      '(org-level-2 ((t (:inherit outline-2 :height 1))))))
 
+(use-package nov
+  :init
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+
 (use-package term
 :config
 (setq explicit-shell-file-name "zsh")
