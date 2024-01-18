@@ -784,7 +784,7 @@ contextual information."
         ("s" . "src")
         ("v" . "verse")
 	      ;; Specific programming languages
-        ("sh" . "src shell")
+        ("sh" . "src shell :results verbatim")
         ("c" . "src C :includes <stdio.h>")
         ("el" . "src emacs-lisp")
         ("py" . "src python :results output")
