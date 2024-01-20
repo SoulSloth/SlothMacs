@@ -777,7 +777,26 @@ Pretty rainbow delimiters to help balence parens
   (use-package  rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 #+end_src
+** Compilation Mode
+Raw compilation mode needs some help.
 
+*** Follow the Output
+Generally, I don't care about any output that's not the last OR I'll search the output when it's done.
+#+begin_src emacs-lisp
+(setq compilation-scroll-output t)
+#+end_src
+
+*** ANSI color
+Especially with docker build outputs, where there's a lot of ansi escapes, it's important to output without garbage:
+#+begin_src emacs-lisp
+(require 'ansi-color)
+
+(defun sloth/colorize-compilation-buffer ()
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+
+(add-hook 'compilation-filter-hook 'sloth/colorize-compilation-buffer)
+#+end_src
 * Github Co-Pilot
 Giving AI a shot
 #+begin_src emacs-lisp

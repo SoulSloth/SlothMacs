@@ -453,6 +453,16 @@
 (use-package  rainbow-delimiters
 :hook (prog-mode . rainbow-delimiters-mode))
 
+(setq compilation-scroll-output t)
+
+(require 'ansi-color)
+
+(defun sloth/colorize-compilation-buffer ()
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+
+(add-hook 'compilation-filter-hook 'sloth/colorize-compilation-buffer)
+
 ;; Installing straight.el to get copilot. Not sure if this is the best idea long-term.
 (defvar bootstrap-version)
 (let ((bootstrap-file
