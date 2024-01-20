@@ -455,13 +455,13 @@
 
 (setq compilation-scroll-output t)
 
-(require 'ansi-color)
+(use-package ansi-color)
 
-(defun sloth/colorize-compilation-buffer ()
+(defun sloth/colorize-buffer-text ()
   (let ((inhibit-read-only t))
     (ansi-color-apply-on-region (point-min) (point-max))))
 
-(add-hook 'compilation-filter-hook 'sloth/colorize-compilation-buffer)
+(add-hook 'compilation-filter-hook 'sloth/colorize-buffer-text)
 
 ;; Installing straight.el to get copilot. Not sure if this is the best idea long-term.
 (defvar bootstrap-version)
