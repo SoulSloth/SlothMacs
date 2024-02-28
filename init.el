@@ -356,7 +356,7 @@
  :config (global-evil-matchit-mode 1))
 
 (use-package gruvbox-theme)
-(load-theme 'gruvbox-dark-soft t)
+(load-theme 'gruvbox-dark-medium t)
 
 (use-package evil-nerd-commenter
   :bind ("M-/" . evilnc-comment-or-uncomment-lines))

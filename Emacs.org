@@ -563,7 +563,7 @@ Themes tried:
   
 #+begin_src emacs-lisp
 (use-package gruvbox-theme)
-(load-theme 'gruvbox-dark-soft t)
+(load-theme 'gruvbox-dark-medium t)
 #+end_src
 
 * Commenting
