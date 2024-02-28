@@ -297,10 +297,13 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
  
  ;; Org
  "o" '(:ignore o :which-key "org")
- "od" '(org-display-inline-images :which-key "display inline images")
- "of" '(org-footnote-new :which-key "create a new footnote")
- "or" '(org-remove-inline-images :which-key "remove inline images")
- "ol" '(org-store-link :which-key "store link")
+ "od" '(org-display-inline-images :which-key "Display Inline Images")
+ "of" '(org-footnote-new :which-key "Create Footnote")
+ "or" '(org-remove-inline-images :which-key "Remove Inline Images")
+ "ol" '(org-store-link :which-key "Store Link")
+ "oc" '(org-clock-in :which-key "Clock In")
+ "oo" '(org-clock-out :which-key "Clock Out")
+ "oe" '(org-set-effort :which-key "Set Effort")
 
  ;; Org Capture
  "c" '(org-capture :which-key "org capture")
