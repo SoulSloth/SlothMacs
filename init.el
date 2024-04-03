@@ -95,6 +95,7 @@
 	       (directory-files "~/org/projects/" t "\.org")
 	      :require-match "yes" )))
 
+
 (defun open-emacs-conf ()
   "Opens the emacs literate conf"
   (interactive)

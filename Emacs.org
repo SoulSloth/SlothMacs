@@ -431,8 +431,14 @@ Consider install =fd= for [[https://docs.projectile.mx/projectile/configuration.
     :config (counsel-projectile-mode))
 #+end_src
 
-
-*** TODO Need to add directories like "clj-kondo" to the ignore for finds/greps
+** dir-locals.el Templates
+#+begin_src emacs-lisp :tangle ./snippits/python-dir-locals.el
+((nil . (;; Projectile-specific settings
+         (projectile-project-run-cmd . "docker run --name fast-api-local -p 8000:8000 -d custom-fastapi:latest")       ;; Custom run command
+         (projectile-project-compilation-cmd . "docker build --progress=plain --file Dockerfile -t fast-api-local:latest .")       ;; Custom run command
+         (projectile-project-test-cmd . "go test ../...")     ;; Custom test command
+		 (project-log-command . "docker logs --follow fast-api-local"))))
+#+end_src
 
 ** View Project Logs
 Starts another buffer in a projectile project for logs coming off the =project-log-command= variable, whatever that may be set to.
@@ -1489,11 +1495,8 @@ A pretty frequent case in programming and writing notes is that I need to refere
 
 [fn:7]https://orgmode.org/worg/org-contrib/babel/ 
 [fn:6]https://github.com/org-roam/org-roam-ui 
-
 [fn:5] https://github.com/domtronn/all-the-icons.el
 [fn:4] Company Mode's homepage https://company-mode.github.io/ 
-
 [fn:3] lsp-mode's site https://emacs-lsp.github.io/lsp-mode/ 
 [fn:2] Python-lsp-server's github repo  https://github.com/python-lsp/python-lsp-server 
-
 [fn:1] The Jedi installation instructions https://jedi.readthedocs.io/en/latest/docs/installation.html
