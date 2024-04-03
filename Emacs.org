@@ -646,6 +646,12 @@ Our Company frontend to display completions using =all-the-icons= to provide lit
 )
 #+end_src
 
+** Lua
+Achieved with =lua-mode=
+#+begin_src emacs-lisp
+(use-package lua-mode)
+#+end_src
+
 ** Typescript
 
 - Install with =npm i -g typescript-language-server=
@@ -1168,7 +1174,8 @@ Execute code within org-mode code blocks. [fn:7]
      (js . t)
      (dot . t)
      (C . t)
-     (java . t)))
+     (java . t)
+     (lua . t)))
 
    (setq org-confirm-babel-evaluate nil)
  #+end_src
@@ -1225,6 +1232,7 @@ Display the images created by the plantUml org-babel calls
         ("s" . "src")
         ("v" . "verse")
 	      ;; Specific programming languages
+	      ("lu" . "src lua :results output")
         ("sh" . "src shell :results verbatim")
         ("c" . "src C :includes <stdio.h>")
         ("el" . "src emacs-lisp")

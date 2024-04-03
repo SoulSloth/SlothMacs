@@ -395,6 +395,8 @@
 :init (setq company-box-icons-alist 'company-box-icons-all-the-icons)
 )
 
+(use-package lua-mode)
+
 (use-package typescript-mode
   :mode "\\.ts\\'" ;; Start up any time we open a fiel with .ts exentsion
   :hook (typescript-mode . lsp-deferred) ;; Don't startup the server until buffer is visible
@@ -765,7 +767,8 @@ contextual information."
     (js . t)
     (dot . t)
     (C . t)
-    (java . t)))
+    (java . t)
+    (lua . t)))
 
   (setq org-confirm-babel-evaluate nil)
 
@@ -797,6 +800,7 @@ contextual information."
         ("s" . "src")
         ("v" . "verse")
 	      ;; Specific programming languages
+	      ("lu" . "src lua :results output")
         ("sh" . "src shell :results verbatim")
         ("c" . "src C :includes <stdio.h>")
         ("el" . "src emacs-lisp")
