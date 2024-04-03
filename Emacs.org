@@ -262,6 +262,12 @@ Unsure as to why, but we get an error on start-up that leader-keys are not defin
  "bb" '(switch-to-buffer :which-key "Switch to buffer")
  "br" '(revert-buffer-quick :which-key "Revert buffer")
  "bk" '(kill-current-buffer :which-key "Kill buffer")
+
+ ;; Bookmarks
+
+ "k" '(:ignore k :which-key "bookmarks")
+ "kk" '(bookmark-jump :which-key "Jump to bookmark")
+ "km" '(bookmark-set-no-overwrite :which-key "Make Bookmark")
  
  ;; toggles 
  "t" '(:ignore t :which-key "toggles")
@@ -782,6 +788,12 @@ export PATH="${PATH}:${GOPATH}/bin"
 ** Terraform
 #+begin_src emacs-lisp
 (use-package terraform-mode)
+#+end_src
+
+** Protobuf
+Protobuf is an specification language for creating encodings, APIs, and generating code for both.
+#+begin_src emacs-lisp
+(use-package protobuf-mode)
 #+end_src
 
 * General Programming Utils

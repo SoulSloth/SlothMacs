@@ -150,6 +150,12 @@
  "bb" '(switch-to-buffer :which-key "Switch to buffer")
  "br" '(revert-buffer-quick :which-key "Revert buffer")
  "bk" '(kill-current-buffer :which-key "Kill buffer")
+
+ ;; Bookmarks
+
+ "k" '(:ignore k :which-key "bookmarks")
+ "kk" '(bookmark-jump :which-key "Jump to bookmark")
+ "km" '(bookmark-set-no-overwrite :which-key "Make Bookmark")
  
  ;; toggles 
  "t" '(:ignore t :which-key "toggles")
@@ -454,6 +460,8 @@
      )
 
 (use-package terraform-mode)
+
+(use-package protobuf-mode)
 
 ;; Rainbow delimiters
 (use-package  rainbow-delimiters
