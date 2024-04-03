@@ -839,12 +839,14 @@ contextual information."
 	     (setq org-roam-v2-ack t)
 	     :custom
 	     (org-roam-directory "~/org/roam")
-	     :config
 	     (org-roam-setup)
-	     :config
+	     (org-roam-completion-everywhere t)
 	     (setq org-roam-node-display-template
 		   (concat "${title:*} "
-              (propertize "${tags:50}" 'face 'org-tag))))
+              (propertize "${tags:50}" 'face 'org-tag)))
+	     (setq org-roam-dailies-capture-templates
+		    '(("d" "default" entry "* PLAN %<%I:%M %p>: %?"
+         :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n* PLAN Are we feeling strong? 💪")))))
 
 (defun org-roam-node-insert-immediate (arg &rest args)
   (interactive "P")
