@@ -135,9 +135,11 @@
  "rf" '(org-roam-node-find :which-key "Find Node")
  "rl" '(org-roam-buffer-toggle :which-key "Show Backlinks")
  "rt" '(org-roam-tag-add :which-key "Add tag")
- "ro" '(org-roam-dailies-capture-tomorrow :which-key "Capture tomorrows dailies")
+ "ro" '(org-roam-dailies-capture-tomorrow :which-key "Capture a daily for tommorrow")
  "rd" '(org-roam-dailies-goto-today :which-key "Goto Today's Dailies")
  "rm" '(org-roam-insert-image :which-key "Insert Pic")
+ "rn" '(org-roam-dailies-goto-next-note :which-key "Go to next daily")
+ "rp" '(org-roam-dailies-goto-previous-note :which-key "Go to previous daily")
  
  ;; Magit
  "g" '(:ignore g :which-key "Magit")
