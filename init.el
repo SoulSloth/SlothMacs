@@ -406,6 +406,11 @@
 
 (use-package lua-mode)
 
+(add-hook 'sql-mode-hook 'lsp)
+(setq lsp-sqls-workspace-config-path nil)
+(setq lsp-sqls-connections
+    '(((driver . "postgresql") (dataSourceName . "host=127.0.0.1 port=5432 user=postgres password=passwd dbname=foodb sslmode=disable"))))
+
 (use-package typescript-mode
   :mode "\\.ts\\'" ;; Start up any time we open a fiel with .ts exentsion
   :hook (typescript-mode . lsp-deferred) ;; Don't startup the server until buffer is visible

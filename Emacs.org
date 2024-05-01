@@ -666,6 +666,15 @@ Achieved with =lua-mode=
 (use-package lua-mode)
 #+end_src
 
+** SQL
+Done with =sqls= which can be installed with: =go install github.com/sqls-server/sqls@latest= [fn:8]
+#+begin_src emacs-lisp
+(add-hook 'sql-mode-hook 'lsp)
+(setq lsp-sqls-workspace-config-path nil)
+(setq lsp-sqls-connections
+    '(((driver . "postgresql") (dataSourceName . "host=127.0.0.1 port=5432 user=postgres password=passwd dbname=foodb sslmode=disable"))))
+#+end_src
+
 ** Typescript
 
 - Install with =npm i -g typescript-language-server=
@@ -1510,7 +1519,7 @@ A pretty frequent case in programming and writing notes is that I need to refere
 #+end_src
 
 * Footnotes
-
+[fn:8]https://github.com/sqls-server/sqls 
 [fn:7]https://orgmode.org/worg/org-contrib/babel/ 
 [fn:6]https://github.com/org-roam/org-roam-ui 
 [fn:5] https://github.com/domtronn/all-the-icons.el
