@@ -769,6 +769,7 @@ contextual information."
   'org-babel-load-languages
   '((emacs-lisp . t)
     (python . t)
+    (sql . t)
     (clojure . t)
     (shell . t)
     (plantuml . t)
@@ -809,6 +810,7 @@ contextual information."
         ("s" . "src")
         ("v" . "verse")
 	      ;; Specific programming languages
+	      ("sq" . "src sql :engine postgres :dbhost localhost :dbport 5432 :dbuser postgres :dbpassword passwd :database foodb")
 	      ("lu" . "src lua :results output")
         ("sh" . "src shell :results verbatim")
         ("c" . "src C :includes <stdio.h>")
