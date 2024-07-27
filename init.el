@@ -848,8 +848,9 @@ contextual information."
 	     (setq org-roam-v2-ack t)
 	     :custom
 	     (org-roam-directory "~/org/roam")
-	     (org-roam-setup)
 	     (org-roam-completion-everywhere t)
+	     :config
+	     (org-roam-setup)
 	     (setq org-roam-node-display-template
 		   (concat "${title:*} "
               (propertize "${tags:50}" 'face 'org-tag)))
