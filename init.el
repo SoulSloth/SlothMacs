@@ -1,3 +1,5 @@
+(add-to-list 'load-path "~/.emacs.d/misc-elisp/")
+
 (when (string= system-type "darwin")
   (use-package exec-path-from-shell)
     (exec-path-from-shell-initialize))
@@ -70,7 +72,7 @@
 (use-package no-littering)
 
 (setq auto-save-file-name-transforms
-       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+	`((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
 (use-package general
 ;; Creates qeuivalent vim mapping functions
@@ -886,10 +888,6 @@ contextual information."
 
 (use-package org-roam-ui)
 
-(use-package ox-hugo
-  :ensure t 
-  :after ox)
-
 (if (eq system-type 'darwin)
     (custom-set-faces
      '(org-level-1 ((t (:inherit outline-1 :height 1.1))))
@@ -936,7 +934,7 @@ contextual information."
   (setq dired-use-ls-dired t
         insert-directory-program "gls")))
 
-(use-package dired-single)
+(require 'dired-single)
 
 (use-package all-the-icons-dired
   :hook (dired-mode . all-the-icons-dired-mode))

@@ -3,6 +3,16 @@
 
 This configuraiton is my ongoing effort to improve my tooling.
 
+* Pre-setup
+- Download =dired-single.el= to ="~/.emacs.d/misc-elisp/"=
+
+* Add Load Path
+In order to load certain =.el= scripts, we add this path.
+#+begin_src emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/misc-elisp/")
+#+end_src
+
+
 * System-centric configs
 ** Fix shell path on Mac
 #+begin_src emacs-lisp
@@ -1359,15 +1369,6 @@ Provides a web-based node graph for viewing my Org-Roam database.[fn:6]
 (use-package org-roam-ui)
 #+end_src
 
-** Ox-Hugo
-Ox-hugo is a package to allow the generation of static-sites with Hugo with Org files instead of Markdown
-#+begin_src emacs-lisp
-(use-package ox-hugo
-  :ensure t 
-  :after ox)
-#+end_src
-
-#+RESULTS:
 
 ** Mac Configs
 Make it so bullets aren't so tiny on MacOS
@@ -1471,8 +1472,9 @@ Dired, the Directory Editor, allows us to quickly navigate our filesystem, make 
 
 *** dired-single
 Allows us to have one dired buffer instead of a new one for each directory
+Must be downloaded from: https://github.com/emacsattic/dired-single and placed in =~/emacs.d/misc-elisp=
 #+begin_src emacs-lisp
-  (use-package dired-single)
+(require 'dired-single)
 #+end_src
 
 *** all-the-icons-dired
