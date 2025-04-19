@@ -847,37 +847,6 @@ Especially with docker build outputs, where there's a lot of ansi escapes, it's 
 (add-hook 'compilation-filter-hook 'sloth/colorize-buffer-text)
 #+end_src
 
-* Github Co-Pilot
-Giving AI a shot
-#+begin_src emacs-lisp
-;; Installing straight.el to get copilot. Not sure if this is the best idea long-term.
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-	(url-retrieve-synchronously
-	 "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-	 'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-(use-package copilot
-  :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
-  :ensure t)
-
-(with-eval-after-load 'company
-  ;; disable inline previews
-  (delq 'company-preview-if-just-one-frontend company-frontends))
-  
-(define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-(define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
-#+end_src
-
-#+RESULTS:
-: copilot-accept-completion
 
 * Org Mode
 I use =org-mode= to take notes, write blogs, and create litearte coding "books" with =org-babel=
